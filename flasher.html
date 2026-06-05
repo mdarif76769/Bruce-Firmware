@@ -14,7 +14,7 @@
 		<style>
 			* { box-sizing: border-box; }
 			html { scroll-behavior: smooth; overflow-x: hidden !important; }
-			body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; background-color: #0a0a0a; color: #ffffff; }
+			body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; background-color: #0d0d0d; color: #ffffff; }
 			a { color: #943ee5; }
 			
 			/* স্লাইডারের অ্যাক্টিভ ডটের স্টাইল */
@@ -41,7 +41,7 @@
 	<body>
 		<div style="display: contents">
 			
-			<header class="fixed top-0 left-0 z-[100] w-full bg-[#111] py-3.5 border-b border-neutral-800">
+			<header class="fixed top-0 left-0 z-[100] w-full bg-[#111111] py-3.5 border-b border-neutral-800 shadow-lg">
 				<div class="mx-auto w-11/12 max-w-7xl">
 					<nav class="flex items-center justify-between">
 						<a href="/" class="flex items-center">
@@ -63,75 +63,81 @@
 				</div>
 			</header> 
 
-			<section class="relative w-full overflow-hidden px-4 pt-[120px] pb-[60px] min-h-[500px] flex items-center justify-center">
-				<img src="./img/purple-aqua.gif" alt="Background GIF" class="absolute top-0 left-0 h-full w-full object-cover brightness-50 z-0" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; object-fit: cover; z-index: 0;" onerror="this.style.backgroundColor='#1a0933'"/>
+			<section class="relative w-full overflow-hidden px-4 pt-[140px] pb-[60px] min-h-[550px] flex items-center justify-center border-b border-neutral-800 bg-[#0f0e12]">
+				<img src="./img/purple-aqua.gif" alt="Background GIF" class="absolute top-0 left-0 h-full w-full object-cover brightness-[0.25] z-0" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; object-fit: cover; z-index: 0;" onerror="this.style.backgroundColor='#0a0514'"/>
 				
 				<div class="relative z-10 flex flex-col lg:flex-row w-full max-w-7xl mx-auto items-center justify-between gap-12">
 					
 					<div class="text-white text-center lg:text-left w-full lg:w-1/2">
 						<h1 data-i18n="hero_title" class="mb-4 text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">Bruce Web Flasher</h1> 
-						<p data-i18n="hero_description" class="text-lg md:text-xl text-gray-300">Flash your device easily with our online installer!</p> 
+						<p data-i18n="hero_description" class="text-lg md:text-xl text-gray-400">Flash your device easily with our online installer!</p> 
 					</div>
 
 					<div class="w-full lg:w-1/2 flex flex-col items-center justify-center">
-						<div class="w-full max-w-[500px] h-[300px] md:h-[350px] flex items-center justify-center bg-black/20 rounded-2xl p-4 backdrop-blur-sm border border-white/5 overflow-hidden">
-							<img id="sliderImg" src="https://raw.githubusercontent.com/pr3y/Bruce/main/assets/cardputer.png" class="max-w-full max-h-full object-contain drop-shadow-[0_10px_20px_rgba(155,81,224,0.3)] hover:scale-105 transition-transform duration-300" alt="Bruce Device">
+						<div class="w-full max-w-[500px] h-[320px] md:h-[380px] flex items-center justify-center bg-neutral-900/40 rounded-2xl p-4 backdrop-blur-md border border-neutral-800 overflow-hidden">
+							<img id="sliderImg" src="https://raw.githubusercontent.com/pr3y/Bruce/main/assets/cardputer.png" class="max-w-full max-h-full object-contain hover:scale-102 transition-transform duration-300" alt="Bruce Device">
 						</div>
 						
 						<div class="flex gap-2.5 mt-6" id="sliderDots">
-							<span class="dot w-3 h-3 rounded-full bg-neutral-600 active" onclick="setSlide(0)"></span>
-							<span class="dot w-3 h-3 rounded-full bg-neutral-600" onclick="setSlide(1)"></span>
-							<span class="dot w-3 h-3 rounded-full bg-neutral-600" onclick="setSlide(2)"></span>
-							<span class="dot w-3 h-3 rounded-full bg-neutral-600" onclick="setSlide(3)"></span>
-							<span class="dot w-3 h-3 rounded-full bg-neutral-600" onclick="setSlide(4)"></span>
-							<span class="dot w-3 h-3 rounded-full bg-neutral-600" onclick="setSlide(5)"></span>
-							<span class="dot w-3 h-3 rounded-full bg-neutral-600" onclick="setSlide(6)"></span>
+							<span class="dot w-3 h-3 rounded-full bg-neutral-700 active" onclick="setSlide(0)"></span>
+							<span class="dot w-3 h-3 rounded-full bg-neutral-700" onclick="setSlide(1)"></span>
+							<span class="dot w-3 h-3 rounded-full bg-neutral-700" onclick="setSlide(2)"></span>
+							<span class="dot w-3 h-3 rounded-full bg-neutral-700" onclick="setSlide(3)"></span>
+							<span class="dot w-3 h-3 rounded-full bg-neutral-700" onclick="setSlide(4)"></span>
+							<span class="dot w-3 h-3 rounded-full bg-neutral-700" onclick="setSlide(5)"></span>
+							<span class="dot w-3 h-3 rounded-full bg-neutral-700" onclick="setSlide(6)"></span>
 						</div>
 					</div>
 				</div>
 			</section>
 
-			<div class="mx-auto mt-10 w-11/12 max-w-[850px] rounded-xl border-2 border-[#9B51E0] bg-[#9B51E0]/10 p-6 text-white shadow-[0px_0px_15px_rgba(155,81,224,0.2)]">
-				<h2 class="text-center text-2xl md:text-3xl font-bold mb-4" data-i18n="flashing_instructions_title">Flashing Instructions</h2> 
-				<p data-i18n="flashing_instruction_1" class="text-neutral-200"><strong>Connect your device, then select "Flash" and click connect.</strong></p> 
-				<p data-i18n="flashing_instruction_2" class="mt-3 text-neutral-300">If asked to put your device into <strong class="text-[#9B51E0]">download mode</strong>, do the following:</p> 
-				<ul class="ml-6 list-disc pl-2 space-y-2 mt-2 text-sm md:text-base text-neutral-300">
-					<li data-i18n="flashing_instruction_cardputer"><strong>Cardputer:</strong> Turn off and unplug from USB, hold the btn G0 (upper right corner), then connect via USB.</li> 
-					<li data-i18n="flashing_instruction_stickcs"><strong>StickCs:</strong> Turn off, connect one side of a jumper cable into GND and the other side in G0, plug in USB, then remove the jumper cable.</li> 
-					<li data-i18n="flashing_instruction_stickcs"><strong>T-Embed:</strong> Keep encoder center button pressed and press RST button (CC1101 this btn is on the board, beside ESP32-S3 chip).</li> 
-					<li data-i18n="flashing_instruction_stickcs"><strong>T-Deck:</strong> Keep the trackpad button pressed and press RST (in the left side).</li> 
-					<li>If you are in linux, you may need to run <code class="bg-black/40 px-1.5 py-0.5 rounded text-purple-400">sudo setfacl -m u::rw /dev/ttyACM0</code> to be able to flash.</li>
-				</ul>
-			</div>
+			<section class="w-full py-12 px-4 bg-[#121214] border-b border-neutral-800">
+				<div class="mx-auto w-11/12 max-w-[850px] rounded-xl border-2 border-[#9B51E0]/40 bg-[#9B51E0]/5 p-6 text-white shadow-md">
+					<h2 class="text-center text-2xl md:text-3xl font-bold mb-4 text-purple-400" data-i18n="flashing_instructions_title">Flashing Instructions</h2> 
+					<p data-i18n="flashing_instruction_1" class="text-neutral-200"><strong>Connect your device, then select "Flash" and click connect.</strong></p> 
+					<p data-i18n="flashing_instruction_2" class="mt-3 text-neutral-300">If asked to put your device into <strong class="text-[#9B51E0]">download mode</strong>, do the following:</p> 
+					<ul class="ml-6 list-disc pl-2 space-y-2 mt-2 text-sm md:text-base text-neutral-300">
+						<li data-i18n="flashing_instruction_cardputer"><strong>Cardputer:</strong> Turn off and unplug from USB, hold the btn G0 (upper right corner), then connect via USB.</li> 
+						<li data-i18n="flashing_instruction_stickcs"><strong>StickCs:</strong> Turn off, connect one side of a jumper cable into GND and the other side in G0, plug in USB, then remove the jumper cable.</li> 
+						<li data-i18n="flashing_instruction_stickcs"><strong>T-Embed:</strong> Keep encoder center button pressed and press RST button (CC1101 this btn is on the board, beside ESP32-S3 chip).</li> 
+						<li data-i18n="flashing_instruction_stickcs"><strong>T-Deck:</strong> Keep the trackpad button pressed and press RST (in the left side).</li> 
+						<li>If you are in linux, you may need to run <code class="bg-black/40 px-1.5 py-0.5 rounded text-purple-400">sudo setfacl -m u::rw /dev/ttyACM0</code> to be able to flash.</li>
+					</ul>
+				</div>
+			</section>
 
-			<div class="max-w-7xl mx-auto px-4 mt-12">
-				<h2 class="flex items-center justify-center p-2 text-2xl font-bold mb-4" data-i18n="version_select_title">Select Release</h2> 
-				<div class="flex flex-wrap items-center justify-center gap-4 mb-4">
-					<button id="latest" class="bg-[#9B51E0] text-white flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 px-5 py-2 font-medium transition-all duration-300 hover:bg-purple-700">Latest</button> 
-					<button id="beta" class="flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 px-5 py-2 font-medium text-purple-500 transition-all duration-300 hover:bg-[#9B51E0] hover:text-white">Beta</button> 
-					<div class="flex flex-col items-center">
-						<button id="other" class="min-h-[2.5rem] w-36 cursor-pointer rounded-lg border-2 border-purple-500 px-5 py-2 font-medium text-purple-500 transition-all duration-300 hover:bg-[#9B51E0] hover:text-white">Other</button> 
-						<div id="otherReleaseContainer" style="display: none;" class="mt-2 text-xs text-gray-400"><p>Loading tags...</p></div>
-					</div>
-				</div> 
-				<div id="releaseDate" class="text-center text-sm font-bold text-gray-500" data-i18n="release_date">Released: <span id="releaseDateValue" class="font-normal text-gray-400">Invalid Date Invalid Date</span></div>
-			</div> 
+			<section class="w-full py-12 px-4 bg-[#0d0d0f] border-b border-neutral-800">
+				<div class="max-w-7xl mx-auto">
+					<h2 class="flex items-center justify-center p-2 text-2xl font-bold mb-6 text-neutral-200" data-i18n="version_select_title">Select Release</h2> 
+					<div class="flex flex-wrap items-center justify-center gap-4 mb-4">
+						<button id="latest" class="bg-[#9B51E0] text-white flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 px-5 py-2 font-medium transition-all duration-300 hover:bg-purple-700">Latest</button> 
+						<button id="beta" class="flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 px-5 py-2 font-medium text-purple-500 transition-all duration-300 hover:bg-[#9B51E0] hover:text-white">Beta</button> 
+						<div class="flex flex-col items-center">
+							<button id="other" class="min-h-[2.5rem] w-36 cursor-pointer rounded-lg border-2 border-purple-500 px-5 py-2 font-medium text-purple-500 transition-all duration-300 hover:bg-[#9B51E0] hover:text-white">Other</button> 
+							<div id="otherReleaseContainer" style="display: none;" class="mt-2 text-xs text-gray-400"><p>Loading tags...</p></div>
+						</div>
+					</div> 
+					<div id="releaseDate" class="text-center text-sm font-bold text-gray-500" data-i18n="release_date">Released: <span id="releaseDateValue" class="font-normal text-gray-400">Invalid Date Invalid Date</span></div>
+				</div>
+			</section>
 
-			<div class="max-w-7xl mx-auto px-4 mt-12 mb-16">
-				<h2 class="p-2 text-center text-2xl font-bold mb-6" data-i18n="select_device_manufacturer_category_title">Select Device Manufacturer/Category</h2> 
-				<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 max-w-4xl mx-auto gap-4">
-					<button class="flex min-h-[2.5rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500/60 px-4 py-2.5 text-sm font-medium text-purple-400 transition-all duration-300 hover:bg-[#9B51E0] hover:text-white hover:border-purple-500">Bruce Boards</button>
-					<button class="flex min-h-[2.5rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500/60 px-4 py-2.5 text-sm font-medium text-purple-400 transition-all duration-300 hover:bg-[#9B51E0] hover:text-white hover:border-purple-500">M5Stack</button>
-					<button class="flex min-h-[2.5rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500/60 px-4 py-2.5 text-sm font-medium text-purple-400 transition-all duration-300 hover:bg-[#9B51E0] hover:text-white hover:border-purple-500">Lilygo</button>
-					<button class="flex min-h-[2.5rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500/60 px-4 py-2.5 text-sm font-medium text-purple-400 transition-all duration-300 hover:bg-[#9B51E0] hover:text-white hover:border-purple-500">Elecrow</button>
-					<button class="flex min-h-[2.5rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500/60 px-4 py-2.5 text-sm font-medium text-purple-400 transition-all duration-300 hover:bg-[#9B51E0] hover:text-white hover:border-purple-500">CYD</button>
-					<button class="flex min-h-[2.5rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500/60 px-4 py-2.5 text-sm font-medium text-purple-400 transition-all duration-300 hover:bg-[#9B51E0] hover:text-white hover:border-purple-500">ESP32</button>
-					<button class="flex min-h-[2.5rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500/60 px-4 py-2.5 text-sm font-medium text-purple-400 transition-all duration-300 hover:bg-[#9B51E0] hover:text-white hover:border-purple-500">Custom Boards</button>
-					<button class="flex min-h-[2.5rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500/60 px-4 py-2.5 text-sm font-medium text-purple-400 transition-all duration-300 hover:bg-[#9B51E0] hover:text-white hover:border-purple-500">Launcher</button>
-				</div> 
-			</div> 
+			<section class="w-full py-12 px-4 bg-[#111113]">
+				<div class="max-w-7xl mx-auto">
+					<h2 class="p-2 text-center text-2xl font-bold mb-6 text-neutral-200" data-i18n="select_device_manufacturer_category_title">Select Device Manufacturer/Category</h2> 
+					<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 max-w-4xl mx-auto gap-4">
+						<button class="flex min-h-[2.5rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500/60 px-4 py-2.5 text-sm font-medium text-purple-400 transition-all duration-300 hover:bg-[#9B51E0] hover:text-white hover:border-purple-500">Bruce Boards</button>
+						<button class="flex min-h-[2.5rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500/60 px-4 py-2.5 text-sm font-medium text-purple-400 transition-all duration-300 hover:bg-[#9B51E0] hover:text-white hover:border-purple-500">M5Stack</button>
+						<button class="flex min-h-[2.5rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500/60 px-4 py-2.5 text-sm font-medium text-purple-400 transition-all duration-300 hover:bg-[#9B51E0] hover:text-white hover:border-purple-500">Lilygo</button>
+						<button class="flex min-h-[2.5rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500/60 px-4 py-2.5 text-sm font-medium text-purple-400 transition-all duration-300 hover:bg-[#9B51E0] hover:text-white hover:border-purple-500">Elecrow</button>
+						<button class="flex min-h-[2.5rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500/60 px-4 py-2.5 text-sm font-medium text-purple-400 transition-all duration-300 hover:bg-[#9B51E0] hover:text-white hover:border-purple-500">CYD</button>
+						<button class="flex min-h-[2.5rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500/60 px-4 py-2.5 text-sm font-medium text-purple-400 transition-all duration-300 hover:bg-[#9B51E0] hover:text-white hover:border-purple-500">ESP32</button>
+						<button class="flex min-h-[2.5rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500/60 px-4 py-2.5 text-sm font-medium text-purple-400 transition-all duration-300 hover:bg-[#9B51E0] hover:text-white hover:border-purple-500">Custom Boards</button>
+						<button class="flex min-h-[2.5rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500/60 px-4 py-2.5 text-sm font-medium text-purple-400 transition-all duration-300 hover:bg-[#9B51E0] hover:text-white hover:border-purple-500">Launcher</button>
+					</div> 
+				</div>
+			</section>
 
-			<footer class="bg-[#111] py-6 text-center border-t border-neutral-800">
+			<footer class="bg-[#0b0b0c] py-8 text-center border-t border-neutral-800">
 				<div class="mx-auto w-11/12 max-w-7xl">
 					<div class="mb-4 flex items-center justify-center gap-6 text-gray-500">
 						<a href="https://discord.gg/WJ9XF9czVT" target="_blank" class="hover:text-purple-500 transition" aria-label="Discord">
@@ -146,17 +152,18 @@
 			</footer>
 
 			<script>
-				// মেইন গিটহাব রিপোজিটরির ইমেজ ডিরেক্টরি পাথ লজিক অ্যাড করা হয়েছে
+				// গিটহাব অফিশিয়াল রিপোজিটরির সঠিক অ্যাসেট ইউআরএল
 				const baseGitHubUrl = "https://raw.githubusercontent.com/pr3y/Bruce/main/assets/";
 				
-				const imageFiles = [
+				// অফিশিয়াল গিটহাবে ফাইলের এক্স্যাক্ট নামগুলো এখানে দেওয়া হলো
+				const sliderImages = [
+					"bruce-pcb.png",
+					"reaper-pcb2.png",
 					"cardputer.png",
-					"stickc.png",
-					"tembed.png",
-					"tdeck.png",
-					"m5stack-core.png",
+					"core2.png",
 					"cyd.png",
-					"watch.png"
+					"stickc.png", // m5stick-এর জায়গায় গিটহাবের রিয়েল ফাইল নেম
+					"t-embed.png"
 				];
 				
 				let currentSlide = 0;
@@ -168,18 +175,20 @@
 					sliderImg.style.opacity = 0;
 					
 					setTimeout(() => {
-						// লোকাল ফোল্ডারে না পেলে স্বয়ংক্রিয়ভাবে গিটহাব থেকে লোড করবে
-						const currentImage = imageFiles[currentSlide];
+						const currentImage = sliderImages[currentSlide]; // imageFiles এর জায়গায় sliderImages ফিক্সড
+						
+						// প্রথমে লোকাল ফোল্ডারে চেক করবে
 						sliderImg.src = `./img/${currentImage}`;
 						
-						// ফলব্যাক এরর হ্যান্ডলিং সরাসরি গিটহাব সার্ভার থেকে ডাটা পুল করবে
+						// লোকাল ডিরেক্টরিতে ফাইল না থাকলে গিটহাব লাইভ লিংক ফলব্যাক কাজ করবে
 						sliderImg.onerror = function() {
 							this.src = baseGitHubUrl + currentImage;
-							this.onerror = null; // ইনফিনিট লুপ বন্ধ করার জন্য
+							this.onerror = null; 
 						};
 
 						sliderImg.style.opacity = 1;
 						
+						// ডট ইন্ডিকেটর আপডেট
 						dots.forEach((dot, index) => {
 							if(index === currentSlide) {
 								dot.classList.add("active");
@@ -198,7 +207,7 @@
 
 				function startTimer() {
 					slideInterval = setInterval(() => {
-						currentSlide = (currentSlide + 1) % imageFiles.length;
+						currentSlide = (currentSlide + 1) % sliderImages.length; // এখানেও sliderImages হ্যান্ডেল করা হয়েছে
 						updateSlider();
 					}, 3500);
 				}
@@ -208,7 +217,7 @@
 					startTimer();
 				}
 
-				// স্লাইডার ইনিশিয়ালাইজেশন
+				// স্লাইডার চালু করার কল
 				startTimer();
 			</script>
 		</div>
