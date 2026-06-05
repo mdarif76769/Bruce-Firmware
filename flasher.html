@@ -42,6 +42,16 @@
 			html { scroll-behavior: smooth; overflow-x: hidden !important; }
 			body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; background-color: #0a0a0a; color: #ffffff; }
 			a { color: #943ee5; }
+			
+			/* স্লাইডারের ডটের স্টাইল */
+			.dot {
+				cursor: pointer;
+				transition: background-color 0.3s ease;
+			}
+			.dot.active {
+				background-color: #9B51E0 !important;
+				transform: scale(1.2);
+			}
 		</style>
 		
 		<script type="module" src="/vendor/bruce-esp-web-tools/web/install-button.js?module"></script>
@@ -71,25 +81,27 @@
 				</div>
 			</header> 
 
-			<section class="relative flex min-h-[500px] w-full flex-col overflow-hidden px-4 md:flex-row pt-28 pb-12 items-center justify-center">
-				<img src="./img/purple-aqua.gif" alt="Background GIF" class="absolute top-0 left-0 h-full w-full object-cover brightness-50 z-0"/>
+			<section class="relative w-full overflow-hidden px-4" style="display: flex; flex-direction: column; min-height: 550px; padding-top: 100px; justify-content: center; align-items: center; position: relative;">
+				<img src="./img/purple-aqua.gif" alt="Background GIF" class="absolute top-0 left-0 h-full w-full object-cover brightness-50 z-0" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; object-fit: cover; z-index: 0;"/>
 				
-				<div class="relative z-10 flex flex-col md:flex-row w-full max-w-7xl mx-auto items-center justify-between gap-8">
-					<div class="flex flex-col justify-center p-4 text-white w-full md:w-1/2">
-						<h1 data-i18n="hero_title" class="mb-5 text-5xl md:text-6xl font-bold max-sm:mt-10">Bruce Web Flasher</h1> 
-						<p data-i18n="hero_description" class="mb-7 text-xl text-gray-300 leading-relaxed">Flash your device easily with our online installer!</p> 
+				<div class="relative z-10 flex flex-col md:flex-row w-full max-w-7xl mx-auto items-center justify-between gap-6" style="z-index: 10; display: flex; width: 100%; max-w: 1200px; margin: 0 auto; align-items: center; gap: 24px;">
+					
+					<div class="text-white text-center md:text-left w-full md:w-1/2 p-4">
+						<h1 data-i18n="hero_title" class="mb-4 text-4xl md:text-6xl font-bold" style="font-weight: 800; line-height: 1.2;">Bruce Web Flasher</h1> 
+						<p data-i18n="hero_description" class="text-lg md:text-xl text-gray-300" style="color: #cbd5e1; margin-top: 10px;">Flash your device easily with our online installer!</p> 
 					</div>
 
-					<div class="w-full md:w-1/2 flex flex-col items-center justify-center mt-12 md:mt-20 px-4">
-						<img id="sliderImg" src="./img/cardputer.png" class="w-[500px] h-[400px] object-contain transition-all duration-700 animate-pulse hover:scale-105" alt="Device">
-						<div class="flex gap-2 mt-4" id="sliderDots">
-							<span class="dot w-2 h-2 rounded-full bg-purple-700"></span>
-							<span class="dot w-2 h-2 rounded-full bg-gray-700"></span>
-							<span class="dot w-2 h-2 rounded-full bg-gray-700"></span>
-							<span class="dot w-2 h-2 rounded-full bg-gray-700"></span>
-							<span class="dot w-2 h-2 rounded-full bg-gray-700"></span>
-							<span class="dot w-2 h-2 rounded-full bg-gray-700"></span>
-							<span class="dot w-2 h-2 rounded-full bg-gray-700"></span>
+					<div class="w-full md:w-1/2 flex flex-col items-center justify-center p-4" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+						<img id="sliderImg" src="./img/cardputer.png" class="object-contain transition-all duration-500 hover:scale-105" style="width: 100%; max-w: 450px; height: auto; max-h: 320px; object-fit: contain;" alt="Device">
+						
+						<div class="flex gap-2 mt-4" id="sliderDots" style="display: flex; gap: 8px; margin-top: 16px;">
+							<span class="dot w-2.5 h-2.5 rounded-full bg-gray-600 active" onclick="setSlide(0)"></span>
+							<span class="dot w-2.5 h-2.5 rounded-full bg-gray-600" onclick="setSlide(1)"></span>
+							<span class="dot w-2.5 h-2.5 rounded-full bg-gray-600" onclick="setSlide(2)"></span>
+							<span class="dot w-2.5 h-2.5 rounded-full bg-gray-600" onclick="setSlide(3)"></span>
+							<span class="dot w-2.5 h-2.5 rounded-full bg-gray-600" onclick="setSlide(4)"></span>
+							<span class="dot w-2.5 h-2.5 rounded-full bg-gray-600" onclick="setSlide(5)"></span>
+							<span class="dot w-2.5 h-2.5 rounded-full bg-gray-600" onclick="setSlide(6)"></span>
 						</div>
 					</div>
 				</div>
@@ -162,6 +174,53 @@
 				</div> 
 				<p data-i18n="footer_note">Flasher customized by <a href="https://github.com/emericklaw">emericklaw</a>, <a href="https://unveroleone.com">unveroleone</a>, <a href="https://github.com/bmorcelli">bmorcelli</a> and <a href="https://github.com/pr3y">pr3y</a> — Installer powered by <a href="https://esphome.github.io/esp-web-tools/">ESP Web Tools 🛠️</a></p>
 			</footer>
+
+			<script>
+				const images = [
+					"./img/cardputer.png",
+					"./img/stickc.png",
+					"./img/tembed.png",
+					"./img/tdeck.png",
+					"./img/m5stack-core.png",
+					"./img/cyd.png",
+					"./img/watch.png"
+				];
+				
+				let currentSlide = 0;
+				const sliderImg = document.getElementById("sliderImg");
+				const dots = document.querySelectorAll(".dot");
+
+				function updateSlider() {
+					// ফেইড এফেক্ট ট্রানজিশন
+					sliderImg.style.opacity = 0;
+					
+					setTimeout(() => {
+						// সঠিক ইমেজ সোর্স অ্যাসাইন করা
+						sliderImg.src = images[currentSlide];
+						sliderImg.style.opacity = 1;
+						
+						// ডট আপডেট করা
+						dots.forEach((dot, index) => {
+							if(index === currentSlide) {
+								dot.classList.add("active");
+							} else {
+								dot.classList.remove("active");
+							}
+						});
+					}, 200);
+				}
+
+				function setSlide(index) {
+					currentSlide = index;
+					updateSlider();
+				}
+
+				// প্রতি ৩ সেকেন্ড পর পর স্লাইড অটো চেঞ্জ হবে
+				setInterval(() => {
+					currentSlide = (currentSlide + 1) % images.length;
+					updateSlider();
+				}, 3000);
+			</script>
 
 			<script>
 				{
