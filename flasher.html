@@ -35,8 +35,8 @@
 			/* Sliding pictures gulo aro boro boro dekhabe */
 			.big-slider-container {
 				width: 100%;
-				max-width: 750px; /* Aro boro kora hoyeche */
-				height: 500px;    /* Max height barano hoyeche */
+				max-width: 750px;
+				height: 500px;
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -108,12 +108,20 @@
 		</section>
 
 		<section class="w-full py-10 px-4 bg-[#0a0a0a]">
-			<div class="mx-auto max-w-[800px] text-center">
+			<div class="mx-auto max-w-[800px] text-center flex flex-col items-center justify-center">
 				<h2 class="text-2xl font-bold mb-5">Select Release Track</h2> 
-				<div class="flex flex-wrap items-center justify-center gap-4 mb-6">
-					<button id="track-latest" onclick="selectTrack('latest')" class="btn-active flex min-h-[2.5rem] w-40 cursor-pointer items-center justify-center rounded-lg border-2 font-semibold transition shadow-md">Latest</button>
-					<button id="track-beta" onclick="selectTrack('beta')" class="btn-inactive flex min-h-[2.5rem] w-40 cursor-pointer items-center justify-center rounded-lg border-2 font-semibold transition hover:bg-[#9B51E0]/10 shadow-md">Beta</button>
+				
+				<div class="mb-5">
+					<select id="githubReleaseDropdown" onchange="handleDropdownSelection(this.value)" class="bg-[#111] text-purple-400 border-2 border-purple-500 rounded-lg p-2.5 font-semibold outline-none w-64 max-w-full text-center">
+						<option value="loading">Fetching from GitHub...</option>
+					</select>
 				</div>
+
+				<div class="flex flex-wrap items-center justify-center gap-4 mb-6">
+					<button id="track-latest" onclick="handleTrackButtonClick('latest')" class="btn-active flex min-h-[2.5rem] w-40 cursor-pointer items-center justify-center rounded-lg border-2 font-semibold transition shadow-md">Latest</button>
+					<button id="track-beta" onclick="handleTrackButtonClick('beta')" class="btn-inactive flex min-h-[2.5rem] w-40 cursor-pointer items-center justify-center rounded-lg border-2 font-semibold transition hover:bg-[#9B51E0]/10 shadow-md">Beta</button>
+				</div>
+
 				<div class="text-sm font-bold text-gray-400">
 					Active GitHub Release Tag: <span id="activeTagValue" class="font-normal text-purple-400">Fetching Data...</span>
 				</div>
@@ -155,7 +163,6 @@
 		</section>
 
 		<script>
-			// Official accurate pattern maps based on repository files
 			const HARDWARE_MAP = {
 				"bruce_boards": { label: "Bruce Boards", patterns: ["reaper", "minewar"] },
 				"m5stack": { label: "M5Stack", patterns: ["m5", "cardputer", "core2", "guns", "coreink", "cores", "stickc"] },
@@ -170,7 +177,6 @@
 			let gitHubReleases = [];
 			let selectedReleaseAssets = [];
 			let selectedCategoryKey = '';
-			let currentTrackMode = 'latest';
 
 			function toggleMenu() {
 				const menu = document.getElementById('navMenu');
@@ -178,50 +184,76 @@
 				menu.classList.toggle('flex');
 			}
 
-			// Core API processing logic
+			// Real-time API Fetching
 			async function initGitHubFetch() {
+				const dropdown = document.getElementById('githubReleaseDropdown');
 				try {
 					const response = await fetch("https://api.github.com/repos/BruceDevices/firmware/releases");
 					gitHubReleases = await response.json();
 					
-					// Auto select initial state
-					selectTrack('latest');
+					dropdown.innerHTML = '';
+					if (gitHubReleases.length === 0) {
+						dropdown.innerHTML = '<option>No Releases Found</option>';
+						return;
+					}
+
+					gitHubReleases.forEach((rel, index) => {
+						const opt = document.createElement('option');
+						opt.value = index;
+						opt.innerText = rel.name || rel.tag_name;
+						if (index === 0) opt.innerText += " (Latest)";
+						dropdown.appendChild(opt);
+					});
+
+					// Initial load default to index 0
+					updateActiveRelease(0);
 				} catch (err) {
-					document.getElementById('activeTagValue').innerText = "API Rate Limit / Connection Error";
+					dropdown.innerHTML = '<option value="error">API Rate Limit/Error</option>';
+					document.getElementById('activeTagValue').innerText = "API Rate Limit or Connection Error";
 					console.error(err);
 				}
 			}
 
-			// Separate layout handlers for custom dedicated track buttons
-			function selectTrack(track) {
-				currentTrackMode = track;
+			// Dropdown list handler
+			function handleDropdownSelection(index) {
+				if(index === "loading" || index === "error") return;
+				updateActiveRelease(parseInt(index));
+			}
+
+			// Button shortcut handler (Latest / Beta map updates dropdown)
+			function handleTrackButtonClick(track) {
+				if(!gitHubReleases || gitHubReleases.length === 0) return;
 				
+				let targetIndex = 0;
+				if(track === 'latest') {
+					targetIndex = gitHubReleases.findIndex(r => !r.prerelease);
+					if(targetIndex === -1) targetIndex = 0;
+				} else {
+					targetIndex = gitHubReleases.findIndex(r => r.prerelease);
+					if(targetIndex === -1) targetIndex = 0;
+				}
+
+				// Dropdown matching visual synchronize
+				document.getElementById('githubReleaseDropdown').value = targetIndex;
+				updateActiveRelease(targetIndex);
+			}
+
+			// Synchronized master controller for active release
+			function updateActiveRelease(index) {
+				const release = gitHubReleases[index];
+				document.getElementById('activeTagValue').innerText = release.tag_name;
+				selectedReleaseAssets = release.assets || [];
+
+				// Sync the toggle style of buttons automatically
 				const latestBtn = document.getElementById('track-latest');
 				const betaBtn = document.getElementById('track-beta');
-				
-				if(track === 'latest') {
-					latestBtn.className = "btn-active flex min-h-[2.5rem] w-40 cursor-pointer items-center justify-center rounded-lg border-2 font-semibold transition shadow-md";
-					betaBtn.className = "btn-inactive flex min-h-[2.5rem] w-40 cursor-pointer items-center justify-center rounded-lg border-2 font-semibold transition hover:bg-[#9B51E0]/10 shadow-md";
-				} else {
+				if(release.prerelease) {
 					betaBtn.className = "btn-active flex min-h-[2.5rem] w-40 cursor-pointer items-center justify-center rounded-lg border-2 font-semibold transition shadow-md";
 					latestBtn.className = "btn-inactive flex min-h-[2.5rem] w-40 cursor-pointer items-center justify-center rounded-lg border-2 font-semibold transition hover:bg-[#9B51E0]/10 shadow-md";
-				}
-
-				if(!gitHubReleases || gitHubReleases.length === 0) return;
-
-				let selectedRelease = null;
-				if(track === 'latest') {
-					// Pre-release false find korbe (Latest standard release)
-					selectedRelease = gitHubReleases.find(r => !r.prerelease);
-					if(!selectedRelease) selectedRelease = gitHubReleases[0];
 				} else {
-					// Pre-release true find korbe (Beta release logs)
-					selectedRelease = gitHubReleases.find(r => r.prerelease);
-					if(!selectedRelease) selectedRelease = gitHubReleases[0];
+					latestBtn.className = "btn-active flex min-h-[2.5rem] w-40 cursor-pointer items-center justify-center rounded-lg border-2 font-semibold transition shadow-md";
+					betaBtn.className = "btn-inactive flex min-h-[2.5rem] w-40 cursor-pointer items-center justify-center rounded-lg border-2 font-semibold transition hover:bg-[#9B51E0]/10 shadow-md";
 				}
-
-				document.getElementById('activeTagValue').innerText = selectedRelease.tag_name;
-				selectedReleaseAssets = selectedRelease.assets || [];
 				
 				buildCategoryButtons();
 				document.getElementById('subDeviceSection').classList.add('hidden');
@@ -241,7 +273,6 @@
 						const btn = document.createElement('button');
 						btn.innerText = HARDWARE_MAP[key].label;
 						btn.id = `cat-${key}`;
-						// Center distribution handles
 						btn.className = "flex min-h-[2.5rem] px-5 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0] hover:text-white text-sm shadow-sm";
 						btn.onclick = () => selectCategory(key);
 						container.appendChild(btn);
@@ -275,7 +306,6 @@
 						
 						dBtn.innerText = cleanName;
 						dBtn.id = `dev-${idx}`;
-						// Dynamic flexible auto layout padding centered buttons
 						dBtn.className = "flex min-h-[2.8rem] px-4 text-center cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500/40 text-purple-300 bg-[#151518] font-medium text-xs transition hover:border-[#9B51E0] hover:bg-[#9B51E0]/10 shadow-sm max-w-xs";
 						
 						dBtn.onclick = () => {
@@ -302,7 +332,6 @@
 
 				pathText.innerText = `Source Asset: ${asset.browser_download_url}`;
 
-				// Web flasher standard configuration engine mapping real binary blob url
 				const dynamicManifest = {
 					name: "Bruce Firmware",
 					version: document.getElementById('activeTagValue').innerText,
@@ -335,9 +364,17 @@
 				document.getElementById('downloadOptionContainer').classList.add('hidden');
 			}
 
-			// Large screen slider initialization rules
+			// Image slider engine
 			const baseGitHubUrl = "https://raw.githubusercontent.com/BruceDevices/firmware/main/media/";
-			const sliderImages = ["cardputer.png", "bruce-pcb.png", "reaper-pcb2.png", "cyd.png", "stickc.png"];
+			const sliderImages = [
+				"./img/bruce-pcb.png",
+				"./img/reaper-pcb2.png",
+				"./img/cardputer.png",
+				"./img/core2.png",
+				"./img/cyd.png",
+				"./img/m5stick.png",
+				"./img/t-embed.png"
+			];
 			let currentSlide = 0;
 
 			function updateSlider() {
