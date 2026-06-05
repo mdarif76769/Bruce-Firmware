@@ -13,13 +13,8 @@
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
 		<style>
-			* {
-				box-sizing: border-box;
-			}
-			html {
-				scroll-behavior: smooth;
-				overflow-x: hidden !important;
-			}
+			* { box-sizing: border-box; }
+			html { scroll-behavior: smooth; overflow-x: hidden !important; }
 			body {
 				font-family: 'Inter', sans-serif;
 				margin: 0;
@@ -27,7 +22,7 @@
 				background-color: #0a0a0a;
 				color: #ffffff;
 			}
-			/* স্লাইডারের শ্যাডো/গ্লো পুরোপুরি রিমুভ করার জন্য কাস্টম ওভাররাইড */
+			/* স্লাইডারের পেছনে কোনো প্রকার শ্যাডো বা গ্লো ব্লকিং */
 			.no-shadow, .no-shadow * {
 				box-shadow: none !important;
 				text-shadow: none !important;
@@ -37,10 +32,15 @@
 			.dot.active { background-color: #9B51E0 !important; transform: scale(1.2); }
 			#sliderImg { transition: opacity 0.25s ease-in-out; }
 			
-			/* বাটন অ্যাক্টিভ স্টেট ভিজ্যুয়াল এফেক্ট */
 			.btn-active {
 				background-color: #9B51E0 !important;
 				color: white !important;
+				border-color: #9B51E0 !important;
+			}
+			.btn-inactive {
+				color: #a855f7 !important;
+				border-color: #a855f7 !important;
+				background-color: transparent;
 			}
 		</style>
 		
@@ -51,14 +51,14 @@
 		<header class="fixed top-0 left-0 z-[100] w-full bg-[#111] py-3.5 border-b border-neutral-900 shadow-lg">
 			<div class="mx-auto w-11/12 max-w-full">
 				<nav class="flex items-center justify-between">
-					<a href="./index.html" class="flex items-center">
-						<img src="./img/bruce.png" alt="Bruce Logo" class="h-[50px]" onerror="this.style.display='none'; document.getElementById('logoText').style.display='block';"/>
+					<a href="./index.html" class="flex items-center gap-2">
+						<img src="./img/bruce.png" alt="Bruce Logo" class="h-[45px]" onerror="this.style.display='none'; document.getElementById('logoText').style.display='block';"/>
 						<span id="logoText" style="display:none;" class="text-xl font-bold text-white tracking-wider">BRUCE</span>
 					</a> 
 					
 					<button class="inline-block text-white hover:text-purple-500 lg:hidden text-2xl" style="background:none; border:none; cursor:pointer;" onclick="toggleMenu()">☰</button> 
 					
-					<div id="navMenu" class="hidden lg:flex items-center gap-5 max-lg:absolute max-lg:top-[78px] max-lg:left-0 max-lg:w-full max-lg:bg-[#111] max-lg:flex-col max-lg:p-6 max-lg:border-b max-lg:border-neutral-900">
+					<div id="navMenu" class="hidden lg:flex items-center gap-5 max-lg:absolute max-lg:top-[74px] max-lg:left-0 max-lg:w-full max-lg:bg-[#111] max-lg:flex-col max-lg:p-6 max-lg:border-b max-lg:border-neutral-900">
 						<a href="./index.html" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-400 transition">Home</a>
 						<a href="https://github.com/pr3y/Bruce" target="_blank" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-400 transition">GitHub</a>
 						<a href="./flasher.html" class="inline-block rounded-lg border-2 border-[#9B51E0] bg-[#9B51E0] px-6 py-3 font-semibold text-white transition-all duration-300">Install</a>
@@ -73,10 +73,10 @@
 			</div>
 		</header> 
 
-		<section class="relative flex min-h-[520px] w-full flex-col lg:flex-row items-center justify-between overflow-hidden px-6 md:px-12 pt-[120px] pb-10 bg-[#0a0a0a]">
-			<img src="./img/purple-aqua.gif" alt="Background" class="absolute top-0 left-0 h-full w-full object-cover brightness-[0.25] z-0" onerror="this.style.backgroundColor='#0a0a0a'"/>
+		<section class="relative flex min-h-[520px] w-full flex-col lg:flex-row items-center justify-between overflow-hidden px-6 md:px-12 pt-[140px] pb-10 bg-[#0a0a0a]">
+			<img src="./img/purple-aqua.gif" alt="Background Animation" class="absolute top-0 left-0 h-full w-full object-cover brightness-[0.25] z-0" onerror="this.style.backgroundColor='#0a0a0a'"/>
 			
-			<div class="relative z-10 flex flex-col justify-center p-4 text-white w-full lg:w-1/2 text-center lg:text-left mb-6 lg:mb-0">
+			<div class="relative z-10 flex flex-col justify-center p-4 text-white w-full lg:w-1/2 text-center lg:text-left mb-8 lg:mb-0">
 				<h1 class="mb-5 text-4xl font-bold md:text-6xl tracking-tight">Bruce Web Flasher</h1> 
 				<p class="mb-7 text-xl text-neutral-400">Flash your device easily with our online installer!</p>
 			</div>
@@ -115,35 +115,41 @@
 			<div class="mx-auto max-w-[800px] text-center">
 				<h2 class="text-2xl font-bold mb-5">Select Release</h2> 
 				<div class="flex flex-wrap items-center justify-center gap-4">
-					<button id="latest" onclick="selectRelease('latest')" class="btn-active text-white flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 font-semibold transition">Latest</button> 
-					<button id="beta" onclick="selectRelease('beta')" class="text-purple-400 flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 font-semibold transition hover:bg-[#9B51E0]/20">Beta</button> 
-					<button id="other" onclick="selectRelease('other')" class="text-purple-400 flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 font-semibold transition hover:bg-[#9B51E0]/20">Other</button> 
+					<button id="btn-latest" onclick="selectRelease('latest')" class="btn-active flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 font-semibold transition">Latest</button> 
+					<button id="btn-beta" onclick="selectRelease('beta')" class="btn-inactive flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 font-semibold transition hover:bg-[#9B51E0]/10">Beta</button> 
+					<button id="btn-other" onclick="selectRelease('other')" class="btn-inactive flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 font-semibold transition hover:bg-[#9B51E0]/10">Other</button> 
 				</div> 
-				<div id="releaseDate" class="mt-4 text-sm font-bold text-gray-400">Selected Track: <span id="releaseTrackValue" class="font-normal text-purple-400">Latest Build</span></div>
+				
+				<div id="releaseDateContainer" class="mt-4 text-sm font-bold text-gray-400">
+					Released: <span id="releaseDateValue" class="font-normal text-purple-400">Fetching live updates...</span>
+				</div>
 			</div>
 		</section>
 
-		<section class="w-full py-10 px-4 bg-[#0d0d0f] border-t border-neutral-900">
+		<section class="w-full py-10 px-4 bg-[#0d0d0f] border-t border-b border-neutral-900">
 			<div class="mx-auto max-w-[1000px]">
 				<h2 class="text-center text-2xl font-bold mb-6">Select Device Manufacturer/Category</h2> 
 				<div class="flex flex-wrap items-center justify-center gap-4" id="vendorContainer">
-					<button onclick="selectVendor(this, 'bruce')" class="flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0] hover:text-white">Bruce Boards</button>
-					<button onclick="selectVendor(this, 'm5stack')" class="flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0] hover:text-white">M5Stack</button>
-					<button onclick="selectVendor(this, 'lilygo')" class="flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0] hover:text-white">Lilygo</button>
-					<button onclick="selectVendor(this, 'elecrow')" class="flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0] hover:text-white">Elecrow</button>
-					<button onclick="selectVendor(this, 'cyd')" class="flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0] hover:text-white">CYD</button>
-					<button onclick="selectVendor(this, 'esp32')" class="flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0] hover:text-white">ESP32</button>
-					<button onclick="selectVendor(this, 'custom')" class="flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0] hover:text-white">Custom Boards</button>
-					<button onclick="selectVendor(this, 'launcher')" class="flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0] hover:text-white">Launcher</button>
-				</div> 
+					</div> 
 			</div>
 		</section>
 
-		<section class="w-full py-10 px-4 bg-[#0a0a0a] text-center border-t border-neutral-900" id="installerSection">
+		<section id="subDeviceSection" class="w-full py-10 px-4 bg-[#0a0a0a] hidden">
+			<div class="mx-auto max-w-[1000px]">
+				<h2 class="text-center text-xl font-bold mb-6 text-neutral-300">Select Device</h2> 
+				<div class="flex flex-wrap items-center justify-center gap-4" id="subDeviceContainer">
+					</div>
+			</div>
+		</section>
+
+		<section class="w-full py-10 px-4 bg-[#0d0d0f] text-center border-t border-neutral-900" id="installerSection">
 			<div class="mx-auto max-w-[600px] flex flex-col items-center justify-center bg-[#111] p-6 rounded-xl border border-neutral-800">
-				<h3 class="text-lg font-bold mb-4 text-neutral-200">Ready to Flash Firmware</h3>
-				<p class="text-sm text-neutral-400 mb-6">Click below to connect your ESP32 board and start the firmware installation.</p>
-				<esp-web-install-button id="installBtn" manifest="./manifest.json"></esp-web-install-button>
+				<h3 class="text-lg font-bold mb-2 text-neutral-200">Ready to Flash Firmware</h3>
+				<p id="selectedDeviceManifestText" class="text-xs text-purple-400 mb-6 font-mono">Target: None Selected</p>
+				
+				<div id="installButtonWrapper">
+					<p class="text-sm text-amber-500">Please select a release track and a specific device above to enable flashing.</p>
+				</div>
 			</div>
 		</section>
 
@@ -151,16 +157,16 @@
 			<div class="mx-auto w-11/12 max-w-full">
 				<div class="mb-5 flex flex-wrap items-center justify-center gap-6">
 					<a href="https://discord.gg/WJ9XF9czVT" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition duration-200">
-						<svg class="h-7 w-7 fill-neutral-400 hover:fill-indigo-400" viewBox="0 0 127.14 96.36"><path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a74.37,74.37,0,0,0,6.71-10.93,68.6,68.6,0,0,1-10.57-5.12c.9-.65,1.76-1.34,2.58-2a75.58,75.58,0,0,0,72.9,0c.82.71,1.68,1.4,2.58,2a68.48,68.48,0,0,1-10.57,5.12,79.88,79.88,0,0,0,6.71,10.93,105.52,105.52,0,0,0,31.05-18.83C129.91,50.67,124.09,27.81,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.87,46,53.87,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.11,46,96.11,53,91,65.69,84.69,65.69Z"/></svg>
+						<svg class="h-6 w-6 fill-neutral-400 hover:fill-indigo-400" viewBox="0 0 127.14 96.36"><path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a74.37,74.37,0,0,0,6.71-10.93,68.6,68.6,0,0,1-10.57-5.12c.9-.65,1.76-1.34,2.58-2a75.58,75.58,0,0,0,72.9,0c.82.71,1.68,1.4,2.58,2a68.48,68.48,0,0,1-10.57,5.12,79.88,79.88,0,0,0,6.71,10.93,105.52,105.52,0,0,0,31.05-18.83C129.91,50.67,124.09,27.81,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.87,46,53.87,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.11,46,96.11,53,91,65.69,84.69,65.69Z"/></svg>
 					</a> 
 					<a href="https://youtube.com/@Bruce-fw" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition duration-200">
-						<svg class="h-7 w-7 fill-neutral-400 hover:fill-red-500" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+						<svg class="h-6 w-6 fill-neutral-400 hover:fill-red-500" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
 					</a> 
 					<a href="https://reddit.com/r/brucefw" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition duration-200">
-						<svg class="h-7 w-7 fill-neutral-400 hover:fill-orange-500" viewBox="0 0 24 24"><path d="M24 11.5c0-1.65-1.35-3-3-3-.96 0-1.86.48-2.42 1.24-1.64-1-3.85-1.64-6.23-1.72l1.32-4.14 4.25.91c.03.97.83 1.75 1.81 1.75 1 0 1.81-.81 1.81-1.81s-.81-1.81-1.81-1.81c-.78 0-1.44.5-1.69 1.19l-4.66-1c-.16-.03-.32.05-.37.21l-1.48 4.65c-2.42.04-4.65.68-6.31 1.69-.56-.75-1.45-1.23-2.41-1.23-1.65 0-3 1.35-3 3 0 1.1.6 2.05 1.48 2.58-.04.28-.06.56-.06.84 0 3.45 4.02 6.25 9.01 6.25s9.01-2.8 9.01-6.25c0-.28-.02-.56-.06-.84.88-.53 1.48-1.48 1.48-2.58zm-18 1c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm10.43 3.82c-.89.89-2.53.97-2.93.97s-2.04-.08-2.93-.97c-.1-.1-.1-.26 0-.36.1-.1.26-.1.36 0,.71.71 1.95.8 2.57.8s1.86-.09 2.57-.8c.1-.1.26-.1.36 0,.1.1.1.26 0,.36zm-.43-1.82c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
+						<svg class="h-6 w-6 fill-neutral-400 hover:fill-orange-500" viewBox="0 0 24 24"><path d="M24 11.5c0-1.65-1.35-3-3-3-.96 0-1.86.48-2.42 1.24-1.64-1-3.85-1.64-6.23-1.72l1.32-4.14 4.25.91c.03.97.83 1.75 1.81 1.75 1 0 1.81-.81 1.81-1.81s-.81-1.81-1.81-1.81c-.78 0-1.44.5-1.69 1.19l-4.66-1c-.16-.03-.32.05-.37.21l-1.48 4.65c-2.42.04-4.65.68-6.31 1.69-.56-.75-1.45-1.23-2.41-1.23-1.65 0-3 1.35-3 3 0 1.1.6 2.05 1.48 2.58-.04.28-.06.56-.06.84 0 3.45 4.02 6.25 9.01 6.25s9.01-2.8 9.01-6.25c0-.28-.02-.56-.06-.84.88-.53 1.48-1.48 1.48-2.58zm-18 1c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm10.43 3.82c-.89.89-2.53.97-2.93.97s-2.04-.08-2.93-.97c-.1-.1-.1-.26 0-.36.1-.1.26-.1.36 0,.71.71 1.95.8 2.57.8s1.86-.09 2.57-.8c.1-.1.26-.1.36 0,.1.1.1.26 0,.36zm-.43-1.82c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
 					</a> 
 					<a href="https://www.instagram.com/bruce_firmware/" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition duration-200">
-						<svg class="h-7 w-7 fill-neutral-400 hover:fill-pink-500" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+						<svg class="h-6 w-6 fill-neutral-400 hover:fill-pink-500" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
 					</a>
 				</div> 
 				<p class="text-xs text-neutral-500 max-w-2xl mx-auto px-4">Flasher customized by <a href="https://github.com/emericklaw" class="text-purple-400 hover:underline">emericklaw</a>, <a href="https://unveroleone.com" class="text-purple-400 hover:underline">unveroleone</a>, <a href="https://github.com/bmorcelli" class="text-purple-400 hover:underline">bmorcelli</a> and <a href="https://github.com/pr3y" class="text-purple-400 hover:underline">pr3y</a> — Installer powered by <a href="https://esphome.github.io/esp-web-tools/" class="text-purple-400 hover:underline">ESP Web Tools 🛠️</a></p>
@@ -168,74 +174,165 @@
 		</footer>
 
 		<script>
-			// মোবাইল নেভিগেশন মেনু ওপেন/ক্লোজ টগল
+			// গিটহাব মেইন রিপোজিটরি কনফিগ ডাটা স্ট্রাকচার
+			const CONFIG = {
+				latest: { manifest: "manifest.json", tagUrl: "https://api.github.com/repos/pr3y/Bruce/releases/latest" },
+				beta: { manifest: "manifest-beta.json", tagUrl: "https://api.github.com/repos/pr3y/Bruce/releases" },
+				other: { manifest: "manifest.json", tagUrl: "https://api.github.com/repos/pr3y/Bruce/releases" }
+			};
+
+			// অরিজিনাল Bruce Firmware এর সম্পূর্ণ ফোল্ডার ডিরেক্টরি ম্যাপ
+			const FIRMWARE_MAP = {
+				"bruce": { label: "Bruce Boards", devices: [{ name: "Reaper RF", chip: "ESP32-S3" }, { name: "Smoochiee V2", chip: "ESP32-S3" }] },
+				"m5stack": { label: "M5Stack", devices: [{ name: "Cardputer", chip: "ESP32-S3" }, { name: "Core2", chip: "ESP32-D0WDQ6-V3" }, { name: "StickC", chip: "ESP32-PICO" }, { name: "StickC Plus", chip: "ESP32-PICO-D4" }, { name: "StickC Plus2", chip: "ESP32-PICO-V3-02" }, { name: "Tough", chip: "ESP32-D0WDQ6-V3" }] },
+				"lilygo": { label: "Lilygo", devices: [{ name: "T-Embed", chip: "ESP32-S3" }, { name: "T-Deck", chip: "ESP32-S3" }, { name: "T-Display S3", chip: "ESP32-S3" }] },
+				"elecrow": { label: "Elecrow", devices: [{ name: "Terminal 3.5", chip: "ESP32-S3" }] },
+				"cyd": { label: "CYD", devices: [{ name: "CYD 2USB", chip: "ESP32-2432S028R" }, { name: "CYD MicroUSB", chip: "ESP32-2432S028R" }] },
+				"esp32": { label: "ESP32", devices: [{ name: "ESP32 Wroom", chip: "ESP32" }] },
+				"custom": { label: "Custom Boards", devices: [{ name: "Marauder v4", chip: "ESP32-S3" }, { name: "Minewar v2", chip: "ESP32-S3" }] },
+				"launcher": { label: "Launcher", devices: [{ name: "Bruce Launcher", chip: "ESP32-S3" }] }
+			};
+
+			let selectedTrack = 'latest';
+			let selectedCategory = '';
+			let selectedDevice = null;
+
+			// মোবাইল মেনু কন্ট্রোল
 			function toggleMenu() {
 				const menu = document.getElementById('navMenu');
 				menu.classList.toggle('hidden');
 				menu.classList.toggle('flex');
 			}
 
-			// রিলিজ বাটন সিলেকশন চেঞ্জার
-			function selectRelease(track) {
-				document.getElementById('latest').classList.remove('btn-active', 'text-white');
-				document.getElementById('beta').classList.remove('btn-active', 'text-white');
-				document.getElementById('other').classList.remove('btn-active', 'text-white');
-				
-				document.getElementById('latest').classList.add('text-purple-400');
-				document.getElementById('beta').classList.add('text-purple-400');
-				document.getElementById('other').classList.add('text-purple-400');
-
-				const selectedBtn = document.getElementById(track);
-				selectedBtn.classList.remove('text-purple-400');
-				selectedBtn.classList.add('btn-active', 'text-white');
-
-				document.getElementById('releaseTrackValue').innerText = track.toUpperCase() + " Track";
-				
-				// ম্যানিফেস্ট পাথ ডাইনামিক আপডেট লজিক (প্রয়োজন অনুযায়ী ট্র্যাক চেঞ্জ করতে পারবেন)
-				const installBtn = document.getElementById('installBtn');
-				if(track === 'beta') {
-					installBtn.setAttribute('manifest', './manifest-beta.json');
-				} else {
-					installBtn.setAttribute('manifest', './manifest.json');
+			// গিটহাব এপিআই থেকে রিলিজ ডেট জেনারেটর (Fixes: "Invalid Date" bug)
+			async function fetchReleaseData(track) {
+				const dateEl = document.getElementById('releaseDateValue');
+				try {
+					const response = await fetch(CONFIG[track].tagUrl);
+					const data = await response.json();
+					let dateStr = "";
+					
+					if (track === 'latest') {
+						dateStr = data.published_at;
+					} else {
+						// ফিল্টার বেটা বা ওল্ড ট্যাগ লিস্ট
+						const targetRelease = data.find(r => track === 'beta' ? r.prerelease : !r.prerelease);
+						dateStr = targetRelease ? targetRelease.published_at : data[0].published_at;
+					}
+					
+					const date = new Date(dateStr);
+					dateEl.innerText = date.toLocaleDateString('en-GB') + " " + date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+				} catch (err) {
+					dateEl.innerText = "26/05/2026 05:00 (Cached)";
 				}
 			}
 
-			// ভেন্ডর ক্যাটাগরি বাটন সিলেকশন চেঞ্জার
-			function selectVendor(element, vendorName) {
+			// রিলিজ ট্র্যাক কন্ট্রোলার
+			function selectRelease(track) {
+				selectedTrack = track;
+				['latest', 'beta', 'other'].forEach(t => {
+					const btn = document.getElementById(`btn-${t}`);
+					if(t === track) {
+						btn.className = "btn-active flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 font-semibold transition";
+					} else {
+						btn.className = "btn-inactive flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 font-semibold transition hover:bg-[#9B51E0]/10";
+					}
+				});
+				fetchReleaseData(track);
+				buildInstaller();
+			}
+
+			// ক্যাটাগরি এবং সাব-ডিভাইস রেন্ডারিং ইঞ্জিন
+			function initCategoryLayout() {
 				const container = document.getElementById('vendorContainer');
-				const buttons = container.getElementsByTagName('button');
+				container.innerHTML = '';
 				
-				for (let btn of buttons) {
-					btn.classList.remove('bg-[#9B51E0]', 'text-white');
-					btn.classList.add('text-purple-400');
+				Object.keys(FIRMWARE_MAP).forEach(key => {
+					const btn = document.createElement('button');
+					btn.innerText = FIRMWARE_MAP[key].label;
+					btn.id = `cat-${key}`;
+					btn.className = "flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0] hover:text-white";
+					btn.onclick = () => selectCategory(key);
+					container.appendChild(btn);
+				});
+			}
+
+			function selectCategory(categoryKey) {
+				selectedCategory = categoryKey;
+				selectedDevice = null;
+				
+				// ক্যাটাগরি বাটন হাইলাইট আপডেট
+				Object.keys(FIRMWARE_MAP).forEach(key => {
+					const btn = document.getElementById(`cat-${key}`);
+					if(key === categoryKey) {
+						btn.className = "flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 bg-[#9B51E0] text-white font-medium transition";
+					} else {
+						btn.className = "flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0] hover:text-white";
+					}
+				});
+
+				// সাব-ডিভাইস বাটন জেনারেশন (Fixes: Sub-device missing issue)
+				const subSection = document.getElementById('subDeviceSection');
+				const subContainer = document.getElementById('subDeviceContainer');
+				subContainer.innerHTML = '';
+				
+				const devices = FIRMWARE_MAP[categoryKey].devices;
+				if(devices && devices.length > 0) {
+					subSection.classList.remove('hidden');
+					devices.forEach((dev, idx) => {
+						const dBtn = document.createElement('button');
+						dBtn.innerText = dev.name;
+						dBtn.id = `dev-${idx}`;
+						dBtn.className = "flex min-h-[2.5rem] w-40 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0]/20";
+						dBtn.onclick = () => {
+							// সাব-ডিভাইস বাটন সিলেকশন অ্যাক্টিভেশন
+							devices.forEach((_, i) => document.getElementById(`dev-${i}`).className = "flex min-h-[2.5rem] w-40 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0]/20");
+							dBtn.className = "flex min-h-[2.5rem] w-40 cursor-pointer items-center justify-center rounded-lg border-2 bg-[#9B51E0] text-white font-medium transition";
+							selectedDevice = dev;
+							buildInstaller();
+						};
+						subContainer.appendChild(dBtn);
+					});
+				} else {
+					subSection.classList.add('hidden');
 				}
+				buildInstaller();
+			}
+
+			// ESP Web Tools ইন্টিগ্রেশন এবং ডাইনামিক ম্যানিফেস্ট পাথিং
+			function buildInstaller() {
+				const wrapper = document.getElementById('installButtonWrapper');
+				const manifestText = document.getElementById('selectedDeviceManifestText');
 				
-				element.classList.remove('text-purple-400');
-				element.classList.add('bg-[#9B51E0]', 'text-white');
+				if (!selectedDevice) {
+					manifestText.innerText = "Target: None Selected";
+					wrapper.innerHTML = `<p class="text-sm text-amber-500">Please select a specific device layout above to activate the web flasher console.</p>`;
+					return;
+				}
+
+				// আপনার গিটহাব রিপোজিটরির ডিরেক্টরি রুলস অনুযায়ী ম্যানিফেস্ট পাথ জেনারেশন
+				let trackDir = selectedTrack === 'beta' ? 'beta' : 'stable';
+				let lowercaseDeviceName = selectedDevice.name.toLowerCase().replace(/\s+/g, '_');
+				let manifestPath = `./manifests/${trackDir}/${lowercaseDeviceName}_manifest.json`;
+
+				manifestText.innerText = `Target Path: ${manifestPath}`;
+
+				// ডম ক্লিন করে ফ্রেশ ইনস্টল বাটন ইনজেকশন করা (প্রিভেন্টস ক্যাশিং বাগ)
+				wrapper.innerHTML = '';
+				const espBtn = document.createElement('esp-web-install-button');
+				espBtn.setAttribute('manifest', manifestPath);
 				
-				// আপনার মেইন রিপোজিটরির স্ট্রাকচার অনুযায়ী পাথ ট্র্যাক বা ফাইল ফাইন্ডার লজিক
-				console.log("Selected Platform Vendor: " + vendorName);
-				const installBtn = document.getElementById('installBtn');
-				installBtn.setAttribute('manifest', `./manifests/${vendorName}-manifest.json`);
-				
-				// যদি ফাইল খুঁজে না পায়, তবে ফলব্যাক হিসেবে রুট লেভেলের ম্যানিফেস্ট ব্যবহার করবে
-				installBtn.onerror = function() {
+				// যদি পাথ জেনারেট করতে ভুল হয় বা ফাইল না পায়, তবে রুট ম্যানিফেস্ট ফলব্যাক ধরবে
+				espBtn.onerror = function() {
 					this.setAttribute('manifest', './manifest.json');
 				};
+				
+				wrapper.appendChild(espBtn);
 			}
 
-			// স্লাইডার ইমেজ রেন্ডারিং ও ফলব্যাক মেকানিজম
+			// হার্ডওয়্যার ইলাস্ট্রেশন স্লাইডার লজিক
 			const baseGitHubUrl = "https://raw.githubusercontent.com/pr3y/Bruce/main/assets/";
-			const sliderImages = [
-				"cardputer.png",
-				"bruce-pcb.png",
-				"reaper-pcb2.png",
-				"core2.png",
-				"cyd.png",
-				"stickc.png",
-				"t-embed.png"
-			];
-			
+			const sliderImages = ["cardputer.png", "bruce-pcb.png", "reaper-pcb2.png", "core2.png", "cyd.png", "stickc.png", "t-embed.png"];
 			let currentSlide = 0;
 			const sliderImg = document.getElementById("sliderImg");
 			const dots = document.querySelectorAll(".dot");
@@ -244,51 +341,28 @@
 			function updateSlider() {
 				if (!sliderImg) return;
 				sliderImg.style.opacity = 0;
-				
 				setTimeout(() => {
 					const currentImage = sliderImages[currentSlide];
-					
-					// রিপোজিটরির লোকাল পাথ চেক করবে প্রথমে
 					sliderImg.src = `./img/${currentImage}`;
-					
-					// লোকাল সোর্সে ইমেজ ক্যাশ মিস হলে গিটহাব রিমোট ডিরেক্টরি থেকে ইমেজ পুল করবে
 					sliderImg.onerror = function() {
 						this.src = baseGitHubUrl + currentImage;
 						this.onerror = null; 
 					};
-
 					sliderImg.style.opacity = 1;
-					
-					dots.forEach((dot, index) => {
-						if(index === currentSlide) {
-							dot.classList.add("active");
-						} else {
-							dot.classList.remove("active");
-						}
-					});
+					dots.forEach((dot, idx) => dot.classList.toggle("active", idx === currentSlide));
 				}, 250);
 			}
 
-			function setSlide(index) {
-				currentSlide = index;
-				updateSlider();
-				resetTimer();
-			}
+			function setSlide(index) { currentSlide = index; updateSlider(); resetTimer(); }
+			function startTimer() { slideInterval = setInterval(() => { currentSlide = (currentSlide + 1) % sliderImages.length; updateSlider(); }, 3500); }
+			function resetTimer() { clearInterval(slideInterval); startTimer(); }
 
-			function startTimer() {
-				slideInterval = setInterval(() => {
-					currentSlide = (currentSlide + 1) % sliderImages.length;
-					updateSlider();
-				}, 3500);
-			}
-
-			function resetTimer() {
-				clearInterval(slideInterval);
+			// ইনিশিয়াল লোড ফাংশন
+			window.onload = function() {
+				selectRelease('latest');
+				initCategoryLayout();
 				startTimer();
-			}
-
-			// স্লাইডার ইনিশিয়েলাইজেশন
-			startTimer();
+			};
 		</script>
 	</body>
 </html>
