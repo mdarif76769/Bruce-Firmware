@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content="Predatory ESP32 Firmware Bruce" />
-		<title>Bruce Firmware</title>
+		<title>Bruce Firmware - Flasher</title>
 		
 		<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 		
@@ -27,50 +27,63 @@
 				background-color: #0a0a0a;
 				color: #ffffff;
 			}
-			/* স্লাইডার ডটের কাস্টম ডিজাইন */
+			/* স্লাইডারের শ্যাডো/গ্লো পুরোপুরি রিমুভ করার জন্য কাস্টম ওভাররাইড */
+			.no-shadow, .no-shadow * {
+				box-shadow: none !important;
+				text-shadow: none !important;
+				filter: none !important;
+			}
 			.dot { cursor: pointer; transition: background-color 0.3s, transform 0.3s; }
 			.dot.active { background-color: #9B51E0 !important; transform: scale(1.2); }
 			#sliderImg { transition: opacity 0.25s ease-in-out; }
+			
+			/* বাটন অ্যাক্টিভ স্টেট ভিজ্যুয়াল এফেক্ট */
+			.btn-active {
+				background-color: #9B51E0 !important;
+				color: white !important;
+			}
 		</style>
+		
+		<script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
 	</head>
 	
 	<body>
 		<header class="fixed top-0 left-0 z-[100] w-full bg-[#111] py-3.5 border-b border-neutral-900 shadow-lg">
 			<div class="mx-auto w-11/12 max-w-full">
 				<nav class="flex items-center justify-between">
-					<a href="/" class="flex items-center">
+					<a href="./index.html" class="flex items-center">
 						<img src="./img/bruce.png" alt="Bruce Logo" class="h-[50px]" onerror="this.style.display='none'; document.getElementById('logoText').style.display='block';"/>
 						<span id="logoText" style="display:none;" class="text-xl font-bold text-white tracking-wider">BRUCE</span>
 					</a> 
 					
-					<button class="inline-block text-white hover:text-purple-500 lg:hidden text-2xl" style="background:none; border:none; cursor:pointer;" onclick="toggleMenu()" aria-label="Open navigation">☰</button> 
+					<button class="inline-block text-white hover:text-purple-500 lg:hidden text-2xl" style="background:none; border:none; cursor:pointer;" onclick="toggleMenu()">☰</button> 
 					
 					<div id="navMenu" class="hidden lg:flex items-center gap-5 max-lg:absolute max-lg:top-[78px] max-lg:left-0 max-lg:w-full max-lg:bg-[#111] max-lg:flex-col max-lg:p-6 max-lg:border-b max-lg:border-neutral-900">
-						<a href="/" target="_self" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-400 transition">Home</a>
+						<a href="./index.html" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-400 transition">Home</a>
 						<a href="https://github.com/pr3y/Bruce" target="_blank" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-400 transition">GitHub</a>
-						<a href="./flasher" target="_self" class="inline-block rounded-lg border-2 border-[#9B51E0] bg-transparent px-6 py-3 font-semibold text-white transition-all duration-300 ease-in-out hover:scale-105 hover:bg-[#9B51E0]">Install</a>
+						<a href="./flasher.html" class="inline-block rounded-lg border-2 border-[#9B51E0] bg-[#9B51E0] px-6 py-3 font-semibold text-white transition-all duration-300">Install</a>
 						<a href="https://wiki.bruce.computer" target="_blank" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-400 transition">Docs</a>
-						<a href="./appstore" target="_self" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-400 transition">App Store</a>
-						<a href="./build_theme.html" target="_self" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-400 transition">Theme Builder</a>
-						<a href="./my_bruce" target="_self" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-400 transition">Bruce Lab</a>
-						<a href="./boards" target="_self" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-400 transition">Boards</a>
-						<a href="./donate" target="_self" class="rounded-lg px-4 py-2.5 border-b-2 border-purple-500 text-purple-500">Donate</a>
+						<a href="./appstore" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-400 transition">App Store</a>
+						<a href="./build_theme.html" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-400 transition">Theme Builder</a>
+						<a href="./my_bruce" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-400 transition">Bruce Lab</a>
+						<a href="./boards" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-400 transition">Boards</a>
+						<a href="./donate" class="rounded-lg px-4 py-2.5 border-b-2 border-purple-500 text-purple-500">Donate</a>
 					</div> 
 				</nav>
 			</div>
 		</header> 
 
 		<section class="relative flex min-h-[520px] w-full flex-col lg:flex-row items-center justify-between overflow-hidden px-6 md:px-12 pt-[120px] pb-10 bg-[#0a0a0a]">
-			<img src="./img/purple-aqua.gif" alt="Background GIF" class="absolute top-0 left-0 h-full w-full object-cover brightness-[0.25] z-0" onerror="this.style.backgroundColor='#0a0a0a'"/>
+			<img src="./img/purple-aqua.gif" alt="Background" class="absolute top-0 left-0 h-full w-full object-cover brightness-[0.25] z-0" onerror="this.style.backgroundColor='#0a0a0a'"/>
 			
 			<div class="relative z-10 flex flex-col justify-center p-4 text-white w-full lg:w-1/2 text-center lg:text-left mb-6 lg:mb-0">
 				<h1 class="mb-5 text-4xl font-bold md:text-6xl tracking-tight">Bruce Web Flasher</h1> 
 				<p class="mb-7 text-xl text-neutral-400">Flash your device easily with our online installer!</p>
 			</div>
 
-			<div class="relative z-10 w-full lg:w-1/2 flex flex-col items-center justify-center p-4">
-				<div class="w-full max-w-[450px] h-[260px] md:h-[300px] flex items-center justify-center bg-black/40 rounded-xl p-4 border border-neutral-800/60 overflow-hidden">
-					<img id="sliderImg" src="https://raw.githubusercontent.com/pr3y/Bruce/main/assets/cardputer.png" class="max-w-full max-h-full object-contain" alt="Bruce Device Layout">
+			<div class="relative z-10 w-full lg:w-1/2 flex flex-col items-center justify-center p-4 no-shadow">
+				<div class="w-full max-w-[450px] h-[260px] md:h-[300px] flex items-center justify-center bg-black/40 rounded-xl p-4 border border-neutral-800/60 overflow-hidden no-shadow">
+					<img id="sliderImg" src="https://raw.githubusercontent.com/pr3y/Bruce/main/assets/cardputer.png" class="max-w-full max-h-full object-contain no-shadow" alt="Bruce Hardware Platform">
 				</div>
 				<div class="flex gap-2 mt-4" id="sliderDots">
 					<span class="dot w-2 h-2 rounded-full bg-neutral-600 active" onclick="setSlide(0)"></span>
@@ -92,9 +105,8 @@
 				<ul class="ml-[25px] list-disc space-y-2 mt-2 text-neutral-300">
 					<li><strong>Cardputer:</strong> Turn off and unplug from USB, hold the btn G0 (upper right corner), then connect via USB.</li> 
 					<li><strong>StickCs:</strong> Turn off, connect one side of a jumper cable into GND and the other side in G0, plug in USB, then remove the jumper cable.</li> 
-					<li><strong>T-Embed:</strong> Keep encoder center button pressed and press RST button (CC1101 this btn is on the board, beside ESP32-S3 chip).</li> 
+					<li><strong>T-Embed:</strong> Keep encoder center button pressed and press RST button.</li> 
 					<li><strong>T-Deck:</strong> Keep the trackpad button pressed and press RST (in the left side).</li> 
-					<li><p class="mt-1 text-yellow-400/90">If you are in linux, you may need to run <code>sudo setfacl -m u::rw /dev/ttyACM0</code> to be able to flash.</p></li>
 				</ul>
 			</div> 
 		</section>
@@ -103,30 +115,35 @@
 			<div class="mx-auto max-w-[800px] text-center">
 				<h2 class="text-2xl font-bold mb-5">Select Release</h2> 
 				<div class="flex flex-wrap items-center justify-center gap-4">
-					<button id="latest" class="bg-[#9B51E0] text-white flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 font-semibold transition hover:bg-purple-700">Latest</button> 
-					<button id="beta" class="text-purple-400 flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 font-semibold transition hover:bg-[#9B51E0]/20">Beta</button> 
-					<div class="flex flex-col items-center">
-						<button id="other" class="text-purple-400 flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 font-semibold transition hover:bg-[#9B51E0]/20">Other</button> 
-						<div id="otherReleaseContainer" style="display: none;" class="mt-2 text-sm text-gray-400"><p>Loading tags...</p></div>
-					</div>
+					<button id="latest" onclick="selectRelease('latest')" class="btn-active text-white flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 font-semibold transition">Latest</button> 
+					<button id="beta" onclick="selectRelease('beta')" class="text-purple-400 flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 font-semibold transition hover:bg-[#9B51E0]/20">Beta</button> 
+					<button id="other" onclick="selectRelease('other')" class="text-purple-400 flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 font-semibold transition hover:bg-[#9B51E0]/20">Other</button> 
 				</div> 
-				<div id="releaseDate" class="hidden mt-3 text-sm font-bold text-gray-500">Released: <span id="releaseDateValue" class="font-normal">Invalid Date</span></div>
+				<div id="releaseDate" class="mt-4 text-sm font-bold text-gray-400">Selected Track: <span id="releaseTrackValue" class="font-normal text-purple-400">Latest Build</span></div>
 			</div>
 		</section>
 
 		<section class="w-full py-10 px-4 bg-[#0d0d0f] border-t border-neutral-900">
 			<div class="mx-auto max-w-[1000px]">
 				<h2 class="text-center text-2xl font-bold mb-6">Select Device Manufacturer/Category</h2> 
-				<div class="flex flex-wrap items-center justify-center gap-4">
-					<button class="flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0] hover:text-white">Bruce Boards</button>
-					<button class="flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0] hover:text-white">M5Stack</button>
-					<button class="flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0] hover:text-white">Lilygo</button>
-					<button class="flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0] hover:text-white">Elecrow</button>
-					<button class="flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0] hover:text-white">CYD</button>
-					<button class="flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0] hover:text-white">ESP32</button>
-					<button class="flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0] hover:text-white">Custom Boards</button>
-					<button class="flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0] hover:text-white">Launcher</button>
+				<div class="flex flex-wrap items-center justify-center gap-4" id="vendorContainer">
+					<button onclick="selectVendor(this, 'bruce')" class="flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0] hover:text-white">Bruce Boards</button>
+					<button onclick="selectVendor(this, 'm5stack')" class="flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0] hover:text-white">M5Stack</button>
+					<button onclick="selectVendor(this, 'lilygo')" class="flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0] hover:text-white">Lilygo</button>
+					<button onclick="selectVendor(this, 'elecrow')" class="flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0] hover:text-white">Elecrow</button>
+					<button onclick="selectVendor(this, 'cyd')" class="flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0] hover:text-white">CYD</button>
+					<button onclick="selectVendor(this, 'esp32')" class="flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0] hover:text-white">ESP32</button>
+					<button onclick="selectVendor(this, 'custom')" class="flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0] hover:text-white">Custom Boards</button>
+					<button onclick="selectVendor(this, 'launcher')" class="flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0] hover:text-white">Launcher</button>
 				</div> 
+			</div>
+		</section>
+
+		<section class="w-full py-10 px-4 bg-[#0a0a0a] text-center border-t border-neutral-900" id="installerSection">
+			<div class="mx-auto max-w-[600px] flex flex-col items-center justify-center bg-[#111] p-6 rounded-xl border border-neutral-800">
+				<h3 class="text-lg font-bold mb-4 text-neutral-200">Ready to Flash Firmware</h3>
+				<p class="text-sm text-neutral-400 mb-6">Click below to connect your ESP32 board and start the firmware installation.</p>
+				<esp-web-install-button id="installBtn" manifest="./manifest.json"></esp-web-install-button>
 			</div>
 		</section>
 
@@ -151,19 +168,63 @@
 		</footer>
 
 		<script>
-			// মোবাইল মেনু টগল ফাংশন
+			// মোবাইল নেভিগেশন মেনু ওপেন/ক্লোজ টগল
 			function toggleMenu() {
 				const menu = document.getElementById('navMenu');
-				if (menu.classList.contains('hidden')) {
-					menu.classList.remove('hidden');
-					menu.classList.add('flex');
+				menu.classList.toggle('hidden');
+				menu.classList.toggle('flex');
+			}
+
+			// রিলিজ বাটন সিলেকশন চেঞ্জার
+			function selectRelease(track) {
+				document.getElementById('latest').classList.remove('btn-active', 'text-white');
+				document.getElementById('beta').classList.remove('btn-active', 'text-white');
+				document.getElementById('other').classList.remove('btn-active', 'text-white');
+				
+				document.getElementById('latest').classList.add('text-purple-400');
+				document.getElementById('beta').classList.add('text-purple-400');
+				document.getElementById('other').classList.add('text-purple-400');
+
+				const selectedBtn = document.getElementById(track);
+				selectedBtn.classList.remove('text-purple-400');
+				selectedBtn.classList.add('btn-active', 'text-white');
+
+				document.getElementById('releaseTrackValue').innerText = track.toUpperCase() + " Track";
+				
+				// ম্যানিফেস্ট পাথ ডাইনামিক আপডেট লজিক (প্রয়োজন অনুযায়ী ট্র্যাক চেঞ্জ করতে পারবেন)
+				const installBtn = document.getElementById('installBtn');
+				if(track === 'beta') {
+					installBtn.setAttribute('manifest', './manifest-beta.json');
 				} else {
-					menu.classList.add('hidden');
-					menu.classList.remove('flex');
+					installBtn.setAttribute('manifest', './manifest.json');
 				}
 			}
 
-			// লাইভ গিটহাব ইমেজ লজিক (ইমেজ ব্রোকেন হওয়া রোধ করবে)
+			// ভেন্ডর ক্যাটাগরি বাটন সিলেকশন চেঞ্জার
+			function selectVendor(element, vendorName) {
+				const container = document.getElementById('vendorContainer');
+				const buttons = container.getElementsByTagName('button');
+				
+				for (let btn of buttons) {
+					btn.classList.remove('bg-[#9B51E0]', 'text-white');
+					btn.classList.add('text-purple-400');
+				}
+				
+				element.classList.remove('text-purple-400');
+				element.classList.add('bg-[#9B51E0]', 'text-white');
+				
+				// আপনার মেইন রিপোজিটরির স্ট্রাকচার অনুযায়ী পাথ ট্র্যাক বা ফাইল ফাইন্ডার লজিক
+				console.log("Selected Platform Vendor: " + vendorName);
+				const installBtn = document.getElementById('installBtn');
+				installBtn.setAttribute('manifest', `./manifests/${vendorName}-manifest.json`);
+				
+				// যদি ফাইল খুঁজে না পায়, তবে ফলব্যাক হিসেবে রুট লেভেলের ম্যানিফেস্ট ব্যবহার করবে
+				installBtn.onerror = function() {
+					this.setAttribute('manifest', './manifest.json');
+				};
+			}
+
+			// স্লাইডার ইমেজ রেন্ডারিং ও ফলব্যাক মেকানিজম
 			const baseGitHubUrl = "https://raw.githubusercontent.com/pr3y/Bruce/main/assets/";
 			const sliderImages = [
 				"cardputer.png",
@@ -187,10 +248,10 @@
 				setTimeout(() => {
 					const currentImage = sliderImages[currentSlide];
 					
-					// প্রথমে লোকাল চেক করবে
+					// রিপোজিটরির লোকাল পাথ চেক করবে প্রথমে
 					sliderImg.src = `./img/${currentImage}`;
 					
-					// লোকাল ডিরেক্টরিতে ইমেজ না থাকলে গিটহাবের মেইন রিপোজিটরি থেকে ডিরেক্ট ক্যাশ করবে
+					// লোকাল সোর্সে ইমেজ ক্যাশ মিস হলে গিটহাব রিমোট ডিরেক্টরি থেকে ইমেজ পুল করবে
 					sliderImg.onerror = function() {
 						this.src = baseGitHubUrl + currentImage;
 						this.onerror = null; 
@@ -226,7 +287,7 @@
 				startTimer();
 			}
 
-			// প্রথমবার লোড করার সময় স্লাইডার চালু করা
+			// স্লাইডার ইনিশিয়েলাইজেশন
 			startTimer();
 		</script>
 	</body>
