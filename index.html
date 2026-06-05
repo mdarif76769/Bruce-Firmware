@@ -4,217 +4,200 @@
 		<meta charset="utf-8" />
 		<link rel="icon" href="./favicon.ico" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-
-		<link href="./_app/immutable/assets/0.ghpIwHM_.css" rel="stylesheet">
-		<link href="./_app/immutable/assets/2.BE4umVR0.css" rel="stylesheet">
-		<link class="modulepreload" href="./_app/immutable/entry/start.CwwxOvQY.js">
-		<link class="modulepreload" href="./_app/immutable/chunks/-vnh316c.js">
-		<link class="modulepreload" href="./_app/immutable/chunks/RHQv2vjA.js">
-		<link class="modulepreload" href="./_app/immutable/chunks/BojhcHJH.js">
-		<link class="modulepreload" href="./_app/immutable/chunks/BFhS_G1k.js">
-		<link class="modulepreload" href="./_app/immutable/chunks/Id86GE-o.js">
-		<link class="modulepreload" href="./_app/immutable/entry/app.6MlOcrdb.js">
-		<link class="modulepreload" href="./_app/immutable/chunks/DuNvuFAF.js">
-		<link class="modulepreload" href="./_app/immutable/chunks/BumwGdeH.js">
-		<link class="modulepreload" href="./_app/immutable/chunks/DoWDRpaz.js">
-		<link class="modulepreload" href="./_app/immutable/chunks/BAV6MCzM.js">
-		<link class="modulepreload" href="./_app/immutable/chunks/C940-dzT.js">
-		<link class="modulepreload" href="./_app/immutable/chunks/nlcol0VA.js">
-		<link class="modulepreload" href="./_app/immutable/chunks/CgEPe2xp.js">
-		<link class="modulepreload" href="./_app/immutable/nodes/0.DDltwxls.js">
-		<link class="modulepreload" href="./_app/immutable/chunks/Cuy2UkLv.js">
-		<link class="modulepreload" href="./_app/immutable/chunks/BcnmuIY4.js">
-		<link class="modulepreload" href="./_app/immutable/chunks/CDp85BZZ.js">
-		<link class="modulepreload" href="./_app/immutable/chunks/BDXJTVp3.js">
-		<link class="modulepreload" href="./_app/immutable/chunks/CleSKfPb.js">
-		<link class="modulepreload" href="./_app/immutable/chunks/D0TdCh_T.js">
-		<link class="modulepreload" href="./_app/immutable/nodes/2.DkxY0dxv.js">
-		<link class="modulepreload" href="./_app/immutable/chunks/DZjKz-fb.js">
-		<link class="modulepreload" href="./_app/immutable/chunks/CEZ-Fbh8.js">
-		<link class="modulepreload" href="./_app/immutable/chunks/Duc4tMoR.js">
-		<link class="modulepreload" href="./_app/immutable/chunks/CCiX95wu.js">
-		<meta charset="UTF-8"/> 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
 		<meta class="description" content="Predatory ESP32 Firmware Bruce"/> 
+		<title>Bruce Firmware</title>
+
+		<!-- Tailwind CSS CDN (টার্মিনাল ছাড়া ডিজাইন লোড করার জন্য) -->
+		<script src="https://cdn.tailwindcss.com"></script>
+
 		<style>
 			* { box-sizing: border-box; }
 			html { scroll-behavior: smooth; overflow-x: hidden !important; }
 			body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; background-color: #0a0a0a; color: #ffffff; }
 			a { color: #943ee5; }
+			/* টেবিলের ভেতরের স্ক্রলবার হাইড করার জন্য */
+			.table-wrapper::-webkit-scrollbar { display: none; }
+			.table-wrapper { -ms-overflow-style: none; scrollbar-width: none; }
 		</style>
-		<title>Bruce Firmware</title>
 	</head>
-	<body data-sveltekit-preload-data="hover">
+	<body>
 		<div style="display: contents">
-			<header class="fixed top-0 left-0 z-[100] w-full bg-[#111] py-3.5">
+			<!-- Header Section -->
+			<header class="fixed top-0 left-0 z-[100] w-full bg-[#111] py-3.5 border-b border-neutral-800">
 				<div class="mx-auto w-11/12 max-w-full">
 					<nav class="flex items-center justify-between">
 						<a href="./" class="flex items-center"><img src="./img/bruce.png" alt="Bruce Logo" class="h-[50px]"/></a> 
-						<button class="inline-block text-white hover:text-purple-500 lg:hidden" style="color:white;" aria-label="Open navigation">☰</button> 
-						<div class="hidden items-center gap-5 lg:flex">
-							<a href="./" target="_self" class="rounded-lg px-4 py-2.5 text-white border-b-2 border-purple-500 text-purple-500">Home</a>
-							<a href="https://github.com/pr3y/Bruce" target="_blank" class="rounded-lg px-4 py-2.5 text-white ">GitHub</a>
-							<a href="./flasher" target="_self" class="inline-block rounded-lg border-2 border-[#9B51E0] bg-transparent px-6 py-3 font-semibold text-white transition-all duration-300 ease-in-out hover:scale-105 hover:bg-[#9B51E0] ">Install</a>
-							<a href="https://wiki.bruce.computer" target="_blank" class="rounded-lg px-4 py-2.5 text-white ">Docs</a>
-							<a href="./appstore" target="_self" class="rounded-lg px-4 py-2.5 text-white ">App Store</a>
-							<a href="./build_theme.html" target="_self" class="rounded-lg px-4 py-2.5 text-white ">Theme Builder</a>
-							<a href="./my_bruce" target="_self" class="rounded-lg px-4 py-2.5 text-white ">Bruce Lab</a>
-							<a href="./boards" target="_self" class="rounded-lg px-4 py-2.5 text-white ">Boards</a>
-							<a href="./donate" target="_self" class="rounded-lg px-4 py-2.5 text-white ">Donate</a>
+						<button id="mobileMenuBtn" class="inline-block text-white hover:text-purple-500 lg:hidden text-2xl" aria-label="Open navigation">☰</button> 
+						<div id="navLinks" class="hidden items-center gap-5 lg:flex max-lg:absolute max-lg:top-full max-lg:left-0 max-lg:w-full max-lg:bg-[#111] max-lg:flex-col max-lg:p-5">
+							<a href="./" target="_self" class="rounded-lg px-4 py-2.5 text-purple-500 border-b-2 border-purple-500">Home</a>
+							<a href="https://github.com/pr3y/Bruce" target="_blank" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-500">GitHub</a>
+							<a href="./flasher" target="_self" class="inline-block rounded-lg border-2 border-[#9B51E0] bg-transparent px-6 py-2 font-semibold text-white transition-all duration-300 ease-in-out hover:scale-105 hover:bg-[#9B51E0]">Install</a>
+							<a href="https://wiki.bruce.computer" target="_blank" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-500">Docs</a>
+							<a href="./appstore" target="_self" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-500">App Store</a>
+							<a href="./build_theme.html" target="_self" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-500">Theme Builder</a>
+							<a href="./my_bruce" target="_self" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-500">Bruce Lab</a>
+							<a href="./boards" target="_self" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-500">Boards</a>
+							<a href="./donate" target="_self" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-500">Donate</a>
 						</div> 
 					</nav>
 				</div>
 			</header> 
 
-			<section class="relative flex h-128 w-full flex-col overflow-hidden pr-4 pl-4 md:flex-row">
-				<img src="./img/purple-aqua.gif" alt="Background GIF" class="absolute top-0 left-0 h-full w-full object-cover brightness-75"/>
-				<div class="relative z-10 flex flex-col justify-center p-8 text-white">
-					<h1 class="mb-5 text-6xl font-bold max-sm:mt-20">Bruce Firmware</h1> 
-					<p class="mb-7 text-xl">The powerful open-source ESP32 firmware designed for offensive security and Red Team operations.</p> 
+			<!-- Hero Section -->
+			<section class="relative flex min-h-[500px] h-128 w-full flex-col overflow-hidden px-4 md:flex-row pt-24">
+				<img src="./img/purple-aqua.gif" alt="Background GIF" class="absolute top-0 left-0 h-full w-full object-cover brightness-50 z-0"/>
+				<div class="relative z-10 flex flex-col justify-center p-8 text-white md:w-1/2">
+					<h1 class="mb-5 text-5xl md:text-6xl font-bold max-sm:mt-10">Bruce Firmware</h1> 
+					<p class="mb-7 text-xl text-gray-300">The powerful open-source ESP32 firmware designed for offensive security and Red Team operations.</p> 
 					<div class="flex gap-4">
-						<a href="https://github.com/BruceDevices/Firmware" target="_blank" class="inline-blocktransition rounded-lg bg-[#9B51E0] px-6 py-2 text-center text-lg font-bold text-white" style="color: white;">Explore GitHub</a> 
-						<a href="./flasher" target="_blank" class="ml-4 inline-block rounded-lg border-2 border-[#9B51E0] px-6 py-2 text-center text-lg text-[#9B51E0] transition"><b>Install Now</b></a>
+						<a href="https://github.com/BruceDevices/Firmware" target="_blank" class="inline-block rounded-lg bg-[#9B51E0] px-6 py-3 text-center text-lg font-bold text-white transition hover:bg-[#8033C7]">Explore GitHub</a> 
+						<a href="./flasher" class="inline-block rounded-lg border-2 border-[#9B51E0] px-6 py-3 text-center text-lg text-[#9B51E0] font-bold transition hover:bg-[#9B51E0] hover:text-white">Install Now</a>
 					</div>
 				</div> 
-				<div class="w-300 max-sm:hidden">
-					<div class="slide active svelte-1uha8ag"><img class="max-w svelte-1uha8ag" src="./img/bruce-pcb.png" alt="Slide 1"/></div>
-					<div class="slide  svelte-1uha8ag"><img class="max-w svelte-1uha8ag" src="./img/reaper-pcb2.png" alt="Slide 2"/></div>
-					<div class="slide  svelte-1uha8ag"><img class="max-w svelte-1uha8ag" src="./img/cardputer.png" alt="Slide 3"/></div>
-					<div class="slide  svelte-1uha8ag"><img class="max-w svelte-1uha8ag" src="./img/core2.png" alt="Slide 4"/></div>
-					<div class="slide  svelte-1uha8ag"><img class="max-w svelte-1uha8ag" src="./img/cyd.png" alt="Slide 5"/></div>
-					<div class="slide  svelte-1uha8ag"><img class="max-w svelte-1uha8ag" src="./img/lilygo.png" alt="Slide 6"/></div>
-					<div class="slide  svelte-1uha8ag"><img class="max-w svelte-1uha8ag" src="./img/t-embed.png" alt="Slide 7"/></div>
-					<div class="slide  svelte-1uha8ag"><img class="max-w svelte-1uha8ag" src="./img/m5stick.png" alt="Slide 8"/></div>
-					<div class="dot-nav svelte-1uha8ag"><span class="dot active svelte-1uha8ag"></span><span class="dot  svelte-1uha8ag"></span><span class="dot  svelte-1uha8ag"></span><span class="dot  svelte-1uha8ag"></span><span class="dot  svelte-1uha8ag"></span><span class="dot  svelte-1uha8ag"></span><span class="dot  svelte-1uha8ag"></span><span class="dot  svelte-1uha8ag"></span></div>
+				<!-- Image Slider Window -->
+				<div class="relative md:w-1/2 flex items-center justify-center max-sm:hidden z-10 p-5">
+					<div class="w-full max-w-[400px] h-[300px] overflow-hidden rounded-xl border border-neutral-800 bg-black/40 backdrop-blur-sm flex items-center justify-center">
+						<img id="sliderImg" class="max-h-[90%] max-w-[90%] object-contain transition-all duration-500" src="./img/bruce-pcb.png" alt="Hardware Devices"/>
+					</div>
 				</div>
 			</section> 
 
+			<!-- Features Section -->
 			<div class="p-10 text-center">
-				<div class="container svelte-1uha8ag">
-					<h1 class="mb-5 text-3xl font-bold">Why Bruce?</h1> 
-					<div class="flex justify-center">
-						<div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-							<div class="flex w-xs items-center justify-center rounded-lg border-none bg-[#222] text-center transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" style="transform-style: preserve-3d;"><div class="p-1"><div class="p-4"><h3 class="mb-3 text-lg font-bold">True Open-Source</h3> <p>Bruce fw is licensed under <b><a href="https://www.gnu.org/licenses/agpl-3.0.en.html#license-text" target="_blank">AGPL</a></b>, and Hardware is <b><a href="https://ohwr.org/project/cernohl/-/wikis/uploads/3eff4154d05e7a0459f3ddbf0674cae4/cern_ohl_p_v2.txt" target="_blank">CERN-OHL-P-2.0</a></b>. Free as in freedom.</p></div></div></div>
-							<div class="flex w-xs items-center justify-center rounded-lg border-none bg-[#222] text-center transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" style="transform-style: preserve-3d;"><div class="p-1"><div class="p-4"><h3 class="mt-3 mb-3 text-lg font-bold">Cross-Platform</h3> <p>Bruce runs seamlessly on M5Stack, LilyGo, and other ESP32-based devices.</p></div></div></div>
-							<div class="flex w-xs items-center justify-center rounded-lg border-none bg-[#222] text-center transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" style="transform-style: preserve-3d;"><div class="p-1"><div class="p-4"><h3 class="mt-3 mb-3 text-lg font-bold">2.4/5Ghz Wi-Fi Attacks</h3> <p>Supports Evil Portal, Wardriving, EAPOL handshake capture, Deauth <b><a href="https://github.com/BruceDevices/firmware/?tab=readme-ov-file#wifi" target="_blank">and more</a></b>.</p></div></div></div>
-							<div class="flex w-xs items-center justify-center rounded-lg border-none bg-[#222] text-center transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" style="transform-style: preserve-3d;"><div class="p-1"><div class="p-4"><h3 class="mt-3 mb-3 text-lg font-bold">Documentation</h3> <p>The project has every information about the features and modules supported available on <a href="https://wiki.bruce.computer/">wiki</a>.</p></div></div></div>
-							<div class="flex w-xs items-center justify-center rounded-lg border-none bg-[#222] text-center transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" style="transform-style: preserve-3d;"><div class="p-1"><div class="p-4"><h3 class="mt-3 mb-3 text-lg font-bold">SubGHz and RFID</h3> <p>Supports several modules and devices with frequency transceivers.</p></div></div></div>
-							<div class="flex w-xs items-center justify-center rounded-lg border-none bg-[#222] text-center transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" style="transform-style: preserve-3d;"><div class="p-1"><div class="p-4"><h3 class="mt-3 mb-3 text-lg font-bold">Active Community</h3> <p>Regular updates and community-driven improvements.</p></div></div></div>
+				<div class="max-w-6xl mx-auto">
+					<h1 class="mb-10 text-3xl font-bold text-purple-500">Why Bruce?</h1> 
+					<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+						<div class="rounded-lg bg-[#111] p-6 border border-neutral-800 hover:scale-105 transition duration-300"><h3 class="mb-3 text-lg font-bold text-purple-400">True Open-Source</h3> <p class="text-sm text-gray-400">Bruce fw is licensed under <b><a href="https://www.gnu.org/licenses/agpl-3.0.en.html#license-text" target="_blank" class="underline">AGPL</a></b>, and Hardware is <b><a href="https://ohwr.org/project/cernohl/-/wikis/uploads/3eff4154d05e7a0459f3ddbf0674cae4/cern_ohl_p_v2.txt" target="_blank" class="underline">CERN-OHL-P-2.0</a></b>.</p></div>
+						<div class="rounded-lg bg-[#111] p-6 border border-neutral-800 hover:scale-105 transition duration-300"><h3 class="mb-3 text-lg font-bold text-purple-400">Cross-Platform</h3> <p class="text-sm text-gray-400">Bruce runs seamlessly on M5Stack, LilyGo, CYD, and custom ESP32-based devices.</p></div>
+						<div class="rounded-lg bg-[#111] p-6 border border-neutral-800 hover:scale-105 transition duration-300"><h3 class="mb-3 text-lg font-bold text-purple-400">2.4/5Ghz Wi-Fi Attacks</h3> <p class="text-sm text-gray-400">Supports Evil Portal, Wardriving, EAPOL handshake capture, Deauth and advanced network mapping.</p></div>
+						<div class="rounded-lg bg-[#111] p-6 border border-neutral-800 hover:scale-105 transition duration-300"><h3 class="mb-3 text-lg font-bold text-purple-400">Documentation</h3> <p class="text-sm text-gray-400">The project has full information about the features and modules supported available on the official <a href="https://wiki.bruce.computer/" class="underline">Wiki</a>.</p></div>
+						<div class="rounded-lg bg-[#111] p-6 border border-neutral-800 hover:scale-105 transition duration-300"><h3 class="mb-3 text-lg font-bold text-purple-400">SubGHz and RFID</h3> <p class="text-sm text-gray-400">Supports several peripheral modules and hardware layers with advanced frequency transceivers.</p></div>
+						<div class="rounded-lg bg-[#111] p-6 border border-neutral-800 hover:scale-105 transition duration-300"><h3 class="mb-3 text-lg font-bold text-purple-400">Active Community</h3> <p class="text-sm text-gray-400">Regular rolling updates, community patches, and rapid deployment of new exploit modules.</p></div>
+					</div>
+				</div>
+			</div> 
+
+			<!-- News Section -->
+			<div class="flex w-full items-center justify-center px-5 py-12 text-center">
+				<div class="w-full max-w-4xl">
+					<h1 class="mb-8 text-4xl font-bold">News & Releases</h1> 
+					<div class="flex flex-col md:flex-row items-center justify-center gap-6">
+						<div class="w-full md:w-1/2 rounded-xl bg-[#111] p-6 border border-neutral-800 hover:border-purple-500 transition-all text-center">
+							<h3 class="mb-2.5 text-2xl font-bold">Release v1.15</h3> 
+							<p class="mb-4 text-gray-400">Our new Release is out now! Update your hardware node instantly.</p> 
+							<a href="https://github.com/BruceDevices/firmware/releases/tag/1.15" target="_blank" class="inline-block rounded bg-[#9B51E0] px-5 py-2.5 font-semibold text-white hover:bg-[#8033C7] transition">Read Changelog</a>
+						</div>
+						<div class="w-full md:w-1/2 rounded-xl bg-[#111] p-6 border border-neutral-800 hover:border-purple-500 transition-all text-center">
+							<h3 class="mb-2.5 text-2xl font-bold">Bruce RF Reaper</h3> 
+							<p class="mb-4 text-gray-400">Open Source custom PCB, fully optimized and weaponized for Bruce firmware.</p> 
+							<div class="flex justify-center gap-2">
+								<a href="./boards" class="rounded bg-neutral-800 border border-neutral-700 px-4 py-2 text-sm font-semibold hover:bg-neutral-700 transition">Download</a>
+								<a href="https://bruce-devices.myshopify.com/" target="_blank" class="rounded bg-[#9B51E0] px-4 py-2 text-sm font-semibold hover:bg-[#8033C7] transition">Buy Hardware</a>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div> 
 
-			<div class="flex w-full items-center justify-center px-5 py-12 text-center max-sm:p-1">
-				<div class="w-full max-w-4xl">
-					<h1 class="mb-5 text-4xl font-bold">News</h1> 
-					<div class="flex items-center justify-center">
-						<div class="m-2.5 max-w-[400px] rounded-[10px] bg-[#222] p-5 text-center transition-all duration-300 ease-linear hover:scale-105 max-sm:m-2 max-sm:h-100"><h3 class="mb-2.5 text-[1.8rem] font-bold">Release v1.15</h3> <p class="mb-4 text-[1.2rem]">Our new Release is out now! Update your device <a href="https://bruce.computer/flasher" target="_blank"><b>now</b></a></p> <a href="https://github.com/BruceDevices/firmware/releases/tag/1.15" class="inline-block rounded bg-[#9B51E0] px-6 py-3 font-semibold text-white transition-all duration-300 ease-in-out hover:scale-105 hover:bg-[#8033C7] " style="color:white">Read Changelog</a></div>
-						<div class="m-2.5 max-w-[400px] rounded-[10px] bg-[#222] p-5 text-center transition-all duration-300 ease-linear hover:scale-105 max-sm:m-2 max-sm:h-100"><h3 class="mb-2.5 text-[1.8rem] font-bold">Bruce RF Reaper</h3> <p class="mb-4 text-[1.2rem]">Open Source Bruce PCB, fully compatible with Bruce</p> <a href="https://bruce.computer/boards" class="inline-block rounded bg-[#9B51E0] px-6 py-3 font-semibold text-white transition-all duration-300 ease-in-out hover:scale-105 hover:bg-[#8033C7] " style="color:white">Download</a><a href="https://bruce-devices.myshopify.com/" class="inline-block rounded-lg border-2 border-[#9B51E0] bg-transparent px-6 py-3 font-semibold text-[#9B51E0] transition-all duration-300 ease-in-out hover:scale-105 hover:bg-[#9B51E0] hover:text-white max-sm:mt-2" style="color:white">Buy</a></div>
-					</div>
-				</div>
-			</div> 
-
-			<div class="container svelte-z13w9w">
-				<div class="mx-auto mt-10 w-[90%] text-center">
-					<h1 class="mb-5 text-3xl font-bold text-white">Compatible Devices</h1> 
-					<h2 class="mb-5 text-lg text-white">This table shows the compatibility of various devices with Bruce's features. Click the button to toggle detailed view for more information.</h2> 
-					<button id="toggleDetailedView" class="mb-5 rounded bg-[#9B51E0] px-4 py-2 font-semibold text-white hover:bg-[#8033C7]">Show Detailed View</button> 
-					<div class="table-wrapper relative svelte-z13w9w">
-						<div class="w-full overflow-x-auto whitespace-nowrap">
-							<table class="w-full border-collapse rounded-lg bg-neutral-900">
-								<thead>
-									<tr>
-										<th class="sticky left-0 z-10 bg-neutral-900 px-4 py-3 text-center text-base text-white">Device</th>
-										<th class="px-4 py-3 text-center text-base text-white ">CC1101</th>
-										<th class="px-4 py-3 text-center text-base text-white ">NRF24</th>
-										<th class="px-4 py-3 text-center text-base text-white ">FMRadio</th>
-										<th class="px-4 py-3 text-center text-base text-white ">NFC</th>
-										<th class="px-4 py-3 text-center text-base text-white ">Mic</th>
-										<th class="px-4 py-3 text-center text-base text-white ">BadUSB</th>
-										<th class="px-4 py-3 text-center text-base text-white ">RGB Led</th>
-										<th class="px-4 py-3 text-center text-base text-white ">Audio</th>
-										<th class="px-4 py-3 text-center text-base text-white detailed hidden">Screen</th>
-										<th class="px-4 py-3 text-center text-base text-white detailed hidden">ESP</th>
-										<th class="px-4 py-3 text-center text-base text-white detailed hidden">Battery</th>
-										<th class="px-4 py-3 text-center text-base text-white detailed hidden">Flash</th>
-										<th class="px-4 py-3 text-center text-base text-white detailed hidden">PSRAM</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr class="group even:bg-neutral-800 hover:bg-neutral-700"><td class="sticky left-0 z-10 px-4 py-3 text-center text-base text-white bg-neutral-900 group-hover:bg-neutral-700">M5Stack Cardputer</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="SPM1423">✅ <span class="detailed hidden">SPM1423</span></td><td title="">✅</td><td title="">✅</td><td title="NS4168">🔊 <span class="detailed hidden">Full - NS4168</span></td><td title="240x135" class="detailed hidden">240x135</td><td title="ESP32-S3FN8" class="detailed hidden">ESP32-S3FN8</td><td title="120mAh + 1400mAh" class="detailed hidden">120mAh + 1400mAh</td><td title="8MB" class="detailed hidden">8MB</td><td title="None" class="detailed hidden">None</td></tr>
-									<tr class="group even:bg-neutral-800 hover:bg-neutral-700"><td class="sticky left-0 z-10 px-4 py-3 text-center text-base text-white bg-neutral-800 group-hover:bg-neutral-700">M5Stack Cardputer Adv</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="SPM1423">✅ <span class="detailed hidden">SPM1423</span></td><td title="">✅</td><td title="">✅</td><td title="NS4150B">🔊 <span class="detailed hidden">Full - NS4150B</span></td><td title="240x135" class="detailed hidden">240x135</td><td title="ESP32-S3FN8" class="detailed hidden">ESP32-S3FN8</td><td title="1750mAh" class="detailed hidden">1750mAh</td><td title="8MB" class="detailed hidden">8MB</td><td title="None" class="detailed hidden">None</td></tr>
-									<tr class="group even:bg-neutral-800 hover:bg-neutral-700"><td class="sticky left-0 z-10 px-4 py-3 text-center text-base text-white bg-neutral-900 group-hover:bg-neutral-700">M5Stack StickS3</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="MEMS">✅ <span class="detailed hidden">MEMS</span></td><td title="">✅</td><td title="">❌</td><td title="AW8737">🔊 <span class="detailed hidden">Full - AW8737</span></td><td title="240x135" class="detailed hidden">240x135</td><td title="ESP32-S3-PICO-1-N8R8" class="detailed hidden">ESP32-S3-PICO-1-N8R8</td><td title="250mAh" class="detailed hidden">250mAh</td><td title="8MB" class="detailed hidden">8MB</td><td title="8MB" class="detailed hidden">8MB</td></tr>
-									<tr class="group even:bg-neutral-800 hover:bg-neutral-700"><td class="sticky left-0 z-10 px-4 py-3 text-center text-base text-white bg-neutral-800 group-hover:bg-neutral-700">M5Stack StickC-Plus 2</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="SPM1423">✅ <span class="detailed hidden">SPM1423</span></td><td title="Module Required">ℹ️</td><td title="">❌</td><td title="Tone">🔈 <span class="detailed hidden">Tone</span></td><td title="240x135" class="detailed hidden">240x135</td><td title="ESP32-PICO-V3-02" class="detailed hidden">ESP32-PICO-V3-02</td><td title="200mAh" class="detailed hidden">200mAh</td><td title="8MB" class="detailed hidden">8MB</td><td title="2MB" class="detailed hidden">2MB</td></tr>
-									<tr class="group even:bg-neutral-800 hover:bg-neutral-700"><td class="sticky left-0 z-10 px-4 py-3 text-center text-base text-white bg-neutral-900 group-hover:bg-neutral-700">M5Stack StickC-Plus 1.1</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="SPM1423">✅ <span class="detailed hidden">SPM1423</span></td><td title="Module Required">ℹ️</td><td title="">❌</td><td title="Tone">🔈 <span class="detailed hidden">Tone</span></td><td title="240x135" class="detailed hidden">240x135</td><td title="ESP32-PICO-D4" class="detailed hidden">ESP32-PICO-D4</td><td title="120mAh" class="detailed hidden">120mAh</td><td title="4MB" class="compressed">4MB</td><td title="None" class="detailed hidden">None</td></tr>
-									<tr class="group even:bg-neutral-800 hover:bg-neutral-700"><td class="sticky left-0 z-10 px-4 py-3 text-center text-base text-white bg-neutral-800 group-hover:bg-neutral-700">M5Stack Core</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="">❌ </td><td title="">❌</td><td title="">❌</td><td title="NS4148">🔊 <span class="detailed hidden">Full - NS4148</span></td><td title="320x240" class="detailed hidden">320x240</td><td title="ESP32-D0WDQ6-V3" class="detailed hidden">ESP32-D0WDQ6-V3</td><td title="110mAh" class="detailed hidden">110mAh</td><td title="16MB" class="detailed hidden">16MB</td><td title="None" class="detailed hidden">None</td></tr>
-									<tr class="group even:bg-neutral-800 hover:bg-neutral-700"><td class="sticky left-0 z-10 px-4 py-3 text-center text-base text-white bg-neutral-900 group-hover:bg-neutral-700">M5Stack Core2</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="SPM1423">✅ <span class="detailed hidden">SPM1423</span></td><td title="">❌</td><td title="">❌</td><td title="NS4168">🔊 <span class="detailed hidden">Full - NS4168</span></td><td title="320x240" class="detailed hidden">320x240</td><td title="ESP32-D0WDQ6-V3" class="detailed hidden">ESP32-D0WDQ6-V3</td><td title="390mAh" class="detailed hidden">390mAh</td><td title="16MB" class="detailed hidden">16MB</td><td title="8MB" class="detailed hidden">8MB</td></tr>
-									<tr class="group even:bg-neutral-800 hover:bg-neutral-700"><td class="sticky left-0 z-10 px-4 py-3 text-center text-base text-white bg-neutral-800 group-hover:bg-neutral-700">M5Stack CoreS3/SE</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="ES7210">✅ <span class="detailed hidden">ES7210</span></td><td title="">✅</td><td title="">❌</td><td title="AW88298">🔊 <span class="detailed hidden">Full - AW88298</span></td><td title="320x240" class="detailed hidden">320x240</td><td title="ESP32-S3" class="detailed hidden">ESP32-S3</td><td title="None" class="detailed hidden">None</td><td title="16MB" class="detailed hidden">16MB</td><td title="8MB" class="detailed hidden">8MB</td></tr>
-									<tr class="group even:bg-neutral-800 hover:bg-neutral-700"><td class="sticky left-0 z-10 px-4 py-3 text-center text-base text-white bg-neutral-900 group-hover:bg-neutral-700">CYD-2432S028</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="">❌ </td><td title="">❌</td><td title="">❌</td><td title="">❌ </td><td title="320x240" class="detailed hidden">320x240</td><td title="ESP32-WROOM-32" class="detailed hidden">ESP32-WROOM-32</td><td title="None" class="detailed hidden">None</td><td title="4MB" class="detailed hidden">4MB</td><td title="None" class="detailed hidden">None</td></tr>
-									<tr class="group even:bg-neutral-800 hover:bg-neutral-700"><td class="sticky left-0 z-10 px-4 py-3 text-center text-base text-white bg-neutral-800 group-hover:bg-neutral-700">CYD-3248S035</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="">❌ </td><td title="">❌</td><td title="">❌</td><td title="">❌ </td><td title="480x320" class="detailed hidden">480x320</td><td title="ESP32-WROOM-32" class="detailed hidden">ESP32-WROOM-32</td><td title="None" class="detailed hidden">None</td><td title="4MB" class="detailed hidden">4MB</td><td title="None" class="detailed hidden">None</td></tr>
-									<tr class="group even:bg-neutral-800 hover:bg-neutral-700"><td class="sticky left-0 z-10 px-4 py-3 text-center text-base text-white bg-neutral-900 group-hover:bg-neutral-700">Lilygo T-Embed CC1101</td><td title="">✅</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="PN532">✅</td><td title="SPM1423">✅ <span class="detailed hidden">SPM1423</span></td><td title="">✅</td><td title="">✅</td><td title="MAX98357A">🔊 <span class="detailed hidden">Full - MAX98357A</span></td><td title="320x170" class="detailed hidden">320x170</td><td title="ESP32-S3-WROOM-1U" class="detailed hidden">ESP32-S3-WROOM-1U</td><td title="1300mAh" class="detailed hidden">1300mAh</td><td title="16MB" class="detailed hidden">16MB</td><td title="8MB" class="detailed hidden">8MB</td></tr>
-									<tr class="group even:bg-neutral-800 hover:bg-neutral-700"><td class="sticky left-0 z-10 px-4 py-3 text-center text-base text-white bg-neutral-800 group-hover:bg-neutral-700">Lilygo T-Embed CC1101 Plus</td><td title="">✅</td><td title="">✅</td><td title="Module Required">ℹ️</td><td title="PN532">✅</td><td title="SPM1423">✅ <span class="detailed hidden">SPM1423</span></td><td title="">✅</td><td title="">✅</td><td title="MAX98357A">🔊 <span class="detailed hidden">Full - MAX98357A</span></td><td title="320x170" class="detailed hidden">320x170</td><td title="ESP32-S3-WROOM-1U" class="detailed hidden">ESP32-S3-WROOM-1U</td><td title="1300mAh" class="detailed hidden">1300mAh</td><td title="16MB" class="detailed hidden">16MB</td><td title="8MB" class="detailed hidden">8MB</td></tr>
-									<tr class="group even:bg-neutral-800 hover:bg-neutral-700"><td class="sticky left-0 z-10 px-4 py-3 text-center text-base text-white bg-neutral-900 group-hover:bg-neutral-700">Lilygo T-LoRa Pager</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="ST25R3916">✅</td><td title="SPM1423">✅ <span class="detailed hidden">SPM1423</span></td><td title="">✅</td><td title="">❌</td><td title="ES8311">🔊 <span class="detailed hidden">Full - ES8311</span></td><td title="480×222" class="detailed hidden">480×222</td><td title="ESP32-S3" class="detailed hidden">ESP32-S3</td><td title="1500mAh" class="detailed hidden">1500mAh</td><td title="16MB" class="detailed hidden">16MB</td><td title="8MB" class="detailed hidden">8MB</td></tr>
-									<tr class="group even:bg-neutral-800 hover:bg-neutral-700"><td class="sticky left-0 z-10 px-4 py-3 text-center text-base text-white bg-neutral-800 group-hover:bg-neutral-700">Lilygo T-Display-S3</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="">❌ </td><td title="">✅</td><td title="">❌</td><td title="">❌ </td><td title="320x170" class="detailed hidden">320x170</td><td title="ESP32-S3FN16R8" class="detailed hidden">ESP32-S3FN16R8</td><td title="None" class="detailed hidden">None</td><td title="16MB" class="detailed hidden">16MB</td><td title="8MB" class="detailed hidden">8MB</td></tr>
-									<tr class="group even:bg-neutral-800 hover:bg-neutral-700"><td class="sticky left-0 z-10 px-4 py-3 text-center text-base text-white bg-neutral-900 group-hover:bg-neutral-700">Lilygo T-Deck (and Pro)</td><td title="">❌</td><td title="">❌</td><td title="">❌</td><td title="Module Required">ℹ️</td><td title="MSM381A3729H9CP">✅ <span class="detailed hidden">MSM381A3729H9CP</span></td><td title="">✅</td><td title="">❌</td><td title="MAX98357A">🔊 <span class="detailed hidden">Full - MAX98357A</span></td><td title="320x240" class="detailed hidden">320x240</td><td title="ESP32-S3FN16R8" class="detailed hidden">ESP32-S3FN16R8</td><td title="None (Pro has 2000mAh)" class="detailed hidden">None (Pro has 2000mAh)</td><td title="16MB" class="detailed hidden">16MB</td><td title="8MB" class="detailed hidden">8MB</td></tr>
-									<tr class="group even:bg-neutral-800 hover:bg-neutral-700"><td class="sticky left-0 z-10 px-4 py-3 text-center text-base text-white bg-neutral-800 group-hover:bg-neutral-700">Lilygo T-Watch-S3</td><td title="">❌</td><td title="">❌</td><td title="">❌</td><td title="">❌</td><td title="ES7210">✅ <span class="detailed hidden">ES7210</span></td><td title="">✅</td><td title="">❌</td><td title="MAX98357A">🔊 <span class="detailed hidden">Full - MAX98357A</span></td><td title="240x240" class="detailed hidden">240x240</td><td title="ESP32-S3FN16R8" class="detailed hidden">ESP32-S3FN16R8</td><td title="1500mAh" class="detailed hidden">1500mAh</td><td title="16MB" class="detailed hidden">16MB</td><td title="8MB" class="detailed hidden">8MB</td></tr>
-									<tr class="group even:bg-neutral-800 hover:bg-neutral-700"><td class="sticky left-0 z-10 px-4 py-3 text-center text-base text-white bg-neutral-900 group-hover:bg-neutral-700">Smoochiee V2</td><td title="">✅</td><td title="">✅</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="">❌ </td><td title="">✅</td><td title="">✅</td><td title="Tone">🔈 <span class="detailed hidden">Tone</span></td><td title="320x170" class="detailed hidden">320x170</td><td title="ESP32-S3-WROOM-1 NR16R8" class="detailed hidden">ESP32-S3-WROOM-1 NR16R8</td><td title="None" class="detailed hidden">None</td><td title="16MB" class="detailed hidden">16MB</td><td title="8MB" class="detailed hidden">8MB</td></tr>
-									<tr class="group even:bg-neutral-800 hover:bg-neutral-700"><td class="sticky left-0 z-10 px-4 py-3 text-center text-base text-white bg-neutral-800 group-hover:bg-neutral-700">ESP32-C5</td><td title="">✅</td><td title="">✅</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="">❌ </td><td title="">✅</td><td title="">✅</td><td title="Tone">🔈 <span class="detailed hidden">Tone</span></td><td title="320x170" class="detailed hidden">320x170</td><td title="ESP32-C5-WROOM-1 MCN8R4" class="detailed hidden">ESP32-C5-WROOM-1 MCN8R4</td><td title="None" class="compressed">None</td><td title="16MB" class="detailed hidden">16MB</td><td title="8MB" class="detailed hidden">8MB</td></tr>
-									<tr class="group even:bg-neutral-800 hover:bg-neutral-700"><td class="sticky left-0 z-10 px-4 py-3 text-center text-base text-white bg-neutral-900 group-hover:bg-neutral-700">Elecrow 24B</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="Module Required">ℹ️</td><td title="">❌ </td><td title="">❌</td><td title="">✅</td><td title="Tone">🔈 <span class="detailed hidden">Tone</span></td><td title="320x240" class="detailed hidden">320x240</td><td title="ESP32-WROOM-32" class="detailed hidden">ESP32-WROOM-32</td><td title="None" class="detailed hidden">None</td><td title="16MB" class="detailed hidden">16MB</td><td title="8MB" class="detailed hidden">8MB</td></tr>
-								</tbody>
-							</table>
-						</div> 
-					</div> 
-					<br/> 
-					<h2 class="text-lg">For <strong>Wiring Diagrams</strong> check the <a href="https://github.com/BruceDevices/firmware/tree/main/media/connections"><b>connections</b></a> or <a href="https://wiki.bruce.computer"><b>Wiki</b></a>!</h2> 
-					<h2 class="text-lg">Every feature is also listed on Github.</h2>
+			<!-- Compatibility Matrix Section -->
+			<div class="mx-auto mt-10 w-[92%] text-center pb-20">
+				<h1 class="mb-3 text-3xl font-bold text-white">Compatible Devices Matrix</h1> 
+				<h2 class="mb-6 text-sm text-gray-400 max-w-2xl mx-auto">This dynamic matrix tracks feature compatibility across supported hardware branches (Cardputer, Lilygo, CYD). Click below to unlock detailed hardware layout parameters.</h2> 
+				<button id="toggleDetailedView" class="mb-6 rounded bg-[#9B51E0] px-5 py-2 font-semibold text-white hover:bg-[#8033C7] transition">Show Detailed View</button> 
+				
+				<div class="table-wrapper overflow-x-auto w-full border border-neutral-800 rounded-xl">
+					<table class="w-full border-collapse bg-[#111] text-left text-sm text-gray-400">
+						<thead class="bg-neutral-900 text-gray-200 uppercase text-xs">
+							<tr>
+								<th class="px-4 py-3 sticky left-0 bg-neutral-900 z-10 border-b border-neutral-800">Device Target</th>
+								<th class="px-4 py-3 text-center border-b border-neutral-800">CC1101</th>
+								<th class="px-4 py-3 text-center border-b border-neutral-800">NRF24</th>
+								<th class="px-4 py-3 text-center border-b border-neutral-800">FMRadio</th>
+								<th class="px-4 py-3 text-center border-b border-neutral-800">NFC</th>
+								<th class="px-4 py-3 text-center border-b border-neutral-800">Mic</th>
+								<th class="px-4 py-3 text-center border-b border-neutral-800">BadUSB</th>
+								<th class="px-4 py-3 text-center border-b border-neutral-800">RGB</th>
+								<th class="px-4 py-3 text-center border-b border-neutral-800">Audio</th>
+								<th class="px-4 py-3 text-center border-b border-neutral-800 detailed hidden">Screen</th>
+								<th class="px-4 py-3 text-center border-b border-neutral-800 detailed hidden">MCU</th>
+								<th class="px-4 py-3 text-center border-b border-neutral-800 detailed hidden">Battery</th>
+								<th class="px-4 py-3 text-center border-b border-neutral-800 detailed hidden">Flash</th>
+							</tr>
+						</thead>
+						<tbody class="divide-y divide-neutral-800">
+							<tr class="hover:bg-neutral-900/50"><td class="px-4 py-3 font-medium text-white sticky left-0 bg-[#111] border-r border-neutral-800">M5Stack Cardputer</td><td class="text-center">ℹ️</td><td class="text-center">ℹ️</td><td class="text-center">ℹ️</td><td class="text-center">ℹ️</td><td class="text-center">✅</td><td class="text-center">✅</td><td class="text-center">✅</td><td class="text-center">🔊</td><td class="text-center detailed hidden text-xs text-purple-400">240x135</td><td class="text-center detailed hidden text-xs text-purple-400">ESP32-S3</td><td class="text-center detailed hidden text-xs text-purple-400">1520mAh</td><td class="text-center detailed hidden text-xs text-purple-400">8MB</td></tr>
+							<tr class="hover:bg-neutral-900/50"><td class="px-4 py-3 font-medium text-white sticky left-0 bg-[#111] border-r border-neutral-800">CYD-2432S028 (Yellow)</td><td class="text-center">ℹ️</td><td class="text-center">ℹ️</td><td class="text-center">ℹ️</td><td class="text-center">ℹ️</td><td class="text-center">❌</td><td class="text-center">❌</td><td class="text-center">❌</td><td class="text-center">❌</td><td class="text-center detailed hidden text-xs text-purple-400">320x240</td><td class="text-center detailed hidden text-xs text-purple-400">ESP32-WROOM</td><td class="text-center detailed hidden text-xs text-purple-400">None</td><td class="text-center detailed hidden text-xs text-purple-400">4MB</td></tr>
+							<tr class="hover:bg-neutral-900/50"><td class="px-4 py-3 font-medium text-white sticky left-0 bg-[#111] border-r border-neutral-800">Lilygo T-Embed</td><td class="text-center">✅</td><td class="text-center">ℹ️</td><td class="text-center">ℹ️</td><td class="text-center">✅</td><td class="text-center">✅</td><td class="text-center">✅</td><td class="text-center">✅</td><td class="text-center">🔊</td><td class="text-center detailed hidden text-xs text-purple-400">320x170</td><td class="text-center detailed hidden text-xs text-purple-400">ESP32-S3</td><td class="text-center detailed hidden text-xs text-purple-400">1300mAh</td><td class="text-center detailed hidden text-xs text-purple-400">16MB</td></tr>
+							<tr class="hover:bg-neutral-900/50"><td class="px-4 py-3 font-medium text-white sticky left-0 bg-[#111] border-r border-neutral-800">Lilygo T-Deck</td><td class="text-center">❌</td><td class="text-center">❌</td><td class="text-center">❌</td><td class="text-center">ℹ️</td><td class="text-center">✅</td><td class="text-center">✅</td><td class="text-center">❌</td><td class="text-center">🔊</td><td class="text-center detailed hidden text-xs text-purple-400">320x240</td><td class="text-center detailed hidden text-xs text-purple-400">ESP32-S3</td><td class="text-center detailed hidden text-xs text-purple-400">2000mAh</td><td class="text-center detailed hidden text-xs text-purple-400">16MB</td></tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 
-			<div class="flex w-full items-center justify-center px-5 py-12 text-center max-sm:flex-col">
-				<div class="max-sm:flex max-sm:flex-col">
-					<h2 class="mb-5 text-2xl font-bold">Need more help?</h2> 
-					<p>Check out our <a href="https://wiki.bruce.computer/faq/" target="_blank" rel="noopener noreferrer"><b>FAQ</b></a>!</p> 
-					<a href="https://discord.gg/WJ9XF9czVT" class="inline-block rounded bg-[#9B51E0] px-6 py-3 font-semibold text-white transition-all duration-300 ease-in-out hover:scale-105 hover:bg-[#8033C7] mt-5 mr-2" style="color:white">Join us on Discord!</a>
-					<a href="https://forum.bruce.computer" class="inline-block rounded bg-[#9B51E0] px-6 py-3 font-semibold text-white transition-all duration-300 ease-in-out hover:scale-105 hover:bg-[#8033C7] mt-5 ml-2" style="color:white">Join our forum!</a>
+			<!-- Help & Social Section -->
+			<div class="flex w-full items-center justify-center px-5 py-12 text-center bg-[#111]/50 border-t border-neutral-900">
+				<div>
+					<h2 class="mb-3 text-2xl font-bold">Need assistance in the Lab?</h2> 
+					<p class="text-gray-400 mb-6">Check out our official FAQ database or debug directly with core developers.</p> 
+					<div class="flex flex-wrap justify-center gap-4">
+						<a href="https://discord.gg/WJ9XF9czVT" target="_blank" class="rounded bg-[#9B51E0] px-6 py-3 font-semibold text-white hover:bg-[#8033C7] transition">Join Discord</a>
+						<a href="https://forum.bruce.computer" target="_blank" class="rounded bg-neutral-800 border border-neutral-700 px-6 py-3 font-semibold text-white hover:bg-neutral-700 transition">Community Forum</a>
+					</div>
 				</div>
 			</div>
 
-			<footer class="bg-[#111] py-5 text-center">
-				<div class="mx-auto my-0 w-90 max-w-full">
-					<div class="mb-4 flex items-center justify-center gap-5">
-						<a href="https://discord.gg/WJ9XF9czVT" target="_blank" rel="noopener noreferrer" class="inline-block"><img src="./img/discord.svg" alt="Discord" class="h-10 w-10 transition-transform duration-200 ease-in-out hover:scale-110"/></a> 
-						<a href="https://youtube.com/@Bruce-fw" target="_blank" rel="noopener noreferrer" class="inline-block"><img src="./img/youtube.svg" alt="YouTube" class="h-10 w-10 transition-transform duration-200 ease-in-out hover:scale-110"/></a> 
-						<a href="https://reddit.com/r/brucefw" target="_blank" rel="noopener noreferrer" class="inline-block"><img src="./img/reddit.svg" alt="Reddit" class="h-10 w-10 transition-transform duration-200 ease-in-out hover:scale-110"/></a> 
-						<a href="https://www.instagram.com/bruce_firmware/" target="_blank" rel="noopener noreferrer" class="inline-block"><img src="./img/instagram.svg" alt="Instagram" class="h-10 w-10 transition-transform duration-200 ease-in-out hover:scale-110"/></a> 
-						<a href="mailto:contact@bruce.computer" class="inline-block"><img src="./img/email.svg" alt="Email" class="h-10 w-10 transition-transform duration-200 ease-in-out hover:scale-110"/></a> 
-						<a href="https://matrix.to/#/#general:matrix.bruce.computer" target="_blank" rel="noopener noreferrer" class="inline-block"><img src="./img/matrix.svg" alt="Matrix" class="h-10 w-10 transition-transform duration-200 ease-in-out hover:scale-110"/></a>
-					</div>
-				</div> 
+			<!-- Footer -->
+			<footer class="bg-[#0a0a0a] border-t border-neutral-900 py-8 text-center">
+				<p class="text-xs text-gray-600">&copy; 2026 Bruce Firmware Project. Weaponized for Research & Penetration Testing.</p>
 			</footer>
-
-			<script>
-				{
-					__sveltekit_rgaobg = {
-						base: "https://github.com/mdarif76769/Bruce-Firmware",
-						assets: "https://mdarif76769.github.io/Bruce-Firmware/"
-					};
-
-					const element = document.currentScript.parentElement;
-
-					Promise.all([
-						import("./_app/immutable/entry/start.CwwxOvQY.js"),
-						import("./_app/immutable/entry/app.6MlOcrdb.js")
-					]).then(([kit, app]) => {
-						kit.start(app, element, {
-							node_ids: [0, 2],
-							data: [null,null],
-							form: null,
-							error: null
-						});
-					});
-				}
-			</script>
 		</div>
+
+		<!-- Pure JavaScript (কোনো এনপিএম বিল্ড লাগবে না) -->
+		<script>
+			// মোবাইল রেসপন্সিভ মেনু টগল
+			const menuBtn = document.getElementById('mobileMenuBtn');
+			const navLinks = document.getElementById('navLinks');
+			menuBtn.addEventListener('click', () => {
+				navLinks.classList.toggle('hidden');
+				navLinks.classList.toggle('flex');
+			});
+
+			// ইমেজ স্লাইডার লজিক
+			const sliderImages = [
+				"./img/bruce-pcb.png",
+				"./img/reaper-pcb2.png",
+				"./img/cardputer.png",
+				"./img/core2.png",
+				"./img/cyd.png"
+			];
+			let currentIdx = 0;
+			const sliderEl = document.getElementById('sliderImg');
+			
+			setInterval(() => {
+				currentIdx = (currentIdx + 1) % sliderImages.length;
+				if(sliderEl) {
+					sliderEl.style.opacity = 0;
+					setTimeout(() => {
+						sliderEl.src = sliderImages[currentIdx];
+						sliderEl.style.opacity = 1;
+					}, 200);
+				}
+			}, 3000);
+
+			// ডাটা টেবিল ডিটেইলড ভিউ টগল লজিক
+			const toggleBtn = document.getElementById('toggleDetailedView');
+			const detailedCols = document.querySelectorAll('.detailed');
+			
+			toggleBtn.addEventListener('click', () => {
+				detailedCols.forEach(col => {
+					col.classList.toggle('hidden');
+				});
+				if(toggleBtn.innerText === "Show Detailed View") {
+					toggleBtn.innerText = "Hide Detailed View";
+				} else {
+					toggleBtn.innerText = "Show Detailed View";
+				}
+			});
+		</script>
 	</body>
 </html>
