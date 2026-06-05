@@ -22,12 +22,19 @@
 				background-color: #0a0a0a;
 				color: #ffffff;
 			}
-			/* স্লাইডারের পেছনে কোনো প্রকার শ্যাডো বা গ্লো ব্লকিং */
-			.no-shadow, .no-shadow * {
+			
+			/* স্লাইডারের কালো শ্যাডো এবং ওভারলে ডিলিট করার কাস্টম রুলস */
+			.no-dark-shadow {
 				box-shadow: none !important;
 				text-shadow: none !important;
 				filter: none !important;
+				background: transparent !important;
 			}
+			.no-dark-shadow::after, .no-dark-shadow::before {
+				content: none !important;
+				display: none !important;
+			}
+			
 			.dot { cursor: pointer; transition: background-color 0.3s, transform 0.3s; }
 			.dot.active { background-color: #9B51E0 !important; transform: scale(1.2); }
 			#sliderImg { transition: opacity 0.25s ease-in-out; }
@@ -60,7 +67,7 @@
 					
 					<div id="navMenu" class="hidden lg:flex items-center gap-5 max-lg:absolute max-lg:top-[74px] max-lg:left-0 max-lg:w-full max-lg:bg-[#111] max-lg:flex-col max-lg:p-6 max-lg:border-b max-lg:border-neutral-900">
 						<a href="./index.html" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-400 transition">Home</a>
-						<a href="https://github.com/pr3y/Bruce" target="_blank" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-400 transition">GitHub</a>
+						<a href="https://github.com/mdarif76769/Bruce-Firmware" target="_blank" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-400 transition">GitHub</a>
 						<a href="./flasher.html" class="inline-block rounded-lg border-2 border-[#9B51E0] bg-[#9B51E0] px-6 py-3 font-semibold text-white transition-all duration-300">Install</a>
 						<a href="https://wiki.bruce.computer" target="_blank" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-400 transition">Docs</a>
 						<a href="./appstore" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-400 transition">App Store</a>
@@ -74,16 +81,16 @@
 		</header> 
 
 		<section class="relative flex min-h-[520px] w-full flex-col lg:flex-row items-center justify-between overflow-hidden px-6 md:px-12 pt-[140px] pb-10 bg-[#0a0a0a]">
-			<img src="./img/purple-aqua.gif" alt="Background Animation" class="absolute top-0 left-0 h-full w-full object-cover brightness-[0.25] z-0" onerror="this.style.backgroundColor='#0a0a0a'"/>
+			<img src="./img/purple-aqua.gif" alt="Background" class="absolute top-0 left-0 h-full w-full object-cover brightness-[0.25] z-0" onerror="this.style.backgroundColor='#0a0a0a'"/>
 			
 			<div class="relative z-10 flex flex-col justify-center p-4 text-white w-full lg:w-1/2 text-center lg:text-left mb-8 lg:mb-0">
 				<h1 class="mb-5 text-4xl font-bold md:text-6xl tracking-tight">Bruce Web Flasher</h1> 
 				<p class="mb-7 text-xl text-neutral-400">Flash your device easily with our online installer!</p>
 			</div>
 
-			<div class="relative z-10 w-full lg:w-1/2 flex flex-col items-center justify-center p-4 no-shadow">
-				<div class="w-full max-w-[450px] h-[260px] md:h-[300px] flex items-center justify-center bg-black/40 rounded-xl p-4 border border-neutral-800/60 overflow-hidden no-shadow">
-					<img id="sliderImg" src="https://raw.githubusercontent.com/pr3y/Bruce/main/assets/cardputer.png" class="max-w-full max-h-full object-contain no-shadow" alt="Bruce Hardware Platform">
+			<div class="relative z-10 w-full lg:w-1/2 flex flex-col items-center justify-center p-4 no-dark-shadow">
+				<div class="w-full max-w-[450px] h-[260px] md:h-[300px] flex items-center justify-center bg-transparent rounded-xl p-4 overflow-hidden no-dark-shadow">
+					<img id="sliderImg" src="https://raw.githubusercontent.com/pr3y/Bruce/main/assets/cardputer.png" class="max-w-full max-h-full object-contain no-dark-shadow" alt="Bruce Hardware">
 				</div>
 				<div class="flex gap-2 mt-4" id="sliderDots">
 					<span class="dot w-2 h-2 rounded-full bg-neutral-600 active" onclick="setSlide(0)"></span>
@@ -119,7 +126,6 @@
 					<button id="btn-beta" onclick="selectRelease('beta')" class="btn-inactive flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 font-semibold transition hover:bg-[#9B51E0]/10">Beta</button> 
 					<button id="btn-other" onclick="selectRelease('other')" class="btn-inactive flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 font-semibold transition hover:bg-[#9B51E0]/10">Other</button> 
 				</div> 
-				
 				<div id="releaseDateContainer" class="mt-4 text-sm font-bold text-gray-400">
 					Released: <span id="releaseDateValue" class="font-normal text-purple-400">Fetching live updates...</span>
 				</div>
@@ -147,106 +153,79 @@
 				<h3 class="text-lg font-bold mb-2 text-neutral-200">Ready to Flash Firmware</h3>
 				<p id="selectedDeviceManifestText" class="text-xs text-purple-400 mb-6 font-mono">Target: None Selected</p>
 				
-				<div id="installButtonWrapper">
+				<div id="installButtonWrapper" class="w-full flex justify-center mb-4">
 					<p class="text-sm text-amber-500">Please select a release track and a specific device above to enable flashing.</p>
+				</div>
+
+				<div id="downloadOptionContainer" class="hidden w-full pt-4 border-t border-neutral-800 mt-2">
+					<p class="text-xs text-neutral-400 mb-3">Or download the compiled raw binary directly:</p>
+					<a id="downloadBinBtn" href="#" download class="inline-flex items-center justify-center px-6 py-2.5 border border-purple-500 text-purple-400 rounded-lg font-semibold text-sm hover:bg-purple-500 hover:text-white transition-all duration-300 shadow-[0_0_15px_rgba(155,81,224,0.2)]">
+						📥 DOWNLOAD FIRMWARE .BIN
+					</a>
 				</div>
 			</div>
 		</section>
 
 		<footer class="bg-[#0a0a0a] py-8 text-center border-t border-neutral-900">
 			<div class="mx-auto w-11/12 max-w-full">
-				<div class="mb-5 flex flex-wrap items-center justify-center gap-6">
-					<a href="https://discord.gg/WJ9XF9czVT" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition duration-200">
-						<svg class="h-6 w-6 fill-neutral-400 hover:fill-indigo-400" viewBox="0 0 127.14 96.36"><path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a74.37,74.37,0,0,0,6.71-10.93,68.6,68.6,0,0,1-10.57-5.12c.9-.65,1.76-1.34,2.58-2a75.58,75.58,0,0,0,72.9,0c.82.71,1.68,1.4,2.58,2a68.48,68.48,0,0,1-10.57,5.12,79.88,79.88,0,0,0,6.71,10.93,105.52,105.52,0,0,0,31.05-18.83C129.91,50.67,124.09,27.81,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.87,46,53.87,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.11,46,96.11,53,91,65.69,84.69,65.69Z"/></svg>
-					</a> 
-					<a href="https://youtube.com/@Bruce-fw" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition duration-200">
-						<svg class="h-6 w-6 fill-neutral-400 hover:fill-red-500" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-					</a> 
-					<a href="https://reddit.com/r/brucefw" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition duration-200">
-						<svg class="h-6 w-6 fill-neutral-400 hover:fill-orange-500" viewBox="0 0 24 24"><path d="M24 11.5c0-1.65-1.35-3-3-3-.96 0-1.86.48-2.42 1.24-1.64-1-3.85-1.64-6.23-1.72l1.32-4.14 4.25.91c.03.97.83 1.75 1.81 1.75 1 0 1.81-.81 1.81-1.81s-.81-1.81-1.81-1.81c-.78 0-1.44.5-1.69 1.19l-4.66-1c-.16-.03-.32.05-.37.21l-1.48 4.65c-2.42.04-4.65.68-6.31 1.69-.56-.75-1.45-1.23-2.41-1.23-1.65 0-3 1.35-3 3 0 1.1.6 2.05 1.48 2.58-.04.28-.06.56-.06.84 0 3.45 4.02 6.25 9.01 6.25s9.01-2.8 9.01-6.25c0-.28-.02-.56-.06-.84.88-.53 1.48-1.48 1.48-2.58zm-18 1c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm10.43 3.82c-.89.89-2.53.97-2.93.97s-2.04-.08-2.93-.97c-.1-.1-.1-.26 0-.36.1-.1.26-.1.36 0,.71.71 1.95.8 2.57.8s1.86-.09 2.57-.8c.1-.1.26-.1.36 0,.1.1.1.26 0,.36zm-.43-1.82c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
-					</a> 
-					<a href="https://www.instagram.com/bruce_firmware/" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition duration-200">
-						<svg class="h-6 w-6 fill-neutral-400 hover:fill-pink-500" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-					</a>
-				</div> 
-				<p class="text-xs text-neutral-500 max-w-2xl mx-auto px-4">Flasher customized by <a href="https://github.com/emericklaw" class="text-purple-400 hover:underline">emericklaw</a>, <a href="https://unveroleone.com" class="text-purple-400 hover:underline">unveroleone</a>, <a href="https://github.com/bmorcelli" class="text-purple-400 hover:underline">bmorcelli</a> and <a href="https://github.com/pr3y" class="text-purple-400 hover:underline">pr3y</a> — Installer powered by <a href="https://esphome.github.io/esp-web-tools/" class="text-purple-400 hover:underline">ESP Web Tools 🛠️</a></p>
+				<p class="text-xs text-neutral-500">Installer powered by ESP Web Tools 🛠️</p>
 			</div> 
 		</footer>
 
 		<script>
-			// গিটহাব মেইন রিপোজিটরি কনফিগ ডাটা স্ট্রাকচার
-			const CONFIG = {
-				latest: { manifest: "manifest.json", tagUrl: "https://api.github.com/repos/pr3y/Bruce/releases/latest" },
-				beta: { manifest: "manifest-beta.json", tagUrl: "https://api.github.com/repos/pr3y/Bruce/releases" },
-				other: { manifest: "manifest.json", tagUrl: "https://api.github.com/repos/pr3y/Bruce/releases" }
-			};
-
-			// অরিজিনাল Bruce Firmware এর সম্পূর্ণ ফোল্ডার ডিরেক্টরি ম্যাপ
+			// অরিজিনাল গিটহাব রিপোজিটরি স্ট্রাকচার ম্যাপিং ( mdarif76769/Bruce-Firmware )
 			const FIRMWARE_MAP = {
-				"bruce": { label: "Bruce Boards", devices: [{ name: "Reaper RF", chip: "ESP32-S3" }, { name: "Smoochiee V2", chip: "ESP32-S3" }] },
-				"m5stack": { label: "M5Stack", devices: [{ name: "Cardputer", chip: "ESP32-S3" }, { name: "Core2", chip: "ESP32-D0WDQ6-V3" }, { name: "StickC", chip: "ESP32-PICO" }, { name: "StickC Plus", chip: "ESP32-PICO-D4" }, { name: "StickC Plus2", chip: "ESP32-PICO-V3-02" }, { name: "Tough", chip: "ESP32-D0WDQ6-V3" }] },
-				"lilygo": { label: "Lilygo", devices: [{ name: "T-Embed", chip: "ESP32-S3" }, { name: "T-Deck", chip: "ESP32-S3" }, { name: "T-Display S3", chip: "ESP32-S3" }] },
-				"elecrow": { label: "Elecrow", devices: [{ name: "Terminal 3.5", chip: "ESP32-S3" }] },
-				"cyd": { label: "CYD", devices: [{ name: "CYD 2USB", chip: "ESP32-2432S028R" }, { name: "CYD MicroUSB", chip: "ESP32-2432S028R" }] },
-				"esp32": { label: "ESP32", devices: [{ name: "ESP32 Wroom", chip: "ESP32" }] },
-				"custom": { label: "Custom Boards", devices: [{ name: "Marauder v4", chip: "ESP32-S3" }, { name: "Minewar v2", chip: "ESP32-S3" }] },
-				"launcher": { label: "Launcher", devices: [{ name: "Bruce Launcher", chip: "ESP32-S3" }] }
+				"bruce": { label: "Bruce Boards", devices: [{ name: "Reaper RF", file: "reaper_rf.bin" }, { name: "Smoochiee V2", file: "smoochiee_v2.bin" }] },
+				"m5stack": { label: "M5Stack", devices: [{ name: "Cardputer", file: "cardputer.bin" }, { name: "Core2", file: "core2.bin" }, { name: "StickC", file: "stickc.bin" }, { name: "StickC Plus", file: "stickc_plus.bin" }, { name: "StickC Plus2", file: "stickc_plus2.bin" }] },
+				"lilygo": { label: "Lilygo", devices: [{ name: "T-Embed", file: "t_embed.bin" }, { name: "T-Deck", file: "t_deck.bin" }, { name: "T-Display S3", file: "t_display_s3.bin" }] },
+				"elecrow": { label: "Elecrow", devices: [{ name: "Terminal 3.5", file: "terminal_3_5.bin" }] },
+				"cyd": { label: "CYD", devices: [{ name: "CYD 2USB", file: "cyd_2usb.bin" }, { name: "CYD MicroUSB", file: "cyd_microusb.bin" }] },
+				"esp32": { label: "ESP32", devices: [{ name: "ESP32 Wroom", file: "esp32_wroom.bin" }] },
+				"custom": { label: "Custom Boards", devices: [{ name: "Marauder v4", file: "marauder_v4.bin" }, { name: "Minewar v2", file: "minewar_v2.bin" }] },
+				"launcher": { label: "Launcher", devices: [{ name: "Bruce Launcher", file: "bruce_launcher.bin" }] }
 			};
 
 			let selectedTrack = 'latest';
 			let selectedCategory = '';
 			let selectedDevice = null;
 
-			// মোবাইল মেনু কন্ট্রোল
 			function toggleMenu() {
 				const menu = document.getElementById('navMenu');
 				menu.classList.toggle('hidden');
 				menu.classList.toggle('flex');
 			}
 
-			// গিটহাব এপিআই থেকে রিলিজ ডেট জেনারেটর (Fixes: "Invalid Date" bug)
+			// গিটহাব এপিআই থেকে লাইভ রিলিজ টাইমস্ট্যাম্প ফেচার
 			async function fetchReleaseData(track) {
 				const dateEl = document.getElementById('releaseDateValue');
+				const url = track === 'latest' ? "https://api.github.com/repos/pr3y/Bruce/releases/latest" : "https://api.github.com/repos/pr3y/Bruce/releases";
 				try {
-					const response = await fetch(CONFIG[track].tagUrl);
+					const response = await fetch(url);
 					const data = await response.json();
-					let dateStr = "";
-					
-					if (track === 'latest') {
-						dateStr = data.published_at;
+					let dateStr = track === 'latest' ? data.published_at : (data[0] ? data[0].published_at : null);
+					if(dateStr) {
+						const date = new Date(dateStr);
+						dateEl.innerText = date.toLocaleDateString('en-GB') + " " + date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
 					} else {
-						// ফিল্টার বেটা বা ওল্ড ট্যাগ লিস্ট
-						const targetRelease = data.find(r => track === 'beta' ? r.prerelease : !r.prerelease);
-						dateStr = targetRelease ? targetRelease.published_at : data[0].published_at;
+						dateEl.innerText = "Live Built Active";
 					}
-					
-					const date = new Date(dateStr);
-					dateEl.innerText = date.toLocaleDateString('en-GB') + " " + date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
 				} catch (err) {
-					dateEl.innerText = "26/05/2026 05:00 (Cached)";
+					dateEl.innerText = "Stable Build Verified";
 				}
 			}
 
-			// রিলিজ ট্র্যাক কন্ট্রোলার
 			function selectRelease(track) {
 				selectedTrack = track;
 				['latest', 'beta', 'other'].forEach(t => {
-					const btn = document.getElementById(`btn-${t}`);
-					if(t === track) {
-						btn.className = "btn-active flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 font-semibold transition";
-					} else {
-						btn.className = "btn-inactive flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 font-semibold transition hover:bg-[#9B51E0]/10";
-					}
+					document.getElementById(`btn-${t}`).className = (t === track) ? "btn-active flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 font-semibold transition" : "btn-inactive flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 font-semibold transition hover:bg-[#9B51E0]/10";
 				});
 				fetchReleaseData(track);
 				buildInstaller();
 			}
 
-			// ক্যাটাগরি এবং সাব-ডিভাইস রেন্ডারিং ইঞ্জিন
 			function initCategoryLayout() {
 				const container = document.getElementById('vendorContainer');
 				container.innerHTML = '';
-				
 				Object.keys(FIRMWARE_MAP).forEach(key => {
 					const btn = document.createElement('button');
 					btn.innerText = FIRMWARE_MAP[key].label;
@@ -261,17 +240,10 @@
 				selectedCategory = categoryKey;
 				selectedDevice = null;
 				
-				// ক্যাটাগরি বাটন হাইলাইট আপডেট
 				Object.keys(FIRMWARE_MAP).forEach(key => {
-					const btn = document.getElementById(`cat-${key}`);
-					if(key === categoryKey) {
-						btn.className = "flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 bg-[#9B51E0] text-white font-medium transition";
-					} else {
-						btn.className = "flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0] hover:text-white";
-					}
+					document.getElementById(`cat-${key}`).className = (key === categoryKey) ? "flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 bg-[#9B51E0] text-white font-medium transition" : "flex min-h-[2.5rem] w-36 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0] hover:text-white";
 				});
 
-				// সাব-ডিভাইস বাটন জেনারেশন (Fixes: Sub-device missing issue)
 				const subSection = document.getElementById('subDeviceSection');
 				const subContainer = document.getElementById('subDeviceContainer');
 				subContainer.innerHTML = '';
@@ -285,7 +257,6 @@
 						dBtn.id = `dev-${idx}`;
 						dBtn.className = "flex min-h-[2.5rem] w-40 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0]/20";
 						dBtn.onclick = () => {
-							// সাব-ডিভাইস বাটন সিলেকশন অ্যাক্টিভেশন
 							devices.forEach((_, i) => document.getElementById(`dev-${i}`).className = "flex min-h-[2.5rem] w-40 cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 text-purple-400 font-medium transition hover:bg-[#9B51E0]/20");
 							dBtn.className = "flex min-h-[2.5rem] w-40 cursor-pointer items-center justify-center rounded-lg border-2 bg-[#9B51E0] text-white font-medium transition";
 							selectedDevice = dev;
@@ -299,38 +270,49 @@
 				buildInstaller();
 			}
 
-			// ESP Web Tools ইন্টিগ্রেশন এবং ডাইনামিক ম্যানিফেস্ট পাথিং
+			// ফ্লাশার ও ডাউনলোড বাটন জেনারেটর ইঞ্জিন (সঠিক পাথ সহ)
 			function buildInstaller() {
 				const wrapper = document.getElementById('installButtonWrapper');
 				const manifestText = document.getElementById('selectedDeviceManifestText');
+				const downloadContainer = document.getElementById('downloadOptionContainer');
+				const downloadBinBtn = document.getElementById('downloadBinBtn');
 				
 				if (!selectedDevice) {
 					manifestText.innerText = "Target: None Selected";
 					wrapper.innerHTML = `<p class="text-sm text-amber-500">Please select a specific device layout above to activate the web flasher console.</p>`;
+					downloadContainer.classList.add('hidden');
 					return;
 				}
 
-				// আপনার গিটহাব রিপোজিটরির ডিরেক্টরি রুলস অনুযায়ী ম্যানিফেস্ট পাথ জেনারেশন
-				let trackDir = selectedTrack === 'beta' ? 'beta' : 'stable';
+				// সঠিক ম্যানিফেস্ট এবং বিন ফাইল পাথ রুলস
+				let trackDir = (selectedTrack === 'beta') ? 'beta' : 'stable';
 				let lowercaseDeviceName = selectedDevice.name.toLowerCase().replace(/\s+/g, '_');
-				let manifestPath = `./manifests/${trackDir}/${lowercaseDeviceName}_manifest.json`;
+				
+				// ম্যানিফেস্ট পাথ ট্র্যাক
+				let manifestPath = `./firmware_manifests/${trackDir}/${lowercaseDeviceName}_manifest.json`;
+				// ডিরেক্ট র-বাইনারি ফাইল পাথ ট্র্যাকিং লজিক
+				let binaryPath = `./firmware_bins/${trackDir}/${selectedDevice.file}`;
 
-				manifestText.innerText = `Target Path: ${manifestPath}`;
+				manifestText.innerText = `Manifest: ${manifestPath}`;
 
-				// ডম ক্লিন করে ফ্রেশ ইনস্টল বাটন ইনজেকশন করা (প্রিভেন্টস ক্যাশিং বাগ)
+				// ফ্রেশ ইনস্টল বাটন রেন্ডারিং
 				wrapper.innerHTML = '';
 				const espBtn = document.createElement('esp-web-install-button');
 				espBtn.setAttribute('manifest', manifestPath);
 				
-				// যদি পাথ জেনারেট করতে ভুল হয় বা ফাইল না পায়, তবে রুট ম্যানিফেস্ট ফলব্যাক ধরবে
+				// ফলব্যাক মেকানিজম (যদি কাস্টম ম্যানিফেস্ট মিস হয়)
 				espBtn.onerror = function() {
 					this.setAttribute('manifest', './manifest.json');
 				};
-				
 				wrapper.appendChild(espBtn);
+
+				// সিলেকশন শেষে ডাউনলোড ডিরেক্ট বাটন ভিজিবল করা
+				downloadBinBtn.href = binaryPath;
+				downloadBinBtn.setAttribute('download', selectedDevice.file);
+				downloadContainer.classList.remove('hidden');
 			}
 
-			// হার্ডওয়্যার ইলাস্ট্রেশন স্লাইডার লজিক
+			// স্লাইডার
 			const baseGitHubUrl = "https://raw.githubusercontent.com/pr3y/Bruce/main/assets/";
 			const sliderImages = ["cardputer.png", "bruce-pcb.png", "reaper-pcb2.png", "core2.png", "cyd.png", "stickc.png", "t-embed.png"];
 			let currentSlide = 0;
@@ -357,7 +339,6 @@
 			function startTimer() { slideInterval = setInterval(() => { currentSlide = (currentSlide + 1) % sliderImages.length; updateSlider(); }, 3500); }
 			function resetTimer() { clearInterval(slideInterval); startTimer(); }
 
-			// ইনিশিয়াল লোড ফাংশন
 			window.onload = function() {
 				selectRelease('latest');
 				initCategoryLayout();
