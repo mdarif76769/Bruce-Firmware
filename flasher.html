@@ -4,7 +4,7 @@
 		<meta charset="utf-8" />
 		<link rel="icon" href="./favicon.ico" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		
+				
 		<link href="./_app/immutable/assets/0.ghpIwHM_.css" rel="stylesheet">
 		<link href="./_app/immutable/assets/6.SpYsCO66.css" rel="stylesheet">
 		<link rel="modulepreload" href="./_app/immutable/entry/start.CwwxOvQY.js">
@@ -36,121 +36,125 @@
 		<meta charset="UTF-8"/> 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
 		<meta name="description" content="Predatory ESP32 Firmware Bruce"/> 
-		
 		<style>
-			* { box-sizing: border-box; }
-			html { scroll-behavior: smooth; overflow-x: hidden !important; }
-			body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; background-color: #0a0a0a; color: #ffffff; }
-			a { color: #943ee5; }
+			* {
+				box-sizing: border-box;
+			}
+			html {
+				scroll-behavior: smooth;
+				overflow-x: hidden !important;
+			}
+			body {
+				font-family: 'Inter', sans-serif;
+				margin: 0;
+				padding: 0;
+				background-color: #0a0a0a;
+				color: #ffffff;
+			}
+			a {
+				color: #943ee5;
+			}
 			
-			/* স্লাইডার ডটের কাস্টম ডিজাইন */
-			.dot { cursor: pointer; transition: background-color 0.3s ease, transform 0.3s ease; }
+			/* স্লাইডার ডটের কাস্টম স্টাইল */
+			.dot { cursor: pointer; transition: background-color 0.3s, transform 0.3s; }
 			.dot.active { background-color: #9B51E0 !important; transform: scale(1.2); }
-			#sliderImg { opacity: 1; transition: opacity 0.25s ease-in-out; }
+			#sliderImg { transition: opacity 0.25s ease-in-out; }
 		</style>
-		
 		<script type="module" src="/vendor/bruce-esp-web-tools/web/install-button.js?module"></script>
 		<title>Bruce Firmware</title>
 	</head>
-	
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">
-			<header class="fixed top-0 left-0 z-[100] w-full bg-[#111] py-3.5 border-b border-neutral-800 shadow-xl">
+			<header class="fixed top-0 left-0 z-[100] w-full bg-[#111] py-3.5 border-b border-neutral-900 shadow-lg">
 				<div class="mx-auto w-11/12 max-w-full">
 					<nav class="flex items-center justify-between">
 						<a href="/" class="flex items-center">
 							<img src="./img/bruce.png" alt="Bruce Logo" class="h-[50px]"/>
 						</a> 
-						<button class="inline-block text-white hover:text-purple-500 lg:hidden" style="color:white;" aria-label="Open navigation">☰</button> 
+						<button class="inline-block text-white hover:text-purple-500 lg:hidden text-2xl" style="color:white; background:none; border:none; cursor:pointer;" aria-label="Open navigation">☰</button> 
 						<div class="hidden items-center gap-5 lg:flex">
 							<a href="/" target="_self" class="rounded-lg px-4 py-2.5 text-white ">Home</a><a href="https://github.com/pr3y/Bruce" target="_blank" class="rounded-lg px-4 py-2.5 text-white ">GitHub</a><a href="./flasher" target="_self" class="inline-block rounded-lg border-2 border-[#9B51E0] bg-transparent px-6 py-3 font-semibold text-white transition-all duration-300 ease-in-out hover:scale-105 hover:bg-[#9B51E0] ">Install</a><a href="https://wiki.bruce.computer" target="_blank" class="rounded-lg px-4 py-2.5 text-white ">Docs</a><a href="./appstore" target="_self" class="rounded-lg px-4 py-2.5 text-white ">App Store</a><a href="./build_theme.html" target="_self" class="rounded-lg px-4 py-2.5 text-white ">Theme Builder</a><a href="./my_bruce" target="_self" class="rounded-lg px-4 py-2.5 text-white ">Bruce Lab</a><a href="./boards" target="_self" class="rounded-lg px-4 py-2.5 text-white ">Boards</a><a href="./donate" target="_self" class="rounded-lg px-4 py-2.5 text-white border-b-2 border-purple-500 text-purple-500">Donate</a></div> 
 					</nav>
 				</div>
 			</header> 
-			<section class="relative flex min-h-[550px] w-full flex-col lg:flex-row items-center justify-between overflow-hidden px-6 md:px-12 pt-[120px] pb-12 border-b border-neutral-800 bg-[#0c0c0e]">
-				<img src="./img/purple-aqua.gif" alt="Background GIF" class="absolute top-0 left-0 h-full w-full object-cover brightness-[0.4] z-0"/>
-				<div class="relative z-10 flex flex-col justify-center w-full lg:w-1/2 p-4 text-white text-center lg:text-left">
+			<section class="relative flex min-h-[500px] w-full flex-col lg:flex-row items-center justify-between overflow-hidden px-6 md:px-12 pt-[100px] pb-8 bg-[#0a0a0a]">
+				<img src="./img/purple-aqua.gif" alt="Background GIF" class="absolute top-0 left-0 h-full w-full object-cover brightness-[0.3] z-0"/>
+				<div class="relative z-10 flex flex-col justify-center p-4 text-white w-full lg:w-1/2 text-center lg:text-left">
 					<h1 data-i18n="hero_title" class="mb-5 text-4xl font-bold md:text-6xl tracking-tight">Bruce Web Flasher</h1> 
 					<p data-i18n="hero_description" class="mb-7 text-xl text-neutral-300">Flash your device easily with our online installer!</p>
 				</div>
-				
+
 				<div class="relative z-10 w-full lg:w-1/2 flex flex-col items-center justify-center p-4">
-					<div class="w-full max-w-[480px] h-[300px] md:h-[340px] flex items-center justify-center bg-black/40 rounded-2xl p-4 border border-neutral-800 overflow-hidden">
-						<img id="sliderImg" src="https://raw.githubusercontent.com/pr3y/Bruce/main/assets/cardputer.png" class="max-w-full max-h-full object-contain" alt="Bruce Hardware Release">
+					<div class="w-full max-w-[450px] h-[260px] md:h-[300px] flex items-center justify-center bg-black/30 rounded-xl p-4 border border-neutral-800/60 overflow-hidden">
+						<img id="sliderImg" src="https://raw.githubusercontent.com/pr3y/Bruce/main/assets/cardputer.png" class="max-w-full max-h-full object-contain" alt="Bruce Device">
 					</div>
 					<div class="flex gap-2 mt-4" id="sliderDots">
-						<span class="dot w-2.5 h-2.5 rounded-full bg-neutral-600 active" onclick="setSlide(0)"></span>
-						<span class="dot w-2.5 h-2.5 rounded-full bg-neutral-600" onclick="setSlide(1)"></span>
-						<span class="dot w-2.5 h-2.5 rounded-full bg-neutral-600" onclick="setSlide(2)"></span>
-						<span class="dot w-2.5 h-2.5 rounded-full bg-neutral-600" onclick="setSlide(3)"></span>
-						<span class="dot w-2.5 h-2.5 rounded-full bg-neutral-600" onclick="setSlide(4)"></span>
-						<span class="dot w-2.5 h-2.5 rounded-full bg-neutral-600" onclick="setSlide(5)"></span>
-						<span class="dot w-2.5 h-2.5 rounded-full bg-neutral-600" onclick="setSlide(6)"></span>
+						<span class="dot w-2 h-2 rounded-full bg-neutral-600 active" onclick="setSlide(0)"></span>
+						<span class="dot w-2 h-2 rounded-full bg-neutral-600" onclick="setSlide(1)"></span>
+						<span class="dot w-2 h-2 rounded-full bg-neutral-600" onclick="setSlide(2)"></span>
+						<span class="dot w-2 h-2 rounded-full bg-neutral-600" onclick="setSlide(3)"></span>
+						<span class="dot w-2 h-2 rounded-full bg-neutral-600" onclick="setSlide(4)"></span>
+						<span class="dot w-2 h-2 rounded-full bg-neutral-600" onclick="setSlide(5)"></span>
+						<span class="dot w-2 h-2 rounded-full bg-neutral-600" onclick="setSlide(6)"></span>
 					</div>
 				</div>
 			</section> 
 
-			<section class="w-full py-12 bg-[#111113] border-b border-neutral-800">
-				<div class="mx-auto max-w-[800px] rounded-xl border-2 border-[#9B51E0]/50 bg-[#9B51E0]/10 p-6 text-white shadow-[0px_0px_10px_rgba(155,81,224,0.1)]">
-					<h2 class="text-center text-[1.8rem] font-bold mb-4" data-i18n="flashing_instructions_title">Flashing Instructions</h2> 
-					<p data-i18n="flashing_instruction_1"><strong>Connect your device, then select "Flash" and click connect.</strong></p> 
-					<p data-i18n="flashing_instruction_2" class="mt-2">If asked to put your device into <strong>download mode</strong>, do the following:</p> 
-					<ul class="ml-[30px] list-disc pl-[10px] space-y-2 mt-2">
-						<li data-i18n="flashing_instruction_cardputer"><strong>Cardputer:</strong> Turn off and unplug from USB, hold the btn G0 (upper right corner), then connect via USB.</li> 
-						<li data-i18n="flashing_instruction_stickcs"><strong>StickCs:</strong> Turn off, connect one side of a jumper cable into GND and the other side in G0, plug in USB, then remove the jumper cable.</li> 
-						<li data-i18n="flashing_instruction_stickcs"><strong>T-Embed:</strong> Keep encoder center button pressed and press RST button (CC1101 this btn is on the board, beside ESP32-S3 chip).</li> 
-						<li data-i18n="flashing_instruction_stickcs"><strong>T-Deck:</strong> Keep the trackpad button pressed and press RST (in the left side).</li> 
-						<li><p>If you are in linux, you may need to run <code>sudo setfacl -m u::rw /dev/ttyACM0</code> to be able to flash.</p></li>
-					</ul>
-				</div>
-			</section>
+			<div class="mx-auto mt-[40px] mb-[20px] w-11/12 max-w-[800px] rounded-xl border-2 border-[#9B51E0] bg-[#9B51E0]/10 p-5 text-white shadow-[0px_0px_10px_rgba(155,81,224,0.2)]">
+				<h2 class="text-center text-[1.8rem] font-bold mb-4" data-i18n="flashing_instructions_title">Flashing Instructions</h2> 
+				<p data-i18n="flashing_instruction_1"><strong>Connect your device, then select "Flash" and click connect.</strong></p> 
+				<p data-i18n="flashing_instruction_2" class="mt-2">If asked to put your device into <strong>download mode</strong>, do the following:</p> 
+				<ul class="ml-[30px] list-disc pl-[10px] space-y-2 mt-2">
+					<li data-i18n="flashing_instruction_cardputer"><strong>Cardputer:</strong> Turn off and unplug from USB, hold the btn G0 (upper right corner), then connect via USB.</li> 
+					<li data-i18n="flashing_instruction_stickcs"><strong>StickCs:</strong> Turn off, connect one side of a jumper cable into GND and the other side in G0, plug in USB, then remove the jumper cable.</li> 
+					<li data-i18n="flashing_instruction_stickcs"><strong>T-Embed:</strong> Keep encoder center button pressed and press RST button (CC1101 this btn is on the board, beside ESP32-S3 chip).</li> 
+					<li data-i18n="flashing_instruction_stickcs"><strong>T-Deck:</strong> Keep the trackpad button pressed and press RST (in the left side).</li> 
+					<li><p class="mt-1">If you are in linux, you may need to run <code>sudo setfacl -m u::rw /dev/ttyACM0</code> to be able to flash.</p></li>
+				</ul>
+			</div> 
 
-			<section class="w-full py-12 bg-[#0c0c0e] border-b border-neutral-800">
-				<div class="container svelte-1ncl4wy mx-auto">
-					<h2 class="mt-2 flex items-center justify-center p-2 text-2xl font-bold mb-4" data-i18n="version_select_title">Select Release</h2> 
-					<div class="max-xs:flex-col mb-5 flex flex-wrap items-start justify-center gap-4">
-						<button id="latest" class="bg-[#9B51E0] text-white flex min-h-[2.5rem] w-32 min-w-[10rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 px-5 py-2.5 text-purple-500 transition-all duration-300 ease-in-out peer-checked:bg-[#9B51E0] peer-checked:text-white hover:bg-[#9B51E0] hover:text-white svelte-1ncl4wy">Latest </button> 
-						<button id="beta" class=" flex min-h-[2.5rem] w-32 min-w-[10rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 px-5 py-2.5 text-purple-500 transition-all duration-300 ease-in-out peer-checked:bg-[#9B51E0] peer-checked:text-white hover:bg-[#9B51E0] hover:text-white svelte-1ncl4wy">Beta</button> 
-						<div class="flex flex-col items-center">
-							<button id="other" class=" min-h-[2.5rem] w-32 min-w-[10rem] cursor-pointer rounded-lg border-2 border-purple-500 px-5 py-2.5 text-purple-500 transition-all duration-300 ease-in-out peer-checked:bg-[#9B51E0] peer-checked:text-white hover:bg-[#9B51E0] hover:text-white svelte-1ncl4wy">Other</button> 
-							<div id="otherReleaseContainer" style="display: none;"><p>Loading tags...</p></div>
-						</div>
+			<div class="container svelte-1ncl4wy mx-auto px-4">
+				<h2 class="mt-5 flex items-center justify-center p-2 text-2xl font-bold" data-i18n="version_select_title">Select Release</h2> 
+				<div class="max-xs:flex-col mb-5 flex flex-wrap items-start justify-center gap-4 mt-2">
+					<button id="latest" class="bg-[#9B51E0] text-white flex min-h-[2.5rem] w-32 min-w-[10rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 px-5 py-2.5 text-purple-500 transition-all duration-300 ease-in-out peer-checked:bg-[#9B51E0] peer-checked:text-white hover:bg-[#9B51E0] hover:text-white svelte-1ncl4wy">Latest </button> 
+					<button id="beta" class=" flex min-h-[2.5rem] w-32 min-w-[10rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 px-5 py-2.5 text-purple-500 transition-all duration-300 ease-in-out peer-checked:bg-[#9B51E0] peer-checked:text-white hover:bg-[#9B51E0] hover:text-white svelte-1ncl4wy">Beta</button> 
+					<div class="flex flex-col items-center">
+						<button id="other" class=" min-h-[2.5rem] w-32 min-w-[10rem] cursor-pointer rounded-lg border-2 border-purple-500 px-5 py-2.5 text-purple-500 transition-all duration-300 ease-in-out peer-checked:bg-[#9B51E0] peer-checked:text-white hover:bg-[#9B51E0] hover:text-white svelte-1ncl4wy">Other</button> 
+						<div id="otherReleaseContainer" style="display: none;"><p>Loading tags...</p></div>
+					</div>
+				</div> 
+				<div id="releaseDate" class="invisible mt-2 text-center text-sm font-bold text-gray-400" data-i18n="release_date">Released: <span id="releaseDateValue" class="font-normal">Invalid Date Invalid Date</span></div>
+			</div> 
+
+			<div class="container svelte-1ncl4wy mx-auto px-4">
+				<h2 class="mt-5 p-2 text-center text-2xl font-bold" data-i18n="select_device_manufacturer_category_title">Select Device Manufacturer/Category</h2> 
+				<div class="mb-5 flex flex-wrap items-center justify-center gap-4 max-sm:flex-col mt-2">
+					<button class=" flex min-h-[2.5rem] w-32 min-w-[10rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 px-5 py-2.5 text-purple-500 transition-all duration-300 ease-in-out peer-checked:bg-[#9B51E0] peer-checked:text-white hover:bg-[#9B51E0] hover:text-white svelte-1ncl4wy">Bruce Boards</button>
+					<button class=" flex min-h-[2.5rem] w-32 min-w-[10rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 px-5 py-2.5 text-purple-500 transition-all duration-300 ease-in-out peer-checked:bg-[#9B51E0] peer-checked:text-white hover:bg-[#9B51E0] hover:text-white svelte-1ncl4wy">M5Stack</button>
+					<button class=" flex min-h-[2.5rem] w-32 min-w-[10rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 px-5 py-2.5 text-purple-500 transition-all duration-300 ease-in-out peer-checked:bg-[#9B51E0] peer-checked:text-white hover:bg-[#9B51E0] hover:text-white svelte-1ncl4wy">Lilygo</button>
+					<button class=" flex min-h-[2.5rem] w-32 min-w-[10rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 px-5 py-2.5 text-purple-500 transition-all duration-300 ease-in-out peer-checked:bg-[#9B51E0] peer-checked:text-white hover:bg-[#9B51E0] hover:text-white svelte-1ncl4wy">Elecrow</button>
+					<button class=" flex min-h-[2.5rem] w-32 min-w-[10rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 px-5 py-2.5 text-purple-500 transition-all duration-300 ease-in-out peer-checked:bg-[#9B51E0] peer-checked:text-white hover:bg-[#9B51E0] hover:text-white svelte-1ncl4wy">CYD</button>
+					<button class=" flex min-h-[2.5rem] w-32 min-w-[10rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 px-5 py-2.5 text-purple-500 transition-all duration-300 ease-in-out peer-checked:bg-[#9B51E0] peer-checked:text-white hover:bg-[#9B51E0] hover:text-white svelte-1ncl4wy">ESP32</button>
+					<button class=" flex min-h-[2.5rem] w-32 min-w-[10rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 px-5 py-2.5 text-purple-500 transition-all duration-300 ease-in-out peer-checked:bg-[#9B51E0] peer-checked:text-white hover:bg-[#9B51E0] hover:text-white svelte-1ncl4wy">Custom Boards</button>
+					<button class=" flex min-h-[2.5rem] w-32 min-w-[10rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 px-5 py-2.5 text-purple-500 transition-all duration-300 ease-in-out peer-checked:bg-[#9B51E0] peer-checked:text-white hover:bg-[#9B51E0] hover:text-white svelte-1ncl4wy">Launcher</button>
 					</div> 
-					<div id="releaseDate" class="invisible mt-2 text-center text-sm font-bold text-gray-400" data-i18n="release_date">Released: <span id="releaseDateValue" class="font-normal">Invalid Date Invalid Date</span></div>
-				</div>
-			</section>
-
-			<section class="w-full py-12 bg-[#111113] border-b border-neutral-800">
-				<div class="container svelte-1ncl4wy mx-auto">
-					<h2 class="p-2 text-center text-2xl font-bold mb-6" data-i18n="select_device_manufacturer_category_title">Select Device Manufacturer/Category</h2> 
-					<div class="mb-5 flex flex-wrap items-center justify-center gap-4 max-sm:flex-col">
-						<button class=" flex min-h-[2.5rem] w-32 min-w-[10rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 px-5 py-2.5 text-purple-500 transition-all duration-300 ease-in-out peer-checked:bg-[#9B51E0] peer-checked:text-white hover:bg-[#9B51E0] hover:text-white svelte-1ncl4wy">Bruce Boards</button>
-						<button class=" flex min-h-[2.5rem] w-32 min-w-[10rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 px-5 py-2.5 text-purple-500 transition-all duration-300 ease-in-out peer-checked:bg-[#9B51E0] peer-checked:text-white hover:bg-[#9B51E0] hover:text-white svelte-1ncl4wy">M5Stack</button>
-						<button class=" flex min-h-[2.5rem] w-32 min-w-[10rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 px-5 py-2.5 text-purple-500 transition-all duration-300 ease-in-out peer-checked:bg-[#9B51E0] peer-checked:text-white hover:bg-[#9B51E0] hover:text-white svelte-1ncl4wy">Lilygo</button>
-						<button class=" flex min-h-[2.5rem] w-32 min-w-[10rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 px-5 py-2.5 text-purple-500 transition-all duration-300 ease-in-out peer-checked:bg-[#9B51E0] peer-checked:text-white hover:bg-[#9B51E0] hover:text-white svelte-1ncl4wy">Elecrow</button>
-						<button class=" flex min-h-[2.5rem] w-32 min-w-[10rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 px-5 py-2.5 text-purple-500 transition-all duration-300 ease-in-out peer-checked:bg-[#9B51E0] peer-checked:text-white hover:bg-[#9B51E0] hover:text-white svelte-1ncl4wy">CYD</button>
-						<button class=" flex min-h-[2.5rem] w-32 min-w-[10rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 px-5 py-2.5 text-purple-500 transition-all duration-300 ease-in-out peer-checked:bg-[#9B51E0] peer-checked:text-white hover:bg-[#9B51E0] hover:text-white svelte-1ncl4wy">ESP32</button>
-						<button class=" flex min-h-[2.5rem] w-32 min-w-[10rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 px-5 py-2.5 text-purple-500 transition-all duration-300 ease-in-out peer-checked:bg-[#9B51E0] peer-checked:text-white hover:bg-[#9B51E0] hover:text-white svelte-1ncl4wy">Custom Boards</button>
-						<button class=" flex min-h-[2.5rem] w-32 min-w-[10rem] cursor-pointer items-center justify-center rounded-lg border-2 border-purple-500 px-5 py-2.5 text-purple-500 transition-all duration-300 ease-in-out peer-checked:bg-[#9B51E0] peer-checked:text-white hover:bg-[#9B51E0] hover:text-white svelte-1ncl4wy">Launcher</button>
-						</div> 
-				</div>
-			</section>
+			</div> 
 
 			<div class="container svelte-1ncl4wy"></div> 
 			<div class="container svelte-1ncl4wy">&nbsp;</div>
-			<footer class="bg-[#0e0e10] py-8 text-center">
-				<div class="mx-auto my-0 w-90 max-w-full">
-					<div class="mb-4 flex items-center justify-center gap-5">
-						<a href="https://discord.gg/WJ9XF9czVT" target="_blank" rel="noopener noreferrer" class="inline-block"><img src="./img/discord.svg" alt="Discord" class="h-10 w-10 transition-transform duration-200 ease-in-out hover:scale-110"/></a> 
-						<a href="https://youtube.com/@Bruce-fw" target="_blank" rel="noopener noreferrer" class="inline-block"><img src="./img/youtube.svg" alt="YouTube" class="h-10 w-10 transition-transform duration-200 ease-in-out hover:scale-110"/></a> 
-						<a href="https://reddit.com/r/brucefw" target="_blank" rel="noopener noreferrer" class="inline-block"><img src="./img/reddit.svg" alt="Reddit" class="h-10 w-10 transition-transform duration-200 ease-in-out hover:scale-110"/></a> 
-						<a href="https://www.instagram.com/bruce_firmware/" target="_blank" rel="noopener noreferrer" class="inline-block"><img src="./img/instagram.svg" alt="Instagram" class="h-10 w-10 transition-transform duration-200 ease-in-out hover:scale-110"/></a> 
-						<a href="mailto:contact@bruce.computer" class="inline-block"><img src="./img/email.svg" alt="Email" class="h-10 w-10 transition-transform duration-200 ease-in-out hover:scale-110"/></a> 
-						<a href="https://matrix.to/#/#general:matrix.bruce.computer" target="_blank" rel="noopener noreferrer" class="inline-block"><img src="./img/matrix.svg" alt="Matrix" class="h-10 w-10 transition-transform duration-200 ease-in-out hover:scale-110"/></a>
+			<footer class="bg-[#111] py-8 text-center mt-10 border-t border-neutral-900">
+				<div class="mx-auto my-0 w-11/12 max-w-full">
+					<div class="mb-4 flex flex-wrap items-center justify-center gap-5">
+						<a href="https://discord.gg/WJ9XF9czVT" target="_blank" rel="noopener noreferrer" class="inline-block"><img src="./img/discord.svg" alt="Discord" class="h-8 w-8 block transition-transform duration-200 ease-in-out hover:scale-110"/></a> 
+						<a href="https://youtube.com/@Bruce-fw" target="_blank" rel="noopener noreferrer" class="inline-block"><img src="./img/youtube.svg" alt="YouTube" class="h-8 w-8 block transition-transform duration-200 ease-in-out hover:scale-110"/></a> 
+						<a href="https://reddit.com/r/brucefw" target="_blank" rel="noopener noreferrer" class="inline-block"><img src="./img/reddit.svg" alt="Reddit" class="h-8 w-8 block transition-transform duration-200 ease-in-out hover:scale-110"/></a> 
+						<a href="https://www.instagram.com/bruce_firmware/" target="_blank" rel="noopener noreferrer" class="inline-block"><img src="./img/instagram.svg" alt="Instagram" class="h-8 w-8 block transition-transform duration-200 ease-in-out hover:scale-110"/></a> 
+						<a href="mailto:contact@bruce.computer" class="inline-block"><img src="./img/email.svg" alt="Email" class="h-8 w-8 block transition-transform duration-200 ease-in-out hover:scale-110"/></a> 
+						<a href="https://matrix.to/#/#general:matrix.bruce.computer" target="_blank" rel="noopener noreferrer" class="inline-block"><img src="./img/matrix.svg" alt="Matrix" class="h-8 w-8 block transition-transform duration-200 ease-in-out hover:scale-110"/></a>
 					</div>
-				</div> 
-				<p data-i18n="footer_note" class="text-xs text-neutral-500">Flasher customized by <a href="https://github.com/emericklaw">emericklaw</a>, <a href="https://unveroleone.com">unveroleone</a>, <a href="https://github.com/bmorcelli">bmorcelli</a> and <a href="https://github.com/pr3y">pr3y</a> — Installer powered by <a href="https://esphome.github.io/esp-web-tools/">ESP Web Tools 🛠️</a></p>
-				</footer>
+					<p data-i18n="footer_note" class="text-sm text-neutral-400 mt-4 px-2">Flasher customized by <a href="https://github.com/emericklaw">emericklaw</a>, <a href="https://unveroleone.com">unveroleone</a>, <a href="https://github.com/bmorcelli">bmorcelli</a> and <a href="https://github.com/pr3y">pr3y</a> — Installer powered by <a href="https://esphome.github.io/esp-web-tools/">ESP Web Tools 🛠️</a></p>
+					</div> 
+			</footer>
 			<script>
 				{
 					__sveltekit_rgaobg = {
@@ -174,14 +178,13 @@
 			<script>
 				const baseGitHubUrl = "https://raw.githubusercontent.com/pr3y/Bruce/main/assets/";
 				
-				// আপনার ডিফাইন করা অ্যারে নাম ও গিটহাব পাথের অমিলগুলো ফিক্সড
 				const sliderImages = [
+					"cardputer.png",
 					"bruce-pcb.png",
 					"reaper-pcb2.png",
-					"cardputer.png",
 					"core2.png",
 					"cyd.png",
-					"stickc.png", // m5stick এর আসল গিটহাব ফাইল নেম
+					"stickc.png",
 					"t-embed.png"
 				];
 				
@@ -197,10 +200,10 @@
 					setTimeout(() => {
 						const currentImage = sliderImages[currentSlide];
 						
-						// প্রথমে লোকাল চেক
+						// প্রথমে লোকাল চেক করবে
 						sliderImg.src = `./img/${currentImage}`;
 						
-						// লোকাল ডিরেক্টরিতে মিসিং হলে গিটহাব রিপোজিটরি থেকে লাইভ ক্যাশ করবে
+						// লোকাল ডিরেক্টরিতে ইমেজ না পেলে গিটহাবের রিয়েল রিপোজিটরি থেকে লাইভ রেন্ডার করবে
 						sliderImg.onerror = function() {
 							this.src = baseGitHubUrl + currentImage;
 							this.onerror = null; 
@@ -236,7 +239,6 @@
 					startTimer();
 				}
 
-				// স্লাইডার স্টার্ট
 				startTimer();
 			</script>
 		</div>
