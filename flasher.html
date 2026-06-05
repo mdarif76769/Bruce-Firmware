@@ -46,11 +46,17 @@
 			/* স্লাইডারের ডটের স্টাইল */
 			.dot {
 				cursor: pointer;
-				transition: background-color 0.3s ease;
+				transition: background-color 0.3s ease, transform 0.3s ease;
 			}
 			.dot.active {
 				background-color: #9B51E0 !important;
 				transform: scale(1.2);
+			}
+
+			/* ইমেজ ট্রানজিশনের জন্য অপাসিটি এবং ট্রানজিশন টাইম */
+			#sliderImg {
+				opacity: 1;
+				transition: opacity 0.3s ease-in-out, transform 0.5s ease;
 			}
 		</style>
 		
@@ -92,7 +98,7 @@
 					</div>
 
 					<div class="w-full md:w-1/2 flex flex-col items-center justify-center p-4" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-						<img id="sliderImg" src="./img/cardputer.png" class="object-contain transition-all duration-500 hover:scale-105" style="width: 100%; max-w: 450px; height: auto; max-h: 320px; object-fit: contain;" alt="Device">
+						<img id="sliderImg" src="./img/cardputer.png" class="object-contain hover:scale-105" style="width: 100%; max-w: 450px; height: auto; max-h: 320px; object-fit: contain;" alt="Device">
 						
 						<div class="flex gap-2 mt-4" id="sliderDots" style="display: flex; gap: 8px; margin-top: 16px;">
 							<span class="dot w-2.5 h-2.5 rounded-full bg-gray-600 active" onclick="setSlide(0)"></span>
@@ -147,7 +153,7 @@
 				</div> 
 			</div> 
 
-			<div class="container svelte-1ncl4wy"> </div>
+			<div class="container svelte-1ncl4wy"> </div>
 
 			<footer class="bg-[#111] py-5 text-center border-t border-neutral-800">
 				<div class="mx-auto my-0 w-90 max-w-full">
@@ -189,17 +195,19 @@
 				let currentSlide = 0;
 				const sliderImg = document.getElementById("sliderImg");
 				const dots = document.querySelectorAll(".dot");
+				let slideInterval; // অটো স্লাইড টাইমার ভেরিয়েবল
 
 				function updateSlider() {
-					// ফেইড এফেক্ট ট্রানজিশন
+					// ১. প্রথমে ইমেজটি হাইড (Opacity 0) করা হবে
 					sliderImg.style.opacity = 0;
 					
+					// ২. CSS ট্রানজিশন শেষ হওয়ার পর (৩০০ মিলিসেকেন্ড) ইমেজ সোর্স বদলানো হবে
 					setTimeout(() => {
-						// সঠিক ইমেজ সোর্স অ্যাসাইন করা
 						sliderImg.src = images[currentSlide];
+						// ৩. নতুন সোর্স লোড হওয়ার পর আবার শো (Opacity 1) করানো হবে
 						sliderImg.style.opacity = 1;
 						
-						// ডট আপডেট করা
+						// ডট ক্লাসের অ্যাক্টিভ স্টেট আপডেট
 						dots.forEach((dot, index) => {
 							if(index === currentSlide) {
 								dot.classList.add("active");
@@ -207,19 +215,32 @@
 								dot.classList.remove("active");
 							}
 						});
-					}, 200);
+					}, 300); // CSS-এর ৩.3s ট্রানজিশন টাইমের সাথে ম্যাচ করে রাখা হয়েছে
 				}
 
+				// ম্যানুয়ালি ডটে ক্লিক করলে টাইমার রিসেট করার ফাংশন
 				function setSlide(index) {
 					currentSlide = index;
 					updateSlider();
+					resetTimer(); // ইউজার ক্লিক করলে ৩ সেকেন্ডের কাউন্টডাউন আবার শুরু হবে
 				}
 
-				// প্রতি ৩ সেকেন্ড পর পর স্লাইড অটো চেঞ্জ হবে
-				setInterval(() => {
-					currentSlide = (currentSlide + 1) % images.length;
-					updateSlider();
-				}, 3000);
+				// স্লাইড কাউন্টডাউন শুরু করার ফাংশন
+				function startTimer() {
+					slideInterval = setInterval(() => {
+						currentSlide = (currentSlide + 1) % images.length;
+						updateSlider();
+					}, 3000);
+				}
+
+				// কাউন্টডাউন টাইমার রিসেট করার ফাংশন
+				function resetTimer() {
+					clearInterval(slideInterval);
+					startTimer();
+				}
+
+				// প্রথমবার স্ক্রিপ্ট লোড হলে টাইমার স্টার্ট করা
+				startTimer();
 			</script>
 
 			<script>
