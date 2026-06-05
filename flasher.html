@@ -23,7 +23,7 @@
 				color: #ffffff;
 			}
 			
-			/* স্লাইডারের কালো শ্যাডো এবং ওভারলে রুট লেভেল থেকে ভ্যানিশ করার কাস্টম রুলস */
+			/* স্লাইডারের কালো শ্যাডো, ডার্ক গ্রাডিয়েন্ট বা ব্যাকগ্রাউন্ড মাস্ক চিরতরে দূর করার কাস্টম রুলস */
 			.no-dark-shadow {
 				box-shadow: none !important;
 				text-shadow: none !important;
@@ -159,7 +159,7 @@
 				</div>
 
 				<div id="downloadOptionContainer" class="hidden w-full pt-4 border-t border-neutral-800 mt-2">
-					<p class="text-xs text-neutral-400 mb-3">Or download the compiled raw binary package:</p>
+					<p class="text-xs text-neutral-400 mb-3">Or download the compiled raw binary package directly:</p>
 					<a id="downloadBinBtn" href="#" download class="inline-flex items-center justify-center px-6 py-2.5 border-2 border-purple-500 text-white bg-purple-600/20 rounded-lg font-bold text-sm hover:bg-purple-500 hover:text-white transition-all duration-300 shadow-[0_0_15px_rgba(155,81,224,0.4)] animate-pulse">
 						📥 DOWNLOAD FIRMWARE .BIN
 					</a>
@@ -188,14 +188,14 @@
 		</footer>
 
 		<script>
-			// অফিশিয়াল BruceDevices/firmware রিপোজিটরির কমপ্লিট ডাটাবেস ম্যাপ
+			// স্ক্রিনশট অনুযায়ী শতভাগ নিখুঁত BruceDevices/firmware ডাটাবেস ম্যাপিং
 			const FIRMWARE_MAP = {
-				"bruce": { label: "Bruce Boards", devices: [{ name: "Reaper RF", file: "reaper_rf.bin" }, { name: "Smoochiee V2", file: "smoochiee_v2.bin" }] },
 				"m5stack": { 
 					label: "M5Stack", 
 					devices: [
 						{ name: "Cardputer", file: "cardputer.bin" }, 
 						{ name: "Core2", file: "core2.bin" }, 
+						{ name: "Station", file: "station.bin" },
 						{ name: "StickC", file: "stickc.bin" }, 
 						{ name: "StickC Plus", file: "stickc_plus.bin" }, 
 						{ name: "StickC Plus2", file: "stickc_plus2.bin" },
@@ -205,16 +205,36 @@
 				"lilygo": { 
 					label: "Lilygo", 
 					devices: [
+						{ name: "T-Display", file: "t_display.bin" },
+						{ name: "T-Display S3", file: "t_display_s3.bin" },
 						{ name: "T-Embed", file: "t_embed.bin" }, 
-						{ name: "T-Deck", file: "t_deck.bin" }, 
-						{ name: "T-Display S3", file: "t_display_s3.bin" }
+						{ name: "T-Deck", file: "t_deck.bin" }
 					] 
 				},
-				"elecrow": { label: "Elecrow", devices: [{ name: "Terminal 3.5", file: "terminal_3_5.bin" }] },
-				"cyd": { label: "CYD", devices: [{ name: "CYD 2USB", file: "cyd_2usb.bin" }, { name: "CYD MicroUSB", file: "cyd_microusb.bin" }] },
-				"esp32": { label: "ESP32", devices: [{ name: "ESP32 Wroom", file: "esp32_wroom.bin" }] },
-				"custom": { label: "Custom Boards", devices: [{ name: "Marauder v4", file: "marauder_v4.bin" }, { name: "Minewar v2", file: "minewar_v2.bin" }] },
-				"launcher": { label: "Launcher", devices: [{ name: "Bruce Launcher", file: "bruce_launcher.bin" }] }
+				"elecrow": { 
+					label: "Elecrow", 
+					devices: [
+						{ name: "Terminal 3.5", file: "terminal_3_5.bin" }
+					] 
+				},
+				"cyd": { 
+					label: "CYD", 
+					devices: [
+						{ name: "CYD 2USB", file: "cyd_2usb.bin" }, 
+						{ name: "CYD MicroUSB", file: "cyd_microusb.bin" }
+					] 
+				},
+				"others": { 
+					label: "Others", 
+					devices: [
+						{ name: "ESP32 Wroom", file: "esp32_wroom.bin" },
+						{ name: "Marauder v4", file: "marauder_v4.bin" }, 
+						{ name: "Minewar v2", file: "minewar_v2.bin" },
+						{ name: "Reaper RF", file: "reaper_rf.bin" }, 
+						{ name: "Smoochiee V2", file: "smoochiee_v2.bin" },
+						{ name: "Bruce Launcher", file: "bruce_launcher.bin" }
+					] 
+				}
 			};
 
 			let selectedTrack = 'latest';
@@ -313,7 +333,7 @@
 				buildInstaller();
 			}
 
-			// ম্যানিফেস্ট এবং বাইনারি ডাউনলোড পাথ মেকার জেনারেটর
+			// ম্যানিফেস্ট এবং বাইনারি ডাউনলোড পাথ মেকার জেনারেটর Engine
 			function buildInstaller() {
 				const wrapper = document.getElementById('installButtonWrapper');
 				const manifestText = document.getElementById('selectedDeviceManifestText');
@@ -330,13 +350,13 @@
 				let trackDir = (selectedTrack === 'beta') ? 'beta' : 'stable';
 				let lowercaseDeviceName = selectedDevice.name.toLowerCase().replace(/\s+/g, '_');
 				
-				// গিটহাবের রুট বা ডিরেক্টরি অনুযায়ী রিলেটিভ পাথিং
+				// গিটহাব রিপোজিটরি রুট অনুযায়ী সঠিক পাথিং রুলস
 				let manifestPath = `./firmware_manifests/${trackDir}/${lowercaseDeviceName}_manifest.json`;
 				let binaryPath = `./firmware_bins/${trackDir}/${selectedDevice.file}`;
 
 				manifestText.innerText = `Manifest Target: ${manifestPath}`;
 
-				// ইন্সটলেশন বাটন জেনারেশন
+				// ফ্রেশ ফ্ল্যাশার বাটন জেনারেট
 				wrapper.innerHTML = '';
 				const espBtn = document.createElement('esp-web-install-button');
 				espBtn.setAttribute('manifest', manifestPath);
@@ -346,13 +366,13 @@
 				};
 				wrapper.appendChild(espBtn);
 
-				// সিলেকশন কম্প্লিট হলে ডাইনামিক ডাউনলোড বাটন উন্মোচন করা
+				// ডাইনামিকালি ডাউনলোড .BIN বাটন একটিভেট ও পাথ অ্যাসাইন করা
 				downloadBinBtn.href = binaryPath;
 				downloadBinBtn.setAttribute('download', selectedDevice.file);
 				downloadContainer.classList.remove('hidden');
 			}
 
-			// অফিশিয়াল BruceDevices মিডিয়া ডিরেক্টরি থেকে স্লাইডার ট্র্যাকিং
+			// অফিশিয়াল BruceDevices মিডিয়া ফোল্ডার থেকে লাইভ স্লাইডার ইমেজ ফেচিং
 			const baseGitHubUrl = "https://raw.githubusercontent.com/BruceDevices/firmware/main/media/";
 			const sliderImages = ["cardputer.png", "bruce-pcb.png", "reaper-pcb2.png", "core2.png", "cyd.png", "stickc.png", "t-embed.png"];
 			let currentSlide = 0;
@@ -365,7 +385,7 @@
 				sliderImg.style.opacity = 0;
 				setTimeout(() => {
 					const currentImage = sliderImages[currentSlide];
-					// লোকাল /img/ ফোল্ডারে না থাকলে সরাসরি গিটহাব রুট ডিরেক্টরি মিডিয়া থেকে লাইভ টানবে
+					// লোকাল পাথ চেক করার পাশাপাশি ফলব্যাক হিসেবে গিটহাবের রিয়েল মিডিয়া রুট থেকে ইমেজ নিয়ে আসবে
 					sliderImg.src = `./img/${currentImage}`;
 					sliderImg.onerror = function() {
 						this.src = baseGitHubUrl + currentImage;
