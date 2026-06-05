@@ -44,16 +44,29 @@
 			</header> 
 
 			<!-- Hero Section -->
-			<section class="relative flex min-h-[500px] h-128 w-full flex-col overflow-hidden px-4 md:flex-row pt-24">
-				<img src="./img/purple-aqua.gif" alt="Background GIF" class="absolute top-0 left-0 h-full w-full object-cover brightness-50 z-0"/>
-				<div class="relative z-10 flex flex-col justify-center p-8 text-white md:w-1/2">
-					<h1 class="mb-5 text-5xl md:text-6xl font-bold max-sm:mt-10">Bruce Firmware</h1> 
-					<p class="mb-7 text-xl text-gray-300">The powerful open-source ESP32 firmware designed for offensive security and Red Team operations.</p> 
-					<div class="flex gap-4">
-						<a href="https://github.com/BruceDevices/Firmware" target="_blank" class="inline-block rounded-lg bg-[#9B51E0] px-6 py-3 text-center text-lg font-bold text-white transition hover:bg-[#8033C7]">Explore GitHub</a> 
-						<a href="./flasher" class="inline-block rounded-lg border-2 border-[#9B51E0] px-6 py-3 text-center text-lg text-[#9B51E0] font-bold transition hover:bg-[#9B51E0] hover:text-white">Install Now</a>
-					</div>
-				</div> 
+			<section class="relative flex min-h-[500px] md:min-h-[600px] w-full flex-col overflow-hidden px-4 md:flex-row pt-28 pb-12">
+    <img src="./img/purple-aqua.gif" alt="Background GIF" class="absolute top-0 left-0 h-full w-full object-cover brightness-50 z-0"/>
+    
+    <div class="relative z-10 flex flex-col md:flex-row w-full max-w-7xl mx-auto items-center justify-between gap-8">
+        
+        <div class="flex flex-col justify-center p-4 text-white md:w-1/2">
+            <h1 class="mb-5 text-5xl md:text-6xl font-bold max-sm:mt-10">Bruce Firmware</h1> 
+            <p class="mb-7 text-xl text-gray-300">The powerful open-source ESP32 firmware designed for offensive security and Red Team operations.</p> 
+            <div class="flex gap-4">
+                <a href="https://github.com/BruceDevices/Firmware" target="_blank" class="inline-block rounded-lg bg-[#9B51E0] px-6 py-3 text-center text-lg font-bold text-white transition hover:bg-[#8033C7]">Explore GitHub</a> 
+                <a href="./flasher" class="inline-block rounded-lg border-2 border-[#9B51E0] px-6 py-3 text-center text-lg text-[#9B51E0] font-bold transition hover:bg-[#9B51E0] hover:text-white">Install Now</a>
+            </div>
+        </div> 
+
+        <div class="w-full md:w-1/2 flex justify-center md:justify-end mt-12 md:mt-20 px-4">
+            <div class="w-full max-w-md md:max-w-xl bg-neutral-900/40 p-4 rounded-2xl border border-neutral-800/60 backdrop-blur-sm shadow-2xl">
+                <img src="./img/bruce-device.gif" alt="Bruce Device" class="w-full h-auto object-contain rounded-xl transform hover:scale-105 transition duration-500">
+            </div>
+        </div>
+
+    </div>
+</section>
+
 				<!-- Image Slider Window -->
 				<div class="flex flex-col items-center">
       <img
