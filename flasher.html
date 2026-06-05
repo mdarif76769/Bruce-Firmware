@@ -362,6 +362,7 @@
 			}
 
 			// Slider Setup
+			const baseGitHubUrl ="https://raw.githubusercontent.com/mdarif76769/Bruce-Firmware/main/img/"
 			const sliderImages = [
 				"./img/bruce-pcb.png",
 				"./img/reaper-pcb2.png",
@@ -371,6 +372,7 @@
 				"./img/m5stick.png",
 				"./img/t-embed.png"
 			];
+			let currentSlide = 0;
 
 			function updateSlider() {
 				const img = document.getElementById("sliderImg");
