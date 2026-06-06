@@ -64,10 +64,11 @@
             <div class="overflow-hidden rounded-lg border border-white/10 bg-white/5">
                 <div class="relative mx-auto max-w-2xl mt-6">
                     <div class="group relative">
-                        <img src="./img/reaper-pcb.png" alt="Bruce RF Reaper PCB" class="h-72 w-full rounded-lg object-cover max-sm:p-5"/> 
+                        <img id="reaper-slider" src="./img/reaper-pcb.png" alt="Bruce RF Reaper PCB" class="h-72 w-full rounded-lg object-cover max-sm:p-5 transition-all duration-300"/> 
+                        
                         <div class="absolute inset-0 flex items-center justify-between px-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                            <button class="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border-none bg-black/50 text-lg text-white transition-all duration-300 hover:bg-black/80">&lt;</button> 
-                            <button class="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border-none bg-black/50 text-lg text-white transition-all duration-300 hover:bg-black/80">></button>
+                            <button onclick="prevReaper()" class="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border-none bg-black/50 text-lg text-white transition-all duration-300 hover:bg-black/80">&lt;</button> 
+                            <button onclick="nextReaper()" class="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border-none bg-black/50 text-lg text-white transition-all duration-300 hover:bg-black/80">></button>
                         </div>
                     </div>
                 </div> 
@@ -110,10 +111,11 @@
             <div class="overflow-hidden rounded-lg border border-white/10 bg-white/5">
                 <div class="relative mx-auto max-w-2xl mt-6">
                     <div class="group relative">
-                        <img src="./img/bruce-pcb.png" alt="Bruce PCB V2" class="h-72 w-full rounded-lg object-cover max-sm:p-5"/> 
+                        <img id="v2-slider" src="./img/bruce-pcb.png" alt="Bruce PCB V2" class="h-72 w-full rounded-lg object-cover max-sm:p-5 transition-all duration-300"/> 
+                        
                         <div class="absolute inset-0 flex items-center justify-between px-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                            <button class="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border-none bg-black/50 text-lg text-white transition-all duration-300 hover:bg-black/80">&lt;</button> 
-                            <button class="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border-none bg-black/50 text-lg text-white transition-all duration-300 hover:bg-black/80">></button>
+                            <button onclick="prevV2()" class="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border-none bg-black/50 text-lg text-white transition-all duration-300 hover:bg-black/80">&lt;</button> 
+                            <button onclick="nextV2()" class="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border-none bg-black/50 text-lg text-white transition-all duration-300 hover:bg-black/80">></button>
                         </div>
                     </div>
                 </div> 
@@ -212,6 +214,44 @@
             <p class="text-sm text-gray-500 mt-4">&copy; 2026 Bruce Firmware Project. All rights reserved.</p>
         </div> 
     </footer>
+
+    <script>
+        // --- Slider 1: Bruce RF Reaper PCB ---
+        const reaperImages = [
+            "./img/reaper-pcb.png",
+            "./img/reaper-back.png",  // Jdi real asset thake, name change kore nite paren
+            "./img/reaper-3d.png"     
+        ];
+        let reaperIndex = 0;
+
+        function nextReaper() {
+            reaperIndex = (reaperIndex + 1) % reaperImages.length;
+            document.getElementById("reaper-slider").src = reaperImages[reaperIndex];
+        }
+
+        function prevReaper() {
+            reaperIndex = (reaperIndex - 1 + reaperImages.length) % reaperImages.length;
+            document.getElementById("reaper-slider").src = reaperImages[reaperIndex];
+        }
+
+        // --- Slider 2: Bruce PCB V2 ---
+        const v2Images = [
+            "./img/bruce-pcb.png",
+            "./img/bruce-pcb-back.png",
+            "./img/bruce-pcb-3d.png"
+        ];
+        let v2Index = 0;
+
+        function nextV2() {
+            v2Index = (v2Index + 1) % v2Images.length;
+            document.getElementById("v2-slider").src = v2Images[v2Index];
+        }
+
+        function prevV2() {
+            v2Index = (v2Index - 1 + v2Images.length) % v2Images.length;
+            document.getElementById("v2-slider").src = v2Images[v2Index];
+        }
+    </script>
 
 </body>
 </html>
