@@ -1,80 +1,47 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="description" content="Predatory ESP32 Firmware Bruce Web Installer" />
-		<title>Bruce Firmware - Flasher</title>
-		
-		<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-		
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+		<meta charset="utf-8" />
+		<link rel="icon" href="./favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta class="description" content="Predatory ESP32 Firmware Bruce"/> 
+		<title>Bruce Firmware</title>
+
+		<!-- Tailwind CSS CDN (টার্মিনাল ছাড়া ডিজাইন লোড করার জন্য) -->
+		<script src="https://cdn.tailwindcss.com"></script>
 
 		<style>
-			body {
-				font-family: 'Inter', sans-serif;
-				background-color: #0a0a0a;
-				color: #ffffff;
-			}
-			.dot { cursor: pointer; transition: background-color 0.3s, transform 0.3s; }
-			.dot.active { background-color: #b026ff !important; transform: scale(1.3); }
-			
-			/* Ujjol Neon Color Configuration */
-			.btn-active {
-				background-color: #b026ff !important;
-				color: white !important;
-				border-color: #b026ff !important;
-				box-shadow: 0 0 15px rgba(176, 38, 255, 0.6);
-			}
-			.btn-inactive {
-				color: #c870ff !important;
-				border-color: #b026ff / 50 !important;
-				background-color: transparent;
-			}
-			
-			/* Dynamic Slider Container Visuals */
-			.big-slider-container {
-				width: 100%;
-				max-width: 750px;
-				height: 500px;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				background: transparent !important;
-				box-shadow: none !important;
-				filter: none !important;
-			}
-			.big-slider-container img {
-				max-width: 100%;
-				max-height: 100%;
-				object-fit: contain;
-				filter: drop-shadow(0 15px 30px rgba(176, 38, 255, 0.4));
-			}
+			* { box-sizing: border-box; }
+			html { scroll-behavior: smooth; overflow-x: hidden !important; }
+			body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; background-color: #0a0a0a; color: #ffffff; }
+			a { color: #943ee5; }
+			/* টেবিলের ভেতরের স্ক্রলবার হাইড করার জন্য */
+			.table-wrapper::-webkit-scrollbar { display: none; }
+			.table-wrapper { -ms-overflow-style: none; scrollbar-width: none; }
 		</style>
-		
-		<script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
 	</head>
-	
 	<body>
-		<header class="fixed top-0 left-0 z-[100] w-full bg-[#111] py-3.5 border-b border-neutral-900 shadow-lg">
-			<div class="mx-auto w-11/12 max-w-full">
-				<nav class="flex items-center justify-between">
-					<a href="./index.html" class="flex items-center gap-2">
-						<img src="./img/bruce.png" alt="Bruce Logo" class="h-[45px]" onerror="this.style.display='none'; document.getElementById('logoText').style.display='block';"/>
-						<span id="logoText" style="display:none;" class="text-xl font-bold text-white tracking-wider">BRUCE</span>
-					</a> 
-					<button class="inline-block text-white hover:text-purple-500 lg:hidden text-2xl" onclick="toggleMenu()">☰</button> 
-					<div id="navMenu" class="hidden lg:flex items-center gap-5 max-lg:absolute max-lg:top-[74px] max-lg:left-0 max-lg:w-full max-lg:bg-[#111] max-lg:flex-col max-lg:p-6 max-lg:border-b max-lg:border-neutral-900">
-						<a href="./index.html" class="px-4 py-2 text-white hover:text-purple-400">Home</a>
-						<a href="https://github.com/BruceDevices/firmware" target="_blank" class="px-4 py-2 text-white hover:text-purple-400">GitHub</a>
-						<a href="./flasher.html" class="bg-[#b026ff] px-6 py-2.5 rounded-lg font-semibold text-white shadow-md">Install</a>
-						<a href="https://wiki.bruce.computer" target="_blank" class="px-4 py-2 text-white hover:text-purple-400">Docs</a>
-					</div> 
-				</nav>
-			</div>
-		</header> 
+		<div style="display: contents">
+			<!-- Header Section -->
+			<header class="fixed top-0 left-0 z-[100] w-full bg-[#111] py-3.5 border-b border-neutral-800">
+				<div class="mx-auto w-11/12 max-w-full">
+					<nav class="flex items-center justify-between">
+						<a href="./" class="flex items-center"><img src="./img/bruce.png" alt="Bruce Logo" class="h-[50px]"/></a> 
+						<button id="mobileMenuBtn" class="inline-block text-white hover:text-purple-500 lg:hidden text-2xl" aria-label="Open navigation">☰</button> 
+						<div id="navLinks" class="hidden items-center gap-5 lg:flex max-lg:absolute max-lg:top-full max-lg:left-0 max-lg:w-full max-lg:bg-[#111] max-lg:flex-col max-lg:p-5">
+							<a href="./" target="_self" class="rounded-lg px-4 py-2.5 text-purple-500 border-b-2 border-purple-500">Home</a>
+							<a href="https://github.com/pr3y/Bruce" target="_blank" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-500">GitHub</a>
+							<a href="./flasher.html" target="_self" class="inline-block rounded-lg border-2 border-[#9B51E0] bg-transparent px-6 py-2 font-semibold text-white transition-all duration-300 ease-in-out hover:scale-105 hover:bg-[#9B51E0]">Install</a>
+							<a href="https://wiki.bruce.computer" target="_blank" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-500">Docs</a>
+							<a href="./appstore" target="_self" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-500">App Store</a>
+							<a href="./build_theme.html" target="_self" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-500">Theme Builder</a>
+							<a href="./my_bruce" target="_self" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-500">Bruce Lab</a>
+							<a href="./boards" target="_self" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-500">Boards</a>
+							<a href="./donate" target="_self" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-500">Donate</a>
+						</div> 
+					</nav>
+				</div>
+			</header> 
 
 		<section class="relative flex min-h-[650px] w-full flex-col lg:flex-row items-center justify-between overflow-hidden px-6 md:px-12 pt-[140px] pb-10 bg-[#0a0a0a]">
 			<img src="./img/purple-aqua.gif" alt="Background" class="absolute top-0 left-0 h-full w-full object-cover brightness-[0.15] z-0" onerror="this.style.backgroundColor='#0a0a0a'"/>
