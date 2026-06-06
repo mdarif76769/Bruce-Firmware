@@ -316,7 +316,7 @@
             reaperTimer = setInterval(() => {
                 reaperIndex = (reaperIndex + 1) % reaperImages.length;
                 updateReaper();
-            }, 3000); // 3 seconds interval
+            }, 3000); 
         }
 
         function resetReaperTimer() {
@@ -353,7 +353,7 @@
             v2Timer = setInterval(() => {
                 v2Index = (v2Index + 1) % v2Images.length;
                 updateV2();
-            }, 3000); // 3 seconds interval
+            }, 3000); 
         }
 
         function resetV2Timer() {
@@ -361,35 +361,59 @@
             startV2Timer();
         }
 
-        // Initialize sliders automatically on window load
+
+        // --- Hero Area Large Multi-Image Slider Logic ---
+        const baseGitHubUrl = "https://raw.githubusercontent.com/mdarif76769/Bruce-Firmware/main/img/";
+        const sliderImages = [
+            "bruce-pcb.png",
+            "reaper-pcb2.png",
+            "cardputer.png",
+            "core2.png",
+            "cyd.png",
+            "m5stick.png",
+            "t-embed.png"
+        ];
+        let currentSlide = 0;
+        let heroTimer;
+
+        function updateSlider() {
+            const img = document.getElementById("sliderImg");
+            if(!img) return;
+            img.style.opacity = 0.2;
+            setTimeout(() => {
+                img.src = baseGitHubUrl + sliderImages[currentSlide];
+                img.style.opacity = 1;
+                document.querySelectorAll(".dot").forEach((d, idx) => {
+                    d.classList.toggle("active", idx === currentSlide);
+                });
+            }, 200);
+        }
+
+        function setSlide(index) {
+            currentSlide = index;
+            updateSlider();
+            resetHeroTimer();
+        }
+
+        function startHeroTimer() {
+            heroTimer = setInterval(() => {
+                currentSlide = (currentSlide + 1) % sliderImages.length;
+                updateSlider();
+            }, 4000); // 4 seconds wrapper delay
+        }
+
+        function resetHeroTimer() {
+            clearInterval(heroTimer);
+            startHeroTimer();
+        }
+
+
+        // Single Global Initialization Engine
         window.onload = function() {
             startReaperTimer();
             startV2Timer();
+            startHeroTimer();
         };
-        }
-
-			// ইমেজ স্লাইডার লজিক
-			const baseGitHubUrl = "https://raw.githubusercontent.com/mdarif76769/Bruce-Firmware/main/img/";
-			const sliderImages = [
-				"bruce-pcb.png",
-				"reaper-pcb2.png",
-				"cardputer.png",
-				"core2.png",
-				"cyd.png",
-				"m5stick.png",
-				"t-embed.png"
-			];
-			let currentSlide = 0;
-
-			function updateSlider() {
-				const img = document.getElementById("sliderImg");
-				if(!img) return;
-				img.style.opacity = 0.2;
-				setTimeout(() => {
-					img.src = baseGitHubUrl + sliderImages[currentSlide];
-					img.style.opacity = 1;
-					document.querySelectorAll(".dot").forEach((d, idx) => d.classList.toggle("active", idx === currentSlide));
-				}, 200);
     </script>
 </body>
 </html>
