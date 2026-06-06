@@ -1299,7 +1299,7 @@
 			</footer>
 		</div>
 
-		<script>
+				<script>
 			// Header mobile menu functionality script
 			const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 			const navLinks = document.getElementById('navLinks');
@@ -1324,10 +1324,12 @@
 			const selectedDeviceName = document.getElementById('selectedDeviceName');
 			let currentSelectedDevice = 'all';
 
-			deviceTrigger.addEventListener('click', (e) => {
-				e.stopPropagation();
-				deviceMenu.classList.toggle('show');
-			});
+			if(deviceTrigger && deviceMenu) {
+				deviceTrigger.addEventListener('click', (e) => {
+					e.stopPropagation();
+					deviceMenu.classList.toggle('show');
+				});
+			}
 
 			function selectDeviceItem(element) {
 				const items = document.querySelectorAll('.device-dropdown-item');
@@ -1357,13 +1359,15 @@
 
 			// Close dropdown when clicked outside
 			document.addEventListener('click', () => {
-				deviceMenu.classList.remove('show');
+				if(deviceMenu) deviceMenu.classList.remove('show');
 			});
 
-			document.getElementById('deviceInnerSearch').addEventListener('click', (e) => {
-				e.stopPropagation();
-			});
-
+			const deviceInnerSearch = document.getElementById('deviceInnerSearch');
+			if(deviceInnerSearch) {
+				deviceInnerSearch.addEventListener('click', (e) => {
+					e.stopPropagation();
+				});
+			}
 
 			// Dynamic Integrated Filter & Search & Device Matrix logic
 			let currentSelectedCategory = 'all';
@@ -1390,8 +1394,8 @@
 				cards.forEach(card => {
 					const cardCategory = card.getAttribute('data-category');
 					const cardDevices = card.getAttribute('data-device') ? card.getAttribute('data-device').toLowerCase() : '';
-					const appTitle = card.querySelector('.app-title').innerText.toLowerCase();
-					const appDesc = card.querySelector('.app-desc').innerText.toLowerCase();
+					const appTitle = card.querySelector('.app-title') ? card.querySelector('.app-title').innerText.toLowerCase() : '';
+					const appDesc = card.querySelector('.app-desc') ? card.querySelector('.app-desc').innerText.toLowerCase() : '';
 
 					const matchesCategory = (currentSelectedCategory === 'all' || cardCategory === currentSelectedCategory);
 					const matchesSearch = (appTitle.includes(searchQuery) || appDesc.includes(searchQuery));
@@ -1417,22 +1421,59 @@
 				"t-embed.png"
 			];
 			let currentSlide = 0;
+			let sliderInterval; // টাইমার ট্র্যাক করার জন্য ভেরিয়েবল
 
 			function updateSlider() {
 				const img = document.getElementById("sliderImg");
+				const dots = document.querySelectorAll("#sliderDots .dot"); // আপনার ডট কন্টেইনারের ভেতরের ডটগুলো সিলেক্ট করা হলো
+				
 				if(!img) return;
+				
 				img.style.opacity = 0.2;
+				
 				setTimeout(() => {
+					// ১. ছবি পরিবর্তন করা
 					img.src = baseGitHubUrl + sliderImages[currentSlide];
 					img.style.opacity = 1;
+
+					// ২. ছবির সাথে মিল রেখে ডটের কালার পরিবর্তন করা
+					if(dots.length > 0) {
+						dots.forEach((dot, index) => {
+							if(index === currentSlide) {
+								dot.classList.add('active'); // CSS এর মাধ্যমে ডট পার্পল এবং স্কেল আপ হবে
+							} else {
+								dot.classList.remove('active');
+							}
+						});
+					}
 				}, 200);
 			}
 
-			window.onload = function() {
-				setInterval(() => { 
+			// HTML ডটগুলোর onclick="setSlide(X)" হ্যান্ডেল করার জন্য নতুন ফাংশন
+			function setSlide(index) {
+				currentSlide = index;
+				updateSlider();
+				resetSliderInterval(); // ম্যানুয়ালি ক্লিক করলে টাইমার ৪ সেকেন্ড রিসেট হবে যেন সাথে সাথেই আবার অটো স্লাইড না করে
+			}
+
+			// স্লাইডারের অটোমেটিক ইন্টারভাল শুরু করার ফাংশন
+			function startSliderInterval() {
+				sliderInterval = setInterval(() => { 
 					currentSlide = (currentSlide + 1) % sliderImages.length; 
 					updateSlider(); 
 				}, 4000);
+			}
+
+			// ইন্টারভাল রিসেট করার ফাংশন
+			function resetSliderInterval() {
+				clearInterval(sliderInterval);
+				startSliderInterval();
+			}
+
+			// পেজ লোড সম্পূর্ণ হলে স্লাইডার সচল করা
+			window.onload = function() {
+				updateSlider(); // প্রথম পেজ লোডে প্রথম ডটটি সক্রিয় করার জন্য
+				startSliderInterval(); // অটো প্লে শুরু
 			};
 		</script>
 	</body>
