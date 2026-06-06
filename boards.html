@@ -85,17 +85,19 @@
                 </div>
                 
                 <!-- Added "hidden" by default on mobile, displays on click or desktop screens -->
-                <div id="nav-menu" class="hidden flex-col gap-3 mt-4 w-full lg:mt-0 lg:w-auto lg:flex lg:flex-row lg:items-center lg:gap-5">
-                    <a href="/" target="_self" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-400">Home</a>
-                    <a href="https://github.com/pr3y/Bruce" target="_blank" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-400">GitHub</a>
-                    <a href="./flasher" target="_self" class="inline-block rounded-lg border-2 border-[#9B51E0] bg-transparent px-6 py-3 font-semibold text-white text-center transition-all duration-300 ease-in-out hover:scale-105 hover:bg-[#9B51E0]">Install</a>
-                    <a href="https://wiki.bruce.computer" target="_blank" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-400">Docs</a>
-                    <a href="./appstore" target="_self" class="rounded-lg px-4 py-2.5 border-b-2 border-purple-500 text-purple-500">App Store</a>
-                    <a href="./build_theme.html" target="_self" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-400">Theme Builder</a>
-                    <a href="./my_bruce" target="_self" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-400">Bruce Lab</a>
-                    <a href="./boards" target="_self" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-400">Boards</a>
-                    <a href="./donate" target="_self" class="rounded-lg px-4 py-2.5 text-white hover:text-purple-400">Donate</a>
-                </div> 
+				<div id="nav-menu" class="hidden absolute top-[60px] left-1/2 -translate-x-1/2 w-full max-w-[280px] mx-auto bg-[#111]/95 backdrop-blur-md border border-white/10 rounded-2xl flex-col items-center justify-center p-6 gap-4 text-center shadow-2xl lg:static lg:translate-x-0 lg:w-auto lg:max-w-none lg:bg-transparent lg:border-none lg:p-0 lg:flex lg:flex-row lg:gap-5 lg:mt-0">
+                <a href="/index" target="_self" class="w-full text-center py-1.5 text-white hover:text-purple-400 text-base font-medium">Home</a>
+                <a href="https://github.com/pr3y/Bruce" target="_blank" class="w-full text-center py-1.5 text-white hover:text-purple-400 text-base font-medium">GitHub</a>
+                <a href="./flasher" target="_self" class="w-full max-w-[120px] mx-auto rounded-xl border border-[#9B51E0] bg-transparent py-1.5 font-semibold text-white text-center transition-all duration-300 ease-in-out hover:scale-105 hover:bg-[#9B51E0]">Install</a>
+                <a href="https://wiki.bruce.computer" target="_blank" class="w-full text-center py-1.5 text-white hover:text-purple-400 text-base font-medium">Docs</a>
+                <a href="./appstore" target="_self" class="w-full text-center py-1.5 text-purple-500 font-medium border-b border-purple-500/30 max-w-[100px] mx-auto">App Store</a>
+                <a href="./build_theme.html" target="_self" class="w-full text-center py-1.5 text-white hover:text-purple-400 text-base font-medium">Theme Builder</a>
+               <a href="./my_bruce" target="_self" class="w-full text-center py-1.5 text-white hover:text-purple-400 text-base font-medium">Bruce Lab</a>
+            <a href="./boards" target="_self" class="w-full text-center py-1.5 text-white hover:text-purple-400 text-base font-medium">Boards</a>
+              <a href="./donate" target="_self" class="w-full text-center py-1.5 text-white hover:text-purple-400 text-base font-medium">Donate</a>
+        </div>
+
+                
             </nav>
         </div>
     </header>
@@ -293,16 +295,22 @@
 
     <!-- Native Fixed JavaScript Engine -->
     <script>
-        // --- Mobile Menu Toggle Engine ---
-        const menuToggle = document.getElementById("menu-toggle");
-        const navMenu = document.getElementById("nav-menu");
+		// Script-er shurute thaka menu-toggle block-ti replace korun
+            const menuToggle = document.getElementById("menu-toggle");
+               const navMenu = document.getElementById("nav-menu");
 
-        if (menuToggle && navMenu) {
-            menuToggle.addEventListener("click", () => {
-                navMenu.classList.toggle("hidden");
-                navMenu.classList.toggle("flex");
-            });
-        }
+             if (menuToggle && navMenu) {
+               menuToggle.addEventListener("click", () => {
+                 navMenu.classList.toggle("hidden");
+                // Dynamic display state handling
+                  if (!navMenu.classList.contains("hidden")) {
+                    navMenu.style.display = "flex";
+				  } else {
+					  navMenu.style.removeProperty("display");
+				  }
+			   });
+			 }
+
 
         // --- Slider 1: Bruce RF Reaper PCB ---
         const reaperImages = [
