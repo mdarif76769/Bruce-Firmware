@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="./favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link href="./_app/immutable/assets/0.ghpIwHM_.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/3.BAPQBoie.css" rel="stylesheet">
+		
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+			html {
+				scroll-behavior: smooth;
+				overflow-x: hidden !important;
+			}
+			body {
+				font-family: 'Inter', sans-serif;
+				margin: 0;
+				padding: 0;
+				background-color: #0a0a0a;
+				color: #ffffff;
+			}
+			a {
+				color: #943ee5;
+				text-decoration: none;
+			}
+			
+			/* Custom Slider & Card Layout System (Ager Moto) */
+			.custom-slider-container {
+				width: 100%;
+				max-width: 1200px;
+				height: 450px;
+				margin: 20px auto;
+				overflow: hidden;
+				border-radius: 12px;
+				border: 1px solid #333;
+				position: relative;
+			}
+			.custom-slider-container img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				display: block;
+			}
+			.category-pill {
+				display: inline-flex;
+				align-items: center;
+				background-color: #1f2937;
+				border: 2px solid #4b5563;
+				color: #fff;
+				padding: 10px 24px;
+				border-radius: 9999px;
+				font-weight: 500;
+				margin: 6px;
+				cursor: pointer;
+				transition: all 0.2s ease;
+			}
+			.category-pill:hover {
+				border-color: #9b51e0;
+				background-color: rgba(155, 81, 224, 0.1);
+			}
+			.app-grid {
+				display: grid;
+				grid-template-cols: repeat(1, minmax(0, 1fr));
+				gap: 24px;
+				max-width: 1200px;
+				margin: 40px auto;
+				padding: 0 16px;
+			}
+			@media (min-width: 768px) {
+				.app-grid { grid-template-cols: repeat(2, minmax(0, 1fr)); }
+			}
+			@media (min-width: 1024px) {
+				.app-grid { grid-template-cols: repeat(3, minmax(0, 1fr)); }
+			}
+			.app-card {
+				background-color: #1f2937;
+				border-radius: 12px;
+				overflow: hidden;
+				box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+				border: 1px solid #374151;
+				transition: transform 0.2s;
+			}
+			.app-card:hover {
+				transform: translateY(-5px);
+				border-color: #9b51e0;
+			}
+			.app-card-img {
+				height: 180px;
+				background-color: #374151;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				overflow: hidden;
+			}
+			.app-card-img img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+		</style>
+		<title>Bruce Firmware - App Store</title>
+	</head>
+	<body>
+		<div>
+			<header class="fixed top-0 left-0 z-[100] w-full bg-[#111] py-3.5">
+				<div class="mx-auto w-11/12 max-w-full">
+					<nav class="flex items-center justify-between">
+						<a href="/" class="flex items-center">
+							<img src="./img/bruce.png" alt="Bruce Logo" class="h-[50px]"/>
+						</a> 
+						<div class="hidden items-center gap-5 lg:flex">
+							<a href="/" target="_self" class="rounded-lg px-4 py-2.5 text-white">Home</a>
+							<a href="https://github.com/pr3y/Bruce" target="_blank" class="rounded-lg px-4 py-2.5 text-white">GitHub</a>
+							<a href="./flasher" target="_self" class="inline-block rounded-lg border-2 border-[#9B51E0] bg-transparent px-6 py-3 font-semibold text-white transition-all duration-300 ease-in-out hover:scale-105 hover:bg-[#9B51E0]">Install</a>
+							<a href="https://wiki.bruce.computer" target="_blank" class="rounded-lg px-4 py-2.5 text-white">Docs</a>
+							<a href="./appstore" target="_self" class="rounded-lg px-4 py-2.5 border-b-2 border-purple-500 text-purple-500">App Store</a>
+							<a href="./build_theme.html" target="_self" class="rounded-lg px-4 py-2.5 text-white">Theme Builder</a>
+							<a href="./my_bruce" target="_self" class="rounded-lg px-4 py-2.5 text-white">Bruce Lab</a>
+							<a href="./boards" target="_self" class="rounded-lg px-4 py-2.5 text-white">Boards</a>
+							<a href="./donate" target="_self" class="rounded-lg px-4 py-2.5 text-white">Donate</a>
+						</div>
+					</nav>
+				</div>
+			</header>
+			<div class="mt-32 text-center">
+				<div class="mx-2 sm:mx-4 my-2 rounded-lg border border-purple-600 bg-purple-400/20 p-3 sm:p-4 relative">
+					<div class="flex flex-col sm:flex-row items-center sm:items-start gap-3">
+						<div class="flex-grow text-left">
+							<h3 class="mb-2 text-xl font-bold tracking-wide text-yellow-400">ATTENTION</h3>
+							<p class="text-base text-slate-300">Bruce is open-source under AGPL License - never pay for scripts, firmware forks or themes.</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="custom-slider-container">
+					<img src="./img/bruce_banner.png" alt="Bruce Dashboard Big Banner">
+				</div>
+
+				<div class="mt-6 mb-8 flex flex-col items-center gap-6">
+					<div class="relative w-full max-w-md">
+						<input type="text" placeholder="Search apps, scripts or styles..." class="w-full rounded-lg border border-gray-600 bg-gray-700 px-4 py-2 pl-10 text-white focus:border-purple-500 focus:outline-none"/>
+					</div>
+				</div>
+
+				<div class="px-4">
+					<div class="category-pill">All Apps</div>
+					<div class="category-pill">WiFi Tools</div>
+					<div class="category-pill">BLE Injection</div>
+					<div class="category-pill">BadUSB Scripts</div>
+					<div class="category-pill">NFC / RFID</div>
+					<div class="category-pill">Custom Themes</div>
+				</div>
+
+				<div class="app-grid">
+					
+					<div class="app-card">
+						<div class="app-card-img">
+							<img src="./img/app_wifi_scanner.png" alt="App Preview">
+						</div>
+						<div class="p-4 text-left">
+							<h4 class="text-lg font-bold text-white mb-1">Advanced WiFi Scanner</h4>
+							<p class="text-xs text-purple-400 mb-2">Category: WiFi Tools</p>
+							<p class="text-sm text-gray-400">Real-time RSSI tracking and network mapping tool for ESP32 boards.</p>
+						</div>
+					</div>
+
+					<div class="app-card">
+						<div class="app-card-img">
+							<img src="./img/app_ble_spam.png" alt="App Preview">
+						</div>
+						<div class="p-4 text-left">
+							<h4 class="text-lg font-bold text-white mb-1">BLE Proximity Spammer</h4>
+							<p class="text-xs text-purple-400 mb-2">Category: BLE Injection</p>
+							<p class="text-sm text-gray-400">Educational tool to audit BLE vulnerabilities across system environments.</p>
+						</div>
+					</div>
+
+					<div class="app-card">
+						<div class="app-card-img">
+							<img src="./img/app_matrix_theme.png" alt="App Preview">
+						</div>
+						<div class="p-4 text-left">
+							<h4 class="text-lg font-bold text-white mb-1">Matrix Digital Theme</h4>
+							<p class="text-xs text-purple-400 mb-2">Category: Custom Themes</p>
+							<p class="text-sm text-gray-400">Complete redesign UI skin inspired by terminal aesthetic for firmware screen.</p>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<footer class="bg-[#111] py-5 text-center mt-12">
+				<div class="mx-auto my-0 w-90 max-w-full">
+					<div class="mb-4 flex items-center justify-center gap-5">
+						<a href="https://discord.gg/WJ9XF9czVT" target="_blank" class="inline-block"><img src="./img/discord.svg" alt="Discord" class="h-10 w-10"/></a>
+						<a href="https://youtube.com/@Bruce-fw" target="_blank" class="inline-block"><img src="./img/youtube.svg" alt="YouTube" class="h-10 w-10"/></a>
+						<a href="mailto:contact@bruce.computer" class="inline-block"><img src="./img/email.svg" alt="Email" class="h-10 w-10"/></a>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</body>
+</html>
