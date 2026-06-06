@@ -219,38 +219,81 @@
         // --- Slider 1: Bruce RF Reaper PCB ---
         const reaperImages = [
             "./img/reaper-pcb.png",
-            "./img/reaper-back.png",  // Jdi real asset thake, name change kore nite paren
-            "./img/reaper-3d.png"     
+            "./img/reaper-pcb2.png"
         ];
         let reaperIndex = 0;
+        let reaperTimer;
+
+        function updateReaper() {
+            document.getElementById("reaper-slider").src = reaperImages[reaperIndex];
+        }
 
         function nextReaper() {
             reaperIndex = (reaperIndex + 1) % reaperImages.length;
-            document.getElementById("reaper-slider").src = reaperImages[reaperIndex];
+            updateReaper();
+            resetReaperTimer();
         }
 
         function prevReaper() {
             reaperIndex = (reaperIndex - 1 + reaperImages.length) % reaperImages.length;
-            document.getElementById("reaper-slider").src = reaperImages[reaperIndex];
+            updateReaper();
+            resetReaperTimer();
         }
+
+        function startReaperTimer() {
+            reaperTimer = setInterval(() => {
+                reaperIndex = (reaperIndex + 1) % reaperImages.length;
+                updateReaper();
+            }, 3000); // 3 seconds interval
+        }
+
+        function resetReaperTimer() {
+            clearInterval(reaperTimer);
+            startReaperTimer();
+        }
+
 
         // --- Slider 2: Bruce PCB V2 ---
         const v2Images = [
             "./img/bruce-pcb.png",
-            "./img/bruce-pcb-back.png",
-            "./img/bruce-pcb-3d.png"
+            "./img/bruce-pcb2.png"
         ];
         let v2Index = 0;
+        let v2Timer;
+
+        function updateV2() {
+            document.getElementById("v2-slider").src = v2Images[v2Index];
+        }
 
         function nextV2() {
             v2Index = (v2Index + 1) % v2Images.length;
-            document.getElementById("v2-slider").src = v2Images[v2Index];
+            updateV2();
+            resetV2Timer();
         }
 
         function prevV2() {
             v2Index = (v2Index - 1 + v2Images.length) % v2Images.length;
-            document.getElementById("v2-slider").src = v2Images[v2Index];
+            updateV2();
+            resetV2Timer();
         }
+
+        function startV2Timer() {
+            v2Timer = setInterval(() => {
+                v2Index = (v2Index + 1) % v2Images.length;
+                updateV2();
+            }, 3000); // 3 seconds interval
+        }
+
+        function resetV2Timer() {
+            clearInterval(v2Timer);
+            startV2Timer();
+        }
+
+        // Initialize sliders automatically on window load
+        window.onload = function() {
+            startReaperTimer();
+            startV2Timer();
+        };
     </script>
 
 </body>
