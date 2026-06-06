@@ -1,206 +1,544 @@
 <!doctype html>
-<html lang="en">
+<html lang="bn">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" href="./favicon.ico" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link href="./_app/immutable/assets/0.ghpIwHM_.css" rel="stylesheet">
-		<link href="./_app/immutable/assets/3.BAPQBoie.css" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Bruce Firmware - App Store</title>
 		
 		<style>
+			/* CORES RESET AND STRUCTURE LOCK */
 			* {
-				box-sizing: border-box;
-			}
-			html {
-				scroll-behavior: smooth;
-				overflow-x: hidden !important;
-			}
-			body {
-				font-family: 'Inter', sans-serif;
+				box-sizing: border-box !important;
 				margin: 0;
 				padding: 0;
-				background-color: #0a0a0a;
-				color: #ffffff;
 			}
-			a {
-				color: #943ee5;
-				text-decoration: none;
+			html, body {
+				background-color: #0d1117 !important;
+				color: #ffffff !important;
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+				overflow-x: hidden;
 			}
-			
-			/* Custom Slider & Card Layout System (Ager Moto) */
-			.custom-slider-container {
-				width: 100%;
-				max-width: 1200px;
-				height: 450px;
-				margin: 20px auto;
-				overflow: hidden;
-				border-radius: 12px;
-				border: 1px solid #333;
-				position: relative;
+
+			/* NAV HEADER BAR */
+			.custom-header {
+				position: fixed !important;
+				top: 0 !important;
+				left: 0 !important;
+				width: 100% !important;
+				background-color: #161b22 !important;
+				border-bottom: 1px solid #30363d !important;
+				z-index: 9999 !important;
+				padding: 12px 24px !important;
+				display: flex !important;
+				align-items: center !important;
+				justify-content: space-between !important;
 			}
-			.custom-slider-container img {
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-				display: block;
+			.header-logo img {
+				height: 40px !important;
+				display: block !important;
 			}
+			.header-menu {
+				display: flex !important;
+				gap: 16px !important;
+				align-items: center !important;
+			}
+			.header-menu a {
+				color: #c9d1d9 !important;
+				text-decoration: none !important;
+				font-size: 14px !important;
+				font-weight: 500 !important;
+				padding: 6px 12px !important;
+				border-radius: 6px !important;
+				transition: all 0.2s !important;
+			}
+			.header-menu a:hover { color: #ffffff !important; background-color: #21262d !important; }
+			.header-menu a.active-link {
+				color: #bc8cff !important;
+				border-bottom: 2px solid #9b51e0 !important;
+				border-radius: 0 !important;
+			}
+			.install-btn {
+				border: 2px solid #9b51e0 !important;
+				color: #ffffff !important;
+				font-weight: 600 !important;
+			}
+			.install-btn:hover { background-color: #9b51e0 !important; }
+
+			/* MAIN WRAPPER FRAMEWORK */
+			.main-content {
+				margin-top: 90px !important;
+				padding: 20px !important;
+				text-align: center !important;
+			}
+
+			/* Attention Alert Banner */
+			.attention-banner {
+				max-width: 1200px !important;
+				margin: 15px auto !important;
+				border: 1px solid #9b51e0 !important;
+				background-color: rgba(155, 81, 224, 0.15) !important;
+				padding: 16px !important;
+				border-radius: 8px !important;
+				text-align: left !important;
+			}
+			.attention-banner h3 { color: #fbbf24 !important; font-size: 18px !important; font-weight: 700 !important; margin-bottom: 4px !important; }
+			.attention-banner p { color: #cbd5e1 !important; font-size: 14px !important; line-height: 1.5 !important; }
+
+			/* Sliding Banner Element */
+			.flasher-slider-container {
+				width: 100% !important;
+				max-width: 1200px !important;
+				height: 400px !important;
+				margin: 24px auto !important;
+				overflow: hidden !important;
+				border-radius: 12px !important;
+				border: 1px solid #30363d !important;
+			}
+			.flasher-slider-container img { width: 100% !important; height: 100% !important; object-fit: cover !important; display: block !important; }
+
+			/* Search Field */
+			.search-wrapper { max-width: 450px !important; margin: 24px auto !important; }
+			.search-wrapper input {
+				width: 100% !important;
+				padding: 12px 18px !important;
+				background-color: #21262d !important;
+				border: 1px solid #30363d !important;
+				border-radius: 8px !important;
+				color: #ffffff !important;
+				font-size: 14px !important;
+				outline: none !important;
+			}
+			.search-wrapper input:focus { border-color: #9b51e0 !important; }
+
+			/* Category Navigation Pills */
+			.category-scroll-area { max-width: 1200px !important; margin: 16px auto 32px auto !important; text-align: center !important; }
 			.category-pill {
-				display: inline-flex;
-				align-items: center;
-				background-color: #1f2937;
-				border: 2px solid #4b5563;
-				color: #fff;
-				padding: 10px 24px;
-				border-radius: 9999px;
-				font-weight: 500;
-				margin: 6px;
-				cursor: pointer;
-				transition: all 0.2s ease;
+				display: inline-flex !important;
+				align-items: center !important;
+				background-color: #161b22 !important;
+				border: 1px solid #30363d !important;
+				color: #c9d1d9 !important;
+				padding: 8px 18px !important;
+				border-radius: 20px !important;
+				font-size: 13px !important;
+				font-weight: 500 !important;
+				margin: 6px !important;
+				cursor: pointer !important;
+				transition: all 0.2s !important;
 			}
-			.category-pill:hover {
-				border-color: #9b51e0;
-				background-color: rgba(155, 81, 224, 0.1);
+			.category-pill:hover, .category-pill.active {
+				border-color: #9b51e0 !important;
+				background-color: rgba(155, 81, 224, 0.15) !important;
+				color: #ffffff !important;
 			}
-			.app-grid {
-				display: grid;
-				grid-template-cols: repeat(1, minmax(0, 1fr));
-				gap: 24px;
-				max-width: 1200px;
-				margin: 40px auto;
-				padding: 0 16px;
+
+			/* ==================== EXACT PASAPASI 3-COLUMNS LOCKED GRID LAYER ==================== */
+			.bruce-grid-container {
+				display: grid !important;
+				grid-template-cols: repeat(3, minmax(0, 1fr)) !important; /* STRICT LOCK: Akshorik bhabe pasapasi 3-ti rakhbe */
+				gap: 24px !important;
+				max-width: 1200px !important;
+				margin: 0 auto !important;
+				padding-bottom: 40px !important;
 			}
-			@media (min-width: 768px) {
-				.app-grid { grid-template-cols: repeat(2, minmax(0, 1fr)); }
+
+			/* Viewport Breaks for Mobile and Tabs */
+			@media (max-width: 950px) {
+				.bruce-grid-container { grid-template-cols: repeat(2, minmax(0, 1fr)) !important; }
 			}
-			@media (min-width: 1024px) {
-				.app-grid { grid-template-cols: repeat(3, minmax(0, 1fr)); }
+			@media (max-width: 600px) {
+				.bruce-grid-container { grid-template-cols: repeat(1, minmax(0, 1fr)) !important; }
+				.header-menu { display: none !important; }
+				.flasher-slider-container { height: 220px !important; }
 			}
-			.app-card {
-				background-color: #1f2937;
-				border-radius: 12px;
-				overflow: hidden;
-				box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-				border: 1px solid #374151;
-				transition: transform 0.2s;
+
+			/* APP CONTAINER CARD */
+			.bruce-card {
+				background-color: #161b22 !important; 
+				border: 1px solid #30363d !important;
+				border-radius: 10px !important;
+				padding: 20px !important;
+				position: relative !important;
+				display: flex !important;
+				flex-direction: column !important;
+				align-items: center !important;
+				text-align: center !important;
+				text-decoration: none !important;
+				color: #ffffff !important;
+				transition: border-color 0.2s, transform 0.2s !important;
+				min-height: 350px !important;
 			}
-			.app-card:hover {
-				transform: translateY(-5px);
-				border-color: #9b51e0;
+			.bruce-card:hover {
+				border-color: #9b51e0 !important;
+				transform: translateY(-4px) !important;
+				box-shadow: 0 8px 24px rgba(155, 81, 224, 0.15) !important;
 			}
-			.app-card-img {
-				height: 180px;
-				background-color: #374151;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				overflow: hidden;
+
+			/* Hidden state filter trigger */
+			.bruce-card.hidden-card { display: none !important; }
+
+			/* BADGES CONFIG */
+			.bruce-badge {
+				position: absolute !important;
+				top: 12px !important;
+				left: 12px !important;
+				font-size: 10px !important;
+				font-weight: bold !important;
+				padding: 3px 8px !important;
+				border-radius: 4px !important;
+				text-transform: uppercase !important;
+				color: #ffffff !important;
 			}
-			.app-card-img img {
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
+			.badge-tools { background-color: #7b2cbf !important; }
+			.badge-games { background-color: #2563eb !important; }
+			.badge-themes { background-color: #9b51e0 !important; }
+			.badge-utilities { background-color: #0891b2 !important; }
+			.badge-audio { background-color: #db2777 !important; }
+
+			/* THUMBNAIL BOX BLOCK */
+			.bruce-image-box {
+				width: 110px !important;
+				height: 110px !important;
+				background-color: #21262d !important;
+				border-radius: 8px !important;
+				margin-top: 12px !important;
+				margin-bottom: 16px !important;
+				display: flex !important;
+				align-items: center !important;
+				justify-content: center !important;
+				overflow: hidden !important;
+				border: 1px solid #30363d !important;
 			}
+			.bruce-image-box img { width: 100% !important; height: 100% !important; object-fit: cover !important; }
+
+			/* TEXT PARAMETERS STYLE */
+			.bruce-app-title { font-size: 16px !important; font-weight: 600 !important; color: #ffffff !important; margin-bottom: 4px !important; }
+			.bruce-app-author { font-size: 12px !important; color: #bc8cff !important; margin-bottom: 2px !important; }
+			.bruce-app-author span { text-decoration: underline !important; }
+			.bruce-app-version { font-size: 11px !important; color: #8b949e !important; margin-bottom: 12px !important; }
+			.bruce-app-desc { font-size: 12px !important; color: #8b949e !important; line-height: 1.5 !important; margin: 0 !important; }
+
+			/* FOOTER */
+			.custom-footer { background-color: #161b22 !important; border-top: 1px solid #30363d !important; padding: 24px !important; text-align: center !important; margin-top: 40px !important; }
+			.footer-icons { display: flex !important; justify-content: center !important; gap: 20px !important; }
+			.footer-icons img { width: 32px !important; height: 32px !important; }
 		</style>
-		<title>Bruce Firmware - App Store</title>
 	</head>
 	<body>
-		<div>
-			<header class="fixed top-0 left-0 z-[100] w-full bg-[#111] py-3.5">
-				<div class="mx-auto w-11/12 max-w-full">
-					<nav class="flex items-center justify-between">
-						<a href="/" class="flex items-center">
-							<img src="./img/bruce.png" alt="Bruce Logo" class="h-[50px]"/>
-						</a> 
-						<div class="hidden items-center gap-5 lg:flex">
-							<a href="/" target="_self" class="rounded-lg px-4 py-2.5 text-white">Home</a>
-							<a href="https://github.com/pr3y/Bruce" target="_blank" class="rounded-lg px-4 py-2.5 text-white">GitHub</a>
-							<a href="./flasher" target="_self" class="inline-block rounded-lg border-2 border-[#9B51E0] bg-transparent px-6 py-3 font-semibold text-white transition-all duration-300 ease-in-out hover:scale-105 hover:bg-[#9B51E0]">Install</a>
-							<a href="https://wiki.bruce.computer" target="_blank" class="rounded-lg px-4 py-2.5 text-white">Docs</a>
-							<a href="./appstore" target="_self" class="rounded-lg px-4 py-2.5 border-b-2 border-purple-500 text-purple-500">App Store</a>
-							<a href="./build_theme.html" target="_self" class="rounded-lg px-4 py-2.5 text-white">Theme Builder</a>
-							<a href="./my_bruce" target="_self" class="rounded-lg px-4 py-2.5 text-white">Bruce Lab</a>
-							<a href="./boards" target="_self" class="rounded-lg px-4 py-2.5 text-white">Boards</a>
-							<a href="./donate" target="_self" class="rounded-lg px-4 py-2.5 text-white">Donate</a>
-						</div>
-					</nav>
-				</div>
-			</header>
-			<div class="mt-32 text-center">
-				<div class="mx-2 sm:mx-4 my-2 rounded-lg border border-purple-600 bg-purple-400/20 p-3 sm:p-4 relative">
-					<div class="flex flex-col sm:flex-row items-center sm:items-start gap-3">
-						<div class="flex-grow text-left">
-							<h3 class="mb-2 text-xl font-bold tracking-wide text-yellow-400">ATTENTION</h3>
-							<p class="text-base text-slate-300">Bruce is open-source under AGPL License - never pay for scripts, firmware forks or themes.</p>
-						</div>
-					</div>
-				</div>
 
-				<div class="custom-slider-container">
-					<img src="./img/bruce_banner.png" alt="Bruce Dashboard Big Banner">
-				</div>
+		<nav class="custom-header">
+			<div class="header-logo">
+				<a href="/"><img src="./img/bruce.png" alt="Bruce Logo" /></a>
+			</div>
+			<div class="header-menu">
+				<a href="/">Home</a>
+				<a href="https://github.com/pr3y/Bruce" target="_blank">GitHub</a>
+				<a href="./flasher" class="install-btn">Install</a>
+				<a href="https://wiki.bruce.computer" target="_blank">Docs</a>
+				<a href="./appstore" class="active-link">App Store</a>
+				<a href="./build_theme.html">Theme Builder</a>
+				<a href="./my_bruce">Bruce Lab</a>
+				<a href="./boards">Boards</a>
+				<a href="./donate">Donate</a>
+			</div>
+		</nav>
 
-				<div class="mt-6 mb-8 flex flex-col items-center gap-6">
-					<div class="relative w-full max-w-md">
-						<input type="text" placeholder="Search apps, scripts or styles..." class="w-full rounded-lg border border-gray-600 bg-gray-700 px-4 py-2 pl-10 text-white focus:border-purple-500 focus:outline-none"/>
-					</div>
-				</div>
-
-				<div class="px-4">
-					<div class="category-pill">All Apps</div>
-					<div class="category-pill">WiFi Tools</div>
-					<div class="category-pill">BLE Injection</div>
-					<div class="category-pill">BadUSB Scripts</div>
-					<div class="category-pill">NFC / RFID</div>
-					<div class="category-pill">Custom Themes</div>
-				</div>
-
-				<div class="app-grid">
-					
-					<div class="app-card">
-						<div class="app-card-img">
-							<img src="./img/app_wifi_scanner.png" alt="App Preview">
-						</div>
-						<div class="p-4 text-left">
-							<h4 class="text-lg font-bold text-white mb-1">Advanced WiFi Scanner</h4>
-							<p class="text-xs text-purple-400 mb-2">Category: WiFi Tools</p>
-							<p class="text-sm text-gray-400">Real-time RSSI tracking and network mapping tool for ESP32 boards.</p>
-						</div>
-					</div>
-
-					<div class="app-card">
-						<div class="app-card-img">
-							<img src="./img/app_ble_spam.png" alt="App Preview">
-						</div>
-						<div class="p-4 text-left">
-							<h4 class="text-lg font-bold text-white mb-1">BLE Proximity Spammer</h4>
-							<p class="text-xs text-purple-400 mb-2">Category: BLE Injection</p>
-							<p class="text-sm text-gray-400">Educational tool to audit BLE vulnerabilities across system environments.</p>
-						</div>
-					</div>
-
-					<div class="app-card">
-						<div class="app-card-img">
-							<img src="./img/app_matrix_theme.png" alt="App Preview">
-						</div>
-						<div class="p-4 text-left">
-							<h4 class="text-lg font-bold text-white mb-1">Matrix Digital Theme</h4>
-							<p class="text-xs text-purple-400 mb-2">Category: Custom Themes</p>
-							<p class="text-sm text-gray-400">Complete redesign UI skin inspired by terminal aesthetic for firmware screen.</p>
-						</div>
-					</div>
-
-				</div>
+		<div class="main-content">
+			
+			<div class="attention-banner">
+				<h3>ATTENTION</h3>
+				<p>Only trust open-source scripts you can verify! Bruce is open-source under AGPL License - never pay for scripts, firmware forks or themes.</p>
 			</div>
 
-			<footer class="bg-[#111] py-5 text-center mt-12">
-				<div class="mx-auto my-0 w-90 max-w-full">
-					<div class="mb-4 flex items-center justify-center gap-5">
-						<a href="https://discord.gg/WJ9XF9czVT" target="_blank" class="inline-block"><img src="./img/discord.svg" alt="Discord" class="h-10 w-10"/></a>
-						<a href="https://youtube.com/@Bruce-fw" target="_blank" class="inline-block"><img src="./img/youtube.svg" alt="YouTube" class="h-10 w-10"/></a>
-						<a href="mailto:contact@bruce.computer" class="inline-block"><img src="./img/email.svg" alt="Email" class="h-10 w-10"/></a>
-					</div>
-				</div>
-			</footer>
+			<div class="flasher-slider-container">
+				<img src="./img/bruce_banner.png" alt="Sliding Banner Image" />
+			</div>
+
+			<div class="search-wrapper">
+				<input type="text" id="appSearchInput" placeholder="Search applications..." onkeyup="filterApps()" />
+			</div>
+
+			<div class="category-scroll-area">
+				<div class="category-pill active" onclick="selectCategory(this, 'all')">All Apps</div>
+				<div class="category-pill" onclick="selectCategory(this, 'wifi')">WiFi</div>
+				<div class="category-pill" onclick="selectCategory(this, 'bluetooth')">Bluetooth</div>
+				<div class="category-pill" onclick="selectCategory(this, 'badusb')">BadUSB</div>
+				<div class="category-pill" onclick="selectCategory(this, 'rfid')">RFID</div>
+				<div class="category-pill" onclick="selectCategory(this, 'tools')">Tools</div>
+				<div class="category-pill" onclick="selectCategory(this, 'games')">Games</div>
+				<div class="category-pill" onclick="selectCategory(this, 'themes')">Themes</div>
+			</div>
+
+			<div class="bruce-grid-container" id="appsGridContainer">
+				
+				<a href="#" class="bruce-card" data-category="tools wifi">
+					<span class="bruce-badge badge-tools">Tools</span>
+					<div class="bruce-image-box"><img src="./img/app_store.png" alt="Icon" /></div>
+					<h3 class="bruce-app-title">App Store</h3>
+					<p class="bruce-app-author">By <span>BruceDevices</span></p>
+					<p class="bruce-app-version">Version 1.0.1</p>
+					<p class="bruce-app-desc">App store for Bruce devices with over-the-air updates for WiFi networks.</p>
+				</a>
+
+				<a href="#" class="bruce-card" data-category="games bluetooth">
+					<span class="bruce-badge badge-games">Games</span>
+					<div class="bruce-image-box"><img src="./img/arcade.png" alt="Icon" /></div>
+					<h3 class="bruce-app-title">Arcade Games</h3>
+					<p class="bruce-app-author">By <span>BruceDevices</span></p>
+					<p class="bruce-app-version">Version 1.0.1</p>
+					<p class="bruce-app-desc">Collection of retro arcade mini-games optimized for bluetooth links.</p>
+				</a>
+
+				<a href="#" class="bruce-card" data-category="themes badusb">
+					<span class="bruce-badge badge-themes">Themes</span>
+					<div class="bruce-image-box"><img src="./img/bebra.png" alt="Icon" /></div>
+					<h3 class="bruce-app-title">Bebra First Creation</h3>
+					<p class="bruce-app-author">By <span>BruceDevices</span></p>
+					<p class="bruce-app-version">Version 1.0.0</p>
+					<p class="bruce-app-desc">Anime theme layout tailored for functional custom payload execution grids.</p>
+				</a>
+
+				<a href="#" class="bruce-card" data-category="themes wifi">
+					<span class="bruce-badge badge-themes">Themes</span>
+					<div class="bruce-image-box"><img src="./img/blws.png" alt="Icon" /></div>
+					<h3 class="bruce-app-title">BLWS (320x170)</h3>
+					<p class="bruce-app-author">By <span>tetality</span></p>
+					<p class="bruce-app-version">Version 1.0.0</p>
+					<p class="bruce-app-desc">Cute blue shark named BLWS tailored for customized WiFi configuration portals.</p>
+				</a>
+
+				<a href="#" class="bruce-card" data-category="themes bluetooth">
+					<span class="bruce-badge badge-themes">Themes</span>
+					<div class="bruce-image-box"><img src="./img/bruce_gif.png" alt="Icon" /></div>
+					<h3 class="bruce-app-title">Bruce Theme (GIF)</h3>
+					<p class="bruce-app-author">By <span>smartdov</span></p>
+					<p class="bruce-app-version">Version 1.3.0</p>
+					<p class="bruce-app-desc">A bold, glowing upgrade for your Bruce device with bluetooth active beacon tracker lines.</p>
+				</a>
+
+				<a href="#" class="bruce-card" data-category="themes wifi">
+					<span class="bruce-badge badge-themes">Themes</span>
+					<div class="bruce-image-box"><img src="./img/bruce_gif.png" alt="Icon" /></div>
+					<h3 class="bruce-app-title">Bruce Theme (GIF) (240x135)</h3>
+					<p class="bruce-app-author">By <span>smartdov</span></p>
+					<p class="bruce-app-version">Version 1.3.0</p>
+					<p class="bruce-app-desc">A glowing upgrade for your Bruce device with neon energy over standard viewports.</p>
+				</a>
+
+				<a href="#" class="bruce-card" data-category="themes bluetooth">
+					<span class="bruce-badge badge-themes">Themes</span>
+					<div class="bruce-image-box"><img src="./img/bruce_gif.png" alt="Icon" /></div>
+					<h3 class="bruce-app-title">Bruce Theme (GIF) (320x240)</h3>
+					<p class="bruce-app-author">By <span>smartdov</span></p>
+					<p class="bruce-app-version">Version 1.3.0</p>
+					<p class="bruce-app-desc">A bold, glowing upgrade for your Bruce device with deep matrix configurations.</p>
+				</a>
+
+				<a href="#" class="bruce-card" data-category="themes badusb">
+					<span class="bruce-badge badge-themes">Themes</span>
+					<div class="bruce-image-box"><img src="./img/bruce_gif.png" alt="Icon" /></div>
+					<h3 class="bruce-app-title">Bruce Theme (GIF) (240x240)</h3>
+					<p class="bruce-app-author">By <span>smartdov</span></p>
+					<p class="bruce-app-version">Version 1.3.0</p>
+					<p class="bruce-app-desc">A bold, glowing upgrade for your Bruce device with custom firmware style nodes.</p>
+				</a>
+
+				<a href="#" class="bruce-card" data-category="themes rfid">
+					<span class="bruce-badge badge-themes">Themes</span>
+					<div class="bruce-image-box"><img src="./img/bruce_png.png" alt="Icon" /></div>
+					<h3 class="bruce-app-title">Bruce Theme (PNG) (240x135)</h3>
+					<p class="bruce-app-author">By <span>smartdov</span></p>
+					<p class="bruce-app-version">Version 1.2.0</p>
+					<p class="bruce-app-desc">A bold, glowing upgrade for your Bruce device with clear structural backgrounds.</p>
+				</a>
+
+				<a href="#" class="bruce-card" data-category="themes badusb">
+					<span class="bruce-badge badge-themes">Themes</span>
+					<div class="bruce-image-box"><img src="./img/bruce_png.png" alt="Icon" /></div>
+					<h3 class="bruce-app-title">Bruce Theme (PNG) (320x170)</h3>
+					<p class="bruce-app-author">By <span>smartdov</span></p>
+					<p class="bruce-app-version">Version 1.2.0</p>
+					<p class="bruce-app-desc">A bold, glowing upgrade for your Bruce device optimized for direct dashboard views.</p>
+				</a>
+
+				<a href="#" class="bruce-card" data-category="themes rfid">
+					<span class="bruce-badge badge-themes">Themes</span>
+					<div class="bruce-image-box"><img src="./img/bruce_png.png" alt="Icon" /></div>
+					<h3 class="bruce-app-title">Bruce Theme (PNG) (240x240)</h3>
+					<p class="bruce-app-author">By <span>smartdov</span></p>
+					<p class="bruce-app-version">Version 1.2.0</p>
+					<p class="bruce-app-desc">Standard resolution static theme build layout configured for responsive locks.</p>
+				</a>
+
+				<a href="#" class="bruce-card" data-category="themes wifi">
+					<span class="bruce-badge badge-themes">Themes</span>
+					<div class="bruce-image-box"><img src="./img/bruce_png.png" alt="Icon" /></div>
+					<h3 class="bruce-app-title">Bruce Theme (PNG) (128x128)</h3>
+					<p class="bruce-app-author">By <span>smartdov</span></p>
+					<p class="bruce-app-version">Version 1.2.0</p>
+					<p class="bruce-app-desc">Micro layout theme optimized for small scale custom receiver panel units.</p>
+				</a>
+
+				<a href="#" class="bruce-card" data-category="utilities tools">
+					<span class="bruce-badge badge-utilities">Utilities</span>
+					<div class="bruce-image-box"><img src="./img/calc.png" alt="Icon" /></div>
+					<h3 class="bruce-app-title">Calculator</h3>
+					<p class="bruce-app-author">By <span>BruceDevices</span></p>
+					<p class="bruce-app-version">Version 1.0.1</p>
+					<p class="bruce-app-desc">Basic pocket calculator interface for processing fast system payload calculations.</p>
+				</a>
+
+				<a href="#" class="bruce-card" data-category="utilities badusb">
+					<span class="bruce-badge badge-utilities">Utilities</span>
+					<div class="bruce-image-box"><img src="./img/calc_grid.png" alt="Icon" /></div>
+					<h3 class="bruce-app-title">Advanced Calculator</h3>
+					<p class="bruce-app-author">By <span>BruceDevices</span></p>
+					<p class="bruce-app-version">Version 1.0.2</p>
+					<p class="bruce-app-desc">Extended grid configuration math processor mapped directly for terminal outputs.</p>
+				</a>
+
+				<a href="#" class="bruce-card" data-category="audio bluetooth">
+					<span class="bruce-badge badge-audio">Audio</span>
+					<div class="bruce-image-box"><img src="./img/cricket.png" alt="Icon" /></div>
+					<h3 class="bruce-app-title">Cricket</h3>
+					<p class="bruce-app-author">By <span>skateboi</span></p>
+					<p class="bruce-app-version">Version 1.0.0</p>
+					<p class="bruce-app-desc">CricketJs plays dynamic cricket signal alert structures over buzzer speaker lines.</p>
+				</a>
+
+				<a href="#" class="bruce-card" data-category="utilities wifi">
+					<span class="bruce-badge badge-utilities">Utilities</span>
+					<div class="bruce-image-box"><img src="./img/crypto.png" alt="Icon" /></div>
+					<h3 class="bruce-app-title">Crypto Prices</h3>
+					<p class="bruce-app-author">By <span>BruceDevices</span></p>
+					<p class="bruce-app-version">Version 1.0.1</p>
+					<p class="bruce-app-desc">Track active values fetched directly over integrated dynamic network interfaces.</p>
+				</a>
+
+				<a href="#" class="bruce-card" data-category="themes badusb">
+					<span class="bruce-badge badge-themes">Themes</span>
+					<div class="bruce-image-box"><img src="./img/hacker.png" alt="Icon" /></div>
+					<h3 class="bruce-app-title">Cyber Hacker (240x135)</h3>
+					<p class="bruce-app-author">By <span>CreeperBot</span></p>
+					<p class="bruce-app-version">Version 1.0.2</p>
+					<p class="bruce-app-desc">Cool matrix terminal theme styled with digital green layout configurations.</p>
+				</a>
+
+				<a href="#" class="bruce-card" data-category="themes wifi">
+					<span class="bruce-badge badge-themes">Themes</span>
+					<div class="bruce-image-box"><img src="./img/hacker.png" alt="Icon" /></div>
+					<h3 class="bruce-app-title">Cyber Hacker (320x170)</h3>
+					<p class="bruce-app-author">By <span>CreeperBot</span></p>
+					<p class="bruce-app-version">Version 1.0.2</p>
+					<p class="bruce-app-desc">Cool matrix terminal theme styled with digital green layout configurations.</p>
+				</a>
+
+				<a href="#" class="bruce-card" data-category="tools wifi">
+					<span class="bruce-badge badge-tools">Tools</span>
+					<div class="bruce-image-box"><img src="./img/default.png" alt="Icon" /></div>
+					<h3 class="bruce-app-title">WiFi Jammer Simulator</h3>
+					<p class="bruce-app-author">By <span>LabTester</span></p>
+					<p class="bruce-app-version">Version 1.0.0</p>
+					<p class="bruce-app-desc">Educational simulator interface to trace local WiFi client frame patterns.</p>
+				</a>
+
+				<a href="#" class="bruce-card" data-category="tools bluetooth">
+					<span class="bruce-badge badge-tools">Tools</span>
+					<div class="bruce-image-box"><img src="./img/default.png" alt="Icon" /></div>
+					<h3 class="bruce-app-title">BLE Advertisement Spoofer</h3>
+					<p class="bruce-app-author">By <span>WhiteHat</span></p>
+					<p class="bruce-app-version">Version 1.0.0</p>
+					<p class="bruce-app-desc">Test packet broadcast processor node for checking BLE receiver security protocols.</p>
+				</a>
+
+				<a href="#" class="bruce-card" data-category="games badusb">
+					<span class="bruce-badge badge-games">Games</span>
+					<div class="bruce-image-box"><img src="./img/default.png" alt="Icon" /></div>
+					<h3 class="bruce-app-title">BadUSB Snake Classic</h3>
+					<p class="bruce-app-author">By <span>DevTeam</span></p>
+					<p class="bruce-app-version">Version 1.0.0</p>
+					<p class="bruce-app-desc">Run responsive classic snake game processed via emulated keystroke triggers.</p>
+				</a>
+
+				<a href="#" class="bruce-card" data-category="games rfid">
+					<span class="bruce-badge badge-games">Games</span>
+					<div class="bruce-image-box"><img src="./img/default.png" alt="Icon" /></div>
+					<h3 class="bruce-app-title">RFID Maze Explorer</h3>
+					<p class="bruce-app-author">By <span>DevTeam</span></p>
+					<p class="bruce-app-version">Version 1.0.0</p>
+					<p class="bruce-app-desc">Unlock hidden maze paths using dynamic target RFID frequency keycards.</p>
+				</a>
+
+				<a href="#" class="bruce-card" data-category="utilities rfid">
+					<span class="bruce-badge badge-utilities">Utilities</span>
+					<div class="bruce-image-box"><img src="./img/default.png" alt="Icon" /></div>
+					<h3 class="bruce-app-title">NFC Signal Analyzer</h3>
+					<p class="bruce-app-author">By <span>NetSec</span></p>
+					<p class="bruce-app-version">Version 1.0.0</p>
+					<p class="bruce-app-desc">Analyze raw reader signal wave intervals safely inside standard sandbox modules.</p>
+				</a>
+
+				<a href="#" class="bruce-card" data-category="utilities badusb">
+					<span class="bruce-badge badge-utilities">Utilities</span>
+					<div class="bruce-image-box"><img src="./img/default.png" alt="Icon" /></div>
+					<h3 class="bruce-app-title">Payload Script Injector</h3>
+					<p class="bruce-app-author">By <span>ArifSec</span></p>
+					<p class="bruce-app-version">Version 1.0.0</p>
+					<p class="bruce-app-desc">Automated macro keyboard generator module for lab penetration testing tasks.</p>
+				</a>
+
+				<a href="#" class="bruce-card" data-category="audio wifi">
+					<span class="bruce-badge badge-audio">Audio</span>
+					<div class="bruce-image-box"><img src="./img/default.png" alt="Icon" /></div>
+					<h3 class="bruce-app-title">Network Tone Generator</h3>
+					<p class="bruce-app-author">By <span>SignalLab</span></p>
+					<p class="bruce-app-version">Version 1.0.0</p>
+					<p class="bruce-app-desc">Translate local WiFi packet sync rates into smooth raw hardware alert buzz frequencies.</p>
+				</a>
+
+			</div>
 		</div>
+
+		<footer class="custom-footer">
+			<div class="footer-icons">
+				<a href="#"><img src="./img/discord.svg" alt="Discord" /></a>
+				<a href="#"><img src="./img/youtube.svg" alt="YouTube" /></a>
+			</div>
+		</footer>
+
+		<script>
+			let currentCategory = 'all';
+
+			function selectCategory(element, category) {
+				let pills = document.getElementsByClassName('category-pill');
+				for (let pill of pills) {
+					pill.classList.remove('active');
+				}
+				element.classList.add('active');
+				currentCategory = category.toLowerCase();
+				filterApps();
+			}
+
+			function filterApps() {
+				let searchInputValue = document.getElementById('appSearchInput').value.toLowerCase();
+				let cards = document.querySelectorAll('#appsGridContainer .bruce-card');
+
+				cards.forEach(card => {
+					let appTitle = card.querySelector('.bruce-app-title').innerText.toLowerCase();
+					let appDescription = card.querySelector('.bruce-app-desc').innerText.toLowerCase();
+					let cardCategories = card.getAttribute('data-category').toLowerCase();
+
+					let matchesSearch = appTitle.includes(searchInputValue) || appDescription.includes(searchInputValue);
+					let matchesCategory = (currentCategory === 'all') || cardCategories.includes(currentCategory);
+
+					if (matchesSearch && matchesCategory) {
+						card.classList.remove('hidden-card');
+					} else {
+						card.classList.add('hidden-card');
+					}
+				});
+			}
+		</script>
 	</body>
 </html>
