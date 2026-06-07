@@ -1,0 +1,1 @@
+import{f as r,a}from"./DoWDRpaz.js";import"./CleSKfPb.js";import{t as e}from"./RHQv2vjA.js";import{s as m}from"./CDp85BZZ.js";import{b as s}from"./BFhS_G1k.js";var f=r('<img alt="Background GIF" class="absolute top-0 left-0 h-full w-full object-cover brightness-75"/>');function g(o){var t=f();e(()=>m(t,"src",`${s??""}/img/purple-aqua.gif`)),a(o,t)}export{g as S};

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # How to Publish an App/Theme to Bruce App Store
 
 This guide will walk you through the process of publishing your app or theme to the Bruce App Store repository.
@@ -400,3 +401,6 @@ If you encounter issues:
 ---
 
 **Ready to publish?** Follow the steps above and submit your Pull Request! 🚀
+=======
+# Bruce-Firmware
+>>>>>>> b20e10b19bf49e448be86dab063f9ba3b98c334f
