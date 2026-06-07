@@ -1188,30 +1188,30 @@
 			// Window Initialization
 			window.onload = function() {
 				// মোবাইল রেসপন্সিভ মেনু টগল
-				const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-				const navLinks = document.getElementById('navLinks');
-				if(mobileMenuBtn && navLinks) {
-					mobileMenuBtn.addEventListener('click', () => {
-						navLinks.classList.toggle('hidden');
-						navLinks.classList.toggle('flex');
-					});
-				}
+			const menuBtn = document.getElementById('mobileMenuBtn');
+			const navLinks = document.getElementById('navLinks');
+			if(menuBtn && navLinks) {
+				menuBtn.addEventListener('click', () => {
+					navLinks.classList.toggle('hidden');
+					navLinks.classList.toggle('flex');
+				});
+			}
 
-				// Detailed Table View Toggle Handler
-				const detailedToggleBtn = document.getElementById('toggleDetailedView');
-				if(detailedToggleBtn) {
-					detailedToggleBtn.addEventListener('click', () => {
-						const detailedElements = document.querySelectorAll('.detailed');
-						detailedElements.forEach(el => {
-							el.classList.toggle('hidden');
-						});
-						if(detailedToggleBtn.innerText === "Show Detailed View") {
-							detailedToggleBtn.innerText = "Hide Detailed View";
-						} else {
-							detailedToggleBtn.innerText = "Show Detailed View";
-						}
+			// Detailed Table View Toggle Handler
+			const detailedToggleBtn = document.getElementById('toggleDetailedView');
+			if(detailedToggleBtn) {
+				detailedToggleBtn.addEventListener('click', () => {
+					const detailedElements = document.querySelectorAll('.detailed');
+					detailedElements.forEach(el => {
+						el.classList.toggle('hidden');
 					});
-				}
+					if(detailedToggleBtn.innerText === "Show Detailed View") {
+						detailedToggleBtn.innerText = "Hide Detailed View";
+					} else {
+						detailedToggleBtn.innerText = "Show Detailed View";
+					}
+				});
+			}
 
 				createFileInputs();
 				setupDragAndDrop();
