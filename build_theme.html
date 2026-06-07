@@ -380,34 +380,34 @@
             background: var(--primary-color);
             color: var(--background-color);
 		   }
+			          #downloadLink {
+    display: flex !important;   /* জাভাস্ক্রিপ্ট যেন এটিকে হাইড করে রাখতে না পারে */
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 32px;
+    background: var(--background-color);
+    color: var(--primary-color);
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    font-size: 1.1rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    border: 2px solid var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin: 30px auto;
+    width: max-content;
+    cursor: pointer;
+}
 
+#downloadLink:hover {
+    background: var(--primary-color);
+    color: var(--background-color);
+    transform: scale(1.05);
+}
 
-			#downloadLink {
-            display: inline-flex;       
-           align-items: center;      
-           justify-content: center;  
-            gap: 10px;                  
-           padding: 16px 36px;         
-           background: var(--background-color);
-           color: var(--primary-color);
-            text-decoration: none;
-            border-radius: var(--border-radius);
-           font-size: 1.15rem;         
-           font-weight: 700;           
-            transition: all 0.3s ease;
-             border: 2px solid var(--primary-color); 
-             text-transform: uppercase;
-             letter-spacing: 1.5px;
-              display: flex;
-              margin: 30px auto;          
-                width: max-content;
-			}
-
-              #downloadLink:hover {
-               background: var(--primary-color);
-               color: var(--background-color);
-                transform: scale(1.05); 
-			  }
+			
 
 
 			.bulk-upload {
@@ -705,26 +705,23 @@
 						</div>
 					</div>
 				</div>
-
 				<div class="bulk-upload">
-					<div class="bulk-drop-zone" id="bulkDropZone">
-						<div class="bulk-upload-text">
-							Drag multiple images here or click to select
-						</div>
-						<input type="file" id="bulkFileInput" multiple accept="image/png, image/jpeg, image/bmp">
-					</div>
-					<div class="unassigned-images" id="unassignedImages"></div>
-				</div>
+    <div class="bulk-drop-zone" id="bulkDropZone">
+        <div class="bulk-upload-text">
+            Drag multiple images here or click to select
+        </div>
+        <input type="file" id="bulkFileInput" multiple accept="image/png, image/jpeg, image/bmp">
+    </div>
+    <div class="unassigned-images" id="unassignedImages"></div>
+</div>
 
-				<div class="image-inputs" id="imageInputs"></div>
+<div class="image-inputs" id="imageInputs"></div>
 
-				<button onclick="generateAndDownload()">Generate and Download</button>
-			</div>
-		</div>
-		
-		
-			
-
+<div class="w-full flex justify-center items-center">
+    <button id="downloadLink" onclick="generateAndDownload()">
+        📥 Generate and Download
+    </button>
+</div>
 			<div class="flex w-full flex-col items-center justify-center px-5 py-12 text-center bg-[#111]/50 border-t border-neutral-900">
 				<div class="max-w-2xl w-full">
 					<h2 class="mb-3 text-2xl font-bold">Need more help?</h2> 
