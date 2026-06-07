@@ -79,45 +79,48 @@
 					</nav>
 				</div>
 			</header> 
+			
+			<section class="relative flex min-h-[400px] w-full flex-col lg:flex-row items-center justify-between overflow-hidden px-6 md:px-12 pt-[140px] pb-10 bg-[#0a0a0a]">
+				<img src="./img/purple-aqua.gif" alt="Background" class="absolute top-0 left-0 h-full w-full object-cover brightness-100 opacity-60 z-0" onerror="this.style.backgroundColor='#0a0a0a'"/>
+
+				<div class="relative z-10 flex flex-col justify-center p-8 text-white md:w-1/2">
+					<h1 class="mb-5 text-5xl md:text-6xl font-bold max-sm:mt-10">Bruce Firmware</h1> 
+					<p class="mb-7 text-xl text-neutral-300">The powerful open-source ESP32 firmware designed for offensive security and Red Team operations.</p> 
+					<div class="flex gap-4">
+						<a href="https://github.com/BruceDevices/Firmware" target="_blank" class="inline-block rounded-lg bg-[#9B51E0] px-6 py-3 text-center text-lg font-bold text-white transition hover:bg-[#8033C7]">Explore GitHub</a> 
+						<a href="./flasher" class="inline-block rounded-lg border-2 border-[#9B51E0] px-6 py-3 text-center text-lg text-[#9B51E0] font-bold transition hover:bg-[#9B51E0] hover:text-white">Install Now</a>
+					</div>
+				</div> 
 				
-				<!-- COMPLETE HERO CLEAN FIX (No extra parent wrappers) -->
-				    <section class="w-full flex items-center justify-center bg-[#0a0a0a] px-4 md:px-16 lg:px-24 py-16">
-    
-    <div class="relative w-full max-w-5xl rounded-2xl overflow-hidden flex flex-col md:flex-row items-center justify-between min-h-[300px] p-6 md:p-10 lg:p-14 bg-transparent">
-        <img src="./img/purple-aqua.gif" alt="Background" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[2500px] h-[700px] object-cover brightness-100 opacity-60 z-0" onerror="this.style.backgroundColor='#0a0a0a'"/>
-
-        <div class="relative z-10 w-full md:w-[50%] flex flex-col justify-center text-white text-center md:text-left mb-8 md:mb-0">
-            <h1 class="mb-4 text-4xl md:text-5xl font-bold tracking-tight">
-                Bruce Firmware
-            </h1> 
-            <p class="mb-6 text-base md:text-lg text-neutral-200 max-w-md max-md:mx-auto leading-relaxed">
-                The powerful open-source ESP32 firmware designed for offensive security and Red Team operations.
-            </p> 
-            <div class="flex gap-4 justify-center md:justify-start">
-                <a href="https://github.com/BruceDevices/Firmware" target="_blank" class="inline-block rounded-lg bg-[#9B51E0] px-5 py-2.5 text-center text-base font-bold text-white transition duration-200 hover:scale-[1.02] hover:bg-[#8033C7]">Explore GitHub</a> 
-                <a href="./flasher" class="inline-block rounded-lg border-2 border-[#9B51E0] px-5 py-2.5 text-center text-base text-[#9B51E0] font-bold transition duration-200 hover:scale-[1.02] hover:bg-[#9B51E0] hover:text-white">Install Now</a>
-            </div>
-        </div> 
-        
-        <div class="relative z-10 w-full md:w-[45%] flex flex-col items-center justify-center">
-            <div class="big-slider-container w-full max-w-[380px] md:max-w-[440px] aspect-[4/3] flex items-center justify-center">
-                <img id="sliderImg" src="https://raw.githubusercontent.com/mdarif76769/Bruce-Firmware/main/img/bruce-pcb.png" alt="Bruce Showcase" class="max-w-full max-h-full object-contain filter drop-shadow-[0_12px_22px_rgba(155,81,224,0.35)]">
-            </div>
-            
-            <div class="flex gap-2.5 mt-4 justify-center w-full" id="sliderDots">
-                <span class="dot w-2 h-2 rounded-full bg-neutral-600 active" onclick="setSlide(0)"></span>
-                <span class="dot w-2 h-2 rounded-full bg-neutral-600" onclick="setSlide(1)"></span>
-                <span class="dot w-2 h-2 rounded-full bg-neutral-600" onclick="setSlide(2)"></span>
-                <span class="dot w-2 h-2 rounded-full bg-neutral-600" onclick="setSlide(3)"></span>
-                <span class="dot w-2 h-2 rounded-full bg-neutral-600" onclick="setSlide(4)"></span>
-                <span class="dot w-2 h-2 rounded-full bg-neutral-600" onclick="setSlide(5)"></span>
-                <span class="dot w-2 h-2 rounded-full bg-neutral-600" onclick="setSlide(6)"></span>
-            </div>
-        </div>
-
-    </div>
-</section>
-
+				<div class="relative z-10 w-full lg:w-1/2 flex flex-col items-center justify-center p-4">
+					<div class="big-slider-container">
+						<img id="sliderImg" src="https://raw.githubusercontent.com/mdarif76769/Bruce-Firmware/main/img/bruce-pcb.png" alt="Bruce Hardware Media Preview">
+					</div>
+					<div class="flex gap-2 mt-7 justify-center" id="sliderDots">
+						<span class="dot w-2.5 h-2.5 rounded-full bg-neutral-600 active" onclick="setSlide(0)"></span>
+						<span class="dot w-2.5 h-2.5 rounded-full bg-neutral-600" onclick="setSlide(1)"></span>
+						<span class="dot w-2.5 h-2.5 rounded-full bg-neutral-600" onclick="setSlide(2)"></span>
+						<span class="dot w-2.5 h-2.5 rounded-full bg-neutral-600" onclick="setSlide(3)"></span>
+						<span class="dot w-2.5 h-2.5 rounded-full bg-neutral-600" onclick="setSlide(4)"></span>
+						<span class="dot w-2.5 h-2.5 rounded-full bg-neutral-600" onclick="setSlide(5)"></span>
+						<span class="dot w-2.5 h-2.5 rounded-full bg-neutral-600" onclick="setSlide(6)"></span>
+					</div>
+				</div>
+			</section> 
+								
+			<div class="p-10 text-center">
+				<div class="max-w-6xl mx-auto">
+					<h1 class="mb-10 text-3xl font-bold text-purple-500">Why Bruce?</h1> 
+					<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+						<div class="rounded-lg bg-[#111] p-6 border border-neutral-800 hover:scale-105 transition duration-300"><h3 class="mb-3 text-lg font-bold text-purple-400">True Open-Source</h3> <p class="text-sm text-gray-400">Bruce fw is licensed under <b><a href="https://www.gnu.org/licenses/agpl-3.0.en.html#license-text" target="_blank" class="underline">AGPL</a></b>, and Hardware is <b><a href="https://ohwr.org/project/cernohl/-/wikis/uploads/3eff4154d05e7a0459f3ddbf0674cae4/cern_ohl_p_v2.txt" target="_blank" class="underline">CERN-OHL-P-2.0</a></b>.</p></div>
+						<div class="rounded-lg bg-[#111] p-6 border border-neutral-800 hover:scale-105 transition duration-300"><h3 class="mb-3 text-lg font-bold text-purple-400">Cross-Platform</h3> <p class="text-sm text-gray-400">Bruce runs seamlessly on M5Stack, LilyGo, CYD, and custom ESP32-based devices.</p></div>
+						<div class="rounded-lg bg-[#111] p-6 border border-neutral-800 hover:scale-105 transition duration-300"><h3 class="mb-3 text-lg font-bold text-purple-400">2.4/5Ghz Wi-Fi Attacks</h3> <p class="text-sm text-gray-400">Supports Evil Portal, Wardriving, EAPOL handshake capture, Deauth and advanced network mapping.</p></div>
+						<div class="rounded-lg bg-[#111] p-6 border border-neutral-800 hover:scale-105 transition duration-300"><h3 class="mb-3 text-lg font-bold text-purple-400">Documentation</h3> <p class="text-sm text-gray-400">The project has full information about the features and modules supported available on the official <a href="https://wiki.bruce.computer/" class="underline">Wiki</a>.</p></div>
+						<div class="rounded-lg bg-[#111] p-6 border border-neutral-800 hover:scale-105 transition duration-300"><h3 class="mb-3 text-lg font-bold text-purple-400">SubGHz and RFID</h3> <p class="text-sm text-gray-400">Supports several peripheral modules and hardware layers with advanced frequency transceivers.</p></div>
+						<div class="rounded-lg bg-[#111] p-6 border border-neutral-800 hover:scale-105 transition duration-300"><h3 class="mb-3 text-lg font-bold text-purple-400">Active Community</h3> <p class="text-sm text-gray-400">Regular rolling updates, community patches, and rapid deployment of new exploit modules.</p></div>
+					</div>
+				</div>
+			</div> 
 
 			<div class="flex w-full items-center justify-center px-5 py-12 text-center">
 				<div class="w-full max-w-4xl">
