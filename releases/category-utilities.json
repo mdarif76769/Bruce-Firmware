@@ -1,0 +1,70 @@
+{
+  "category": "Utilities",
+  "count": 6,
+  "apps": [
+    {
+      "name": "Calculator",
+      "description": "Calculator",
+      "version": "1.0.1",
+      "supported-devices": "M5Stick.*",
+      "slug": "BruceDevices/firmware/Calculator M5 Stick",
+      "n": "Calculator",
+      "d": "Calculator",
+      "v": "1.0.1",
+      "s": "BruceDevices/firmware/Calculator M5 Stick",
+      "sd": "M5Stick.*"
+    },
+    {
+      "name": "Calculator",
+      "description": "Calculator",
+      "version": "1.0.1",
+      "supported-devices": "T-Embed.*",
+      "slug": "BruceDevices/firmware/Calculator T-Embed",
+      "n": "Calculator",
+      "d": "Calculator",
+      "v": "1.0.1",
+      "s": "BruceDevices/firmware/Calculator T-Embed",
+      "sd": "T-Embed.*"
+    },
+    {
+      "name": "Crypto Prices",
+      "description": "Track real-time crypto prices",
+      "version": "1.0.1",
+      "slug": "BruceDevices/firmware/Crypto Prices",
+      "n": "Crypto Prices",
+      "d": "Track real-time crypto prices",
+      "v": "1.0.1",
+      "s": "BruceDevices/firmware/Crypto Prices"
+    },
+    {
+      "name": "Flashlight",
+      "description": "Simple multi-colour flashlight",
+      "version": "1.0.1",
+      "slug": "emericklaw/Bruce-Flashlight-App/Flashlight",
+      "n": "Flashlight",
+      "d": "Simple multi-colour flashlight",
+      "v": "1.0.1",
+      "s": "emericklaw/Bruce-Flashlight-App/Flashlight"
+    },
+    {
+      "name": "Hello World",
+      "description": "A simple test app for the Bruce JavaScript interpreter that displays 'Hello World!' on the screen.",
+      "version": "1.0.0",
+      "slug": "emericklaw/Bruce-Hello-World-Example-App/Hello World",
+      "n": "Hello World",
+      "d": "A simple test app for the Bruce JavaScript interpreter that displays 'Hello World!' on the screen.",
+      "v": "1.0.0",
+      "s": "emericklaw/Bruce-Hello-World-Example-App/Hello World"
+    },
+    {
+      "name": "Web Browser",
+      "description": "Very basic web browser",
+      "version": "1.0.1",
+      "slug": "BruceDevices/firmware/Web Browser",
+      "n": "Web Browser",
+      "d": "Very basic web browser",
+      "v": "1.0.1",
+      "s": "BruceDevices/firmware/Web Browser"
+    }
+  ]
+}

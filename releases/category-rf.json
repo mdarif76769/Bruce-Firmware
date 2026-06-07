@@ -1,0 +1,28 @@
+{
+  "category": "RF",
+  "count": 2,
+  "apps": [
+    {
+      "name": "ProtoPirate",
+      "description": "Car key fob decoder with 11 protocols (Kia, Chrysler/Jeep, StarLine, Scher-Khan, Subaru, Fiat, Ford, Suzuki), frequency selection (315/433/868 MHz), load/save .sub files, rolling code TX.",
+      "version": "2.2.0",
+      "supported-devices": "Lilygo T-Embed CC1101",
+      "slug": "jsauce454/ProtoPirate-Bruce/ProtoPirate Bruce",
+      "n": "ProtoPirate",
+      "d": "Car key fob decoder with 11 protocols (Kia, Chrysler/Jeep, StarLine, Scher-Khan, Subaru, Fiat, Ford, Suzuki), frequency selection (315/433/868 MHz), load/save .sub files, rolling code TX.",
+      "v": "2.2.0",
+      "s": "jsauce454/ProtoPirate-Bruce/ProtoPirate Bruce",
+      "sd": "Lilygo T-Embed CC1101"
+    },
+    {
+      "name": "RF Brute Force",
+      "description": "Brute force RF signals",
+      "version": "1.0.3",
+      "slug": "BruceDevices/firmware/RF Brute Force",
+      "n": "RF Brute Force",
+      "d": "Brute force RF signals",
+      "v": "1.0.3",
+      "s": "BruceDevices/firmware/RF Brute Force"
+    }
+  ]
+}

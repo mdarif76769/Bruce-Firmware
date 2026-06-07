@@ -1,0 +1,56 @@
+{
+  "category": "Tools",
+  "count": 4,
+  "apps": [
+    {
+      "name": "App Store",
+      "description": "App store for Bruce devices with over-the-air install and updates for scripts and themes",
+      "version": "1.0.1",
+      "slug": "BruceDevices/App-Store/App Store",
+      "n": "App Store",
+      "d": "App store for Bruce devices with over-the-air install and updates for scripts and themes",
+      "v": "1.0.1",
+      "s": "BruceDevices/App-Store/App Store"
+    },
+    {
+      "name": "Device Info",
+      "description": "Device information display showing hardware details and memory statistics",
+      "version": "1.0.1",
+      "slug": "emericklaw/Bruce-Device-Info-App/Device Info",
+      "n": "Device Info",
+      "d": "Device information display showing hardware details and memory statistics",
+      "v": "1.0.1",
+      "s": "emericklaw/Bruce-Device-Info-App/Device Info"
+    },
+    {
+      "name": "Key Decoding",
+      "description": "Decode and randomly generate key bitting patterns for a bunch of lock brands",
+      "version": "1.14.1",
+      "supported-devices": [
+        "Lilygo T-Embed",
+        "Lilygo T-Embed CC1101",
+        "Smoochiee Board"
+      ],
+      "slug": "SasPes/key-decoding/Key Decoding",
+      "n": "Key Decoding",
+      "d": "Decode and randomly generate key bitting patterns for a bunch of lock brands",
+      "v": "1.14.1",
+      "s": "SasPes/key-decoding/Key Decoding",
+      "sd": [
+        "Lilygo T-Embed",
+        "Lilygo T-Embed CC1101",
+        "Smoochiee Board"
+      ]
+    },
+    {
+      "name": "Lock Device",
+      "description": "Password protection app that locks your Bruce device on startup or on-demand",
+      "version": "1.1.1",
+      "slug": "emericklaw/Bruce-Lock-Device-App/Lock Device",
+      "n": "Lock Device",
+      "d": "Password protection app that locks your Bruce device on startup or on-demand",
+      "v": "1.1.1",
+      "s": "emericklaw/Bruce-Lock-Device-App/Lock Device"
+    }
+  ]
+}

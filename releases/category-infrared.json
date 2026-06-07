@@ -1,0 +1,26 @@
+{
+  "category": "Infrared",
+  "count": 2,
+  "apps": [
+    {
+      "name": "IR Brute Force",
+      "description": "Brute force IR remote control codes",
+      "version": "1.0.1",
+      "slug": "BruceDevices/firmware/IR Brute Force",
+      "n": "IR Brute Force",
+      "d": "Brute force IR remote control codes",
+      "v": "1.0.1",
+      "s": "BruceDevices/firmware/IR Brute Force"
+    },
+    {
+      "name": "IR2Keyboard",
+      "description": "Use any IR remote to send commands to your pc requires: IR receiver + USBHID-capable device",
+      "version": "1.0.1",
+      "slug": "BruceDevices/firmware/IR2Keyboard",
+      "n": "IR2Keyboard",
+      "d": "Use any IR remote to send commands to your pc requires: IR receiver + USBHID-capable device",
+      "v": "1.0.1",
+      "s": "BruceDevices/firmware/IR2Keyboard"
+    }
+  ]
+}
