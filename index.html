@@ -93,46 +93,44 @@
     </div> 
 				
 				<!-- COMPLETE HERO CLEAN FIX (No extra parent wrappers) -->
-				<section class="w-full flex items-center justify-center bg-[#0a0a0a] px-4 md:px-16 lg:px-24 py-16">
+				    <section class="w-full flex justify-center bg-[#0a0a0a] px-4 md:px-16 lg:px-24 pt-[130px] pb-12">
     
-    <div class="relative w-full max-w-5xl rounded-2xl overflow-hidden flex flex-col md:flex-row items-center justify-between min-h-[400px] p-6 md:p-10 lg:p-14 bg-transparent">
+    <div class="relative w-full max-w-6xl rounded-2xl overflow-hidden flex flex-col lg:flex-row items-center justify-between min-h-[440px] p-6 md:p-12 lg:p-16">
         
-        <img src="./img/purple-aqua.gif" alt="Hero Matrix" class="absolute inset-0 w-full h-full object-cover brightness-95 opacity-55 z-0" onerror="this.style.backgroundColor='#111'">
+        <img src="./img/purple-aqua.gif" alt="Background" class="absolute inset-0 w-full h-full object-cover brightness-100 opacity-60 z-0" onerror="this.style.backgroundColor='#0a0a0a'"/>
 
-        <div class="relative z-10 w-full md:w-[50%] flex flex-col justify-center text-white text-center md:text-left mb-8 md:mb-0">
-            <h1 class="mb-4 text-4xl md:text-5xl font-bold tracking-tight">
-                Bruce Firmware
+        <div class="relative z-10 w-full lg:w-[55%] flex flex-col justify-center text-white text-center lg:text-left mb-10 lg:mb-0">
+            <h1 class="mb-5 text-4xl md:text-6xl font-bold tracking-tight">
+                Bruce Web Flasher
             </h1> 
-            <p class="mb-6 text-base md:text-lg text-neutral-200 max-w-md max-md:mx-auto leading-relaxed">
-                The powerful open-source ESP32 firmware designed for offensive security and Red Team operations.
+            <p class="mb-7 text-xl text-neutral-300 max-w-xl max-lg:mx-auto leading-relaxed">
+                Flash your device easily with our online installer!
             </p> 
-            <div class="flex gap-4 justify-center md:justify-start">
-                <a href="https://github.com/BruceDevices/Firmware" target="_blank" class="inline-block rounded-lg bg-[#9B51E0] px-5 py-2.5 text-center text-base font-bold text-white transition duration-200 hover:scale-[1.02] hover:bg-[#8033C7]">Explore GitHub</a> 
-                <a href="./flasher" class="inline-block rounded-lg border-2 border-[#9B51E0] px-5 py-2.5 text-center text-base text-[#9B51E0] font-bold transition duration-200 hover:scale-[1.02] hover:bg-[#9B51E0] hover:text-white">Install Now</a>
+            <div class="flex gap-4 justify-center lg:justify-start">
+                <a href="https://github.com/BruceDevices/Firmware" target="_blank" class="inline-block rounded-lg bg-[#9B51E0] px-6 py-3 text-center text-lg font-bold text-white transition duration-300 hover:scale-105 hover:bg-[#8033C7]">Explore GitHub</a> 
+                <a href="./flasher" class="inline-block rounded-lg border-2 border-[#9B51E0] px-6 py-3 text-center text-lg text-[#9B51E0] font-bold transition duration-300 hover:scale-105 hover:bg-[#9B51E0] hover:text-white">Install Now</a>
             </div>
         </div> 
-        
-        <div class="relative z-10 w-full md:w-[45%] flex flex-col items-center justify-center">
-            <div class="big-slider-container w-full max-w-[380px] md:max-w-[440px] aspect-[4/3] flex items-center justify-center">
-                <img id="sliderImg" src="https://raw.githubusercontent.com/mdarif76769/Bruce-Firmware/main/img/bruce-pcb.png" alt="Bruce Showcase" class="max-w-full max-h-full object-contain filter drop-shadow-[0_12px_22px_rgba(155,81,224,0.35)]">
+
+        <div class="relative z-10 w-full lg:w-[40%] flex flex-col items-center justify-center">
+            <div class="big-slider-container w-full max-w-[380px] lg:max-w-[450px] aspect-[4/3] flex items-center justify-center bg-transparent">
+                <img id="sliderImg" src="https://raw.githubusercontent.com/mdarif76769/Bruce-Firmware/main/img/cardputer.png" alt="Bruce Hardware Media Preview" class="max-w-full max-h-full object-contain filter drop-shadow-[0_12px_25px_rgba(155,81,224,0.4)]">
             </div>
             
-            <div class="flex gap-2.5 mt-4 justify-center w-full" id="sliderDots">
-                <span class="dot w-2 h-2 rounded-full bg-neutral-600 active" onclick="setSlide(0)"></span>
-                <span class="dot w-2 h-2 rounded-full bg-neutral-600" onclick="setSlide(1)"></span>
-                <span class="dot w-2 h-2 rounded-full bg-neutral-600" onclick="setSlide(2)"></span>
-                <span class="dot w-2 h-2 rounded-full bg-neutral-600" onclick="setSlide(3)"></span>
-                <span class="dot w-2 h-2 rounded-full bg-neutral-600" onclick="setSlide(4)"></span>
-                <span class="dot w-2 h-2 rounded-full bg-neutral-600" onclick="setSlide(5)"></span>
-                <span class="dot w-2 h-2 rounded-full bg-neutral-600" onclick="setSlide(6)"></span>
+            <div class="flex gap-2.5 mt-6 justify-center w-full" id="sliderDots">
+                <span class="dot w-2.5 h-2.5 rounded-full bg-neutral-600 active" onclick="setSlide(0)"></span>
+                <span class="dot w-2.5 h-2.5 rounded-full bg-neutral-600" onclick="setSlide(1)"></span>
+                <span class="dot w-2.5 h-2.5 rounded-full bg-neutral-600" onclick="setSlide(2)"></span>
+                <span class="dot w-2.5 h-2.5 rounded-full bg-neutral-600" onclick="setSlide(3)"></span>
+                <span class="dot w-2.5 h-2.5 rounded-full bg-neutral-600" onclick="setSlide(4)"></span>
+                <span class="dot w-2.5 h-2.5 rounded-full bg-neutral-600" onclick="setSlide(5)"></span>
+                <span class="dot w-2.5 h-2.5 rounded-full bg-neutral-600" onclick="setSlide(6)"></span>
             </div>
         </div>
 
     </div>
 </section>
-
-
-    				
+				
 			<div class="p-10 text-center">
 				<div class="max-w-6xl mx-auto">
 					<h1 class="mb-10 text-3xl font-bold text-purple-500">Why Bruce?</h1> 
