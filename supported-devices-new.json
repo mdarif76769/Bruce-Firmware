@@ -1,0 +1,74 @@
+[
+    {
+        "name": "M5Stack Cardputer",
+        "screen-size": "240x135"
+    },
+    {
+        "name": "M5Stack Cardputer Adv",
+        "screen-size": "240x135"
+    },
+    {
+        "name": "M5Stack StickS3",
+        "screen-size": "240x135"
+    },
+    {
+        "name": "M5Stack StickC-Plus 2",
+        "screen-size": "240x135"
+    },
+    {
+        "name": "M5Stack StickC-Plus 1.1",
+        "screen-size": "240x135"
+    },
+    {
+        "name": "M5Stack Core",
+        "screen-size": "320x240"
+    },
+    {
+        "name": "M5Stack Core2",
+        "screen-size": "320x240"
+    },
+    {
+        "name": "M5Stack CoreS3/SE",
+        "screen-size": "320x240"
+    },
+    {
+        "name": "CYD-2432S028",
+        "screen-size": "320x240"
+    },
+    {
+        "name": "CYD-3248S035",
+        "screen-size": "480x320"
+    },
+    {
+        "name": "Lilygo T-Embed CC1101",
+        "screen-size": "320x170"
+    },
+    {
+        "name": "Lilygo T-Embed CC1101 Plus",
+        "screen-size": "320x170"
+    },
+    {
+        "name": "Lilygo T-LoRa Pager",
+        "screen-size": "480×222"
+    },
+    {
+        "name": "Lilygo T-Display-S3",
+        "screen-size": "320x170"
+    },
+    {
+        "name": "Lilygo T-Deck (and Pro)",
+        "screen-size": "320x240"
+    },
+    {
+        "name": "Lilygo T-Watch-S3",
+        "screen-size": "240x240"
+    },
+    {
+        "name": "Smoochiee V2",
+        "screen-size": "320x170"
+    },
+    {
+        "name": "ESP32-C5",
+        "screen-size": "320x170"
+    }
+]

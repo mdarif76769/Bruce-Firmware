@@ -1,0 +1,31 @@
+name: Merged PR
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  cleanup-labels:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    
+    permissions:
+      issues: write
+      pull-requests: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Run PR cleanup script
+        run: node .github/scripts/cleanup-merged-pr.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
+          GITHUB_EVENT_PATH: ${{ github.event_path }}

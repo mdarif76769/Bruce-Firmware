@@ -1,0 +1,114 @@
+name: Generate Release Files
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'releases/**'
+      - 'repositories/**'
+      - '*.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-releases:
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Generate category files
+        run: |
+          node .github/scripts/generate-category.json-files.js
+
+      - name: Commit category.json files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          if [ -d "releases" ] && [ "$(ls -A releases/category-*.json 2>/dev/null)" ]; then
+            git add releases/category-*.json
+            if git diff --staged --quiet; then
+              echo "No category file changes to commit"
+            else
+              git commit -m "Update category.json files [skip ci]"
+            fi
+          else
+            echo "No category.json files to commit"
+          fi
+
+      - name: Generate category.min files
+        run: |
+          node .github/scripts/generate-category-min.json-files.js
+
+      - name: Commit category.min.json files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          if [ -d "releases" ] && [ "$(ls -A releases/category-*.min.json 2>/dev/null)" ]; then
+            git add releases/category-*.min.json
+            if git diff --staged --quiet; then
+              echo "No category.min.json file changes to commit"
+            else
+              git commit -m "Update category.min.json files [skip ci]"
+            fi
+          else
+            echo "No category.min.json files to commit"
+          fi
+
+      - name: Generate categories.json
+        run: |
+          node .github/scripts/generate-categories.json.js
+
+      - name: Commit categories.json
+        run: |
+          if [ -f "releases/categories.json" ]; then
+            git add releases/categories.json
+            if git diff --staged --quiet; then
+              echo "No categories.json changes to commit"
+            else
+              git commit -m "Update categories.json [skip ci]"
+              git push
+            fi
+          else
+            echo "No categories.json to commit"
+          fi
+
+      - name: Generate category-all.json
+        run: |
+          node .github/scripts/generate-category-all.json.js
+
+      - name: Commit category-all.json
+        run: |
+          if [ -f "releases/category-all.json" ]; then
+            git add releases/category-all.json
+            if git diff --staged --quiet; then
+              echo "No category-all.json changes to commit"
+            else
+              git commit -m "Update category-all.json [skip ci]"
+              git push
+            fi
+          else
+            echo "No category-all.json to commit"
+          fi
+
+      - name: Invalidate proxy cache
+        env:
+          PROXY_CACHE_BUST_API_KEY: ${{ secrets.PROXY_CACHE_BUST_API_KEY }}
+        run: |
+          echo "Invalidating main cache..."
+          curl -X DELETE -H "Authorization: Bearer $PROXY_CACHE_BUST_API_KEY" http://ghp.iceis.co.uk/invalidate-cache/main
+          echo "Invalidating manual cache..."
+          curl -X DELETE -H "Authorization: Bearer $PROXY_CACHE_BUST_API_KEY" http://ghp.iceis.co.uk/invalidate-cache/manual
+          echo "Cache invalidation completed"
