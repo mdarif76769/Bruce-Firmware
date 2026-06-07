@@ -1,6 +1,6 @@
 {
-  "generated": 1773584488,
-  "generatedISO": "2026-03-15T14:21:28.970Z",
+  "generated": 1780835419,
+  "generatedISO": "2026-06-07T12:30:19.270Z",
   "totalCategories": 8,
   "totalApps": 59,
   "categories": [
@@ -22,7 +22,7 @@
             "Cricket.js"
           ],
           "slug": "sloth632/Cricket-app/Cricket",
-          "lastUpdated": 1771032333,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/sloth632/Cricket-app/Cricket/metadata.json"
         },
         {
@@ -41,7 +41,7 @@
             }
           ],
           "slug": "BruceDevices/firmware/DTMF Tones",
-          "lastUpdated": 1769975681,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/firmware/DTMF Tones/metadata.json"
         },
         {
@@ -60,7 +60,7 @@
             }
           ],
           "slug": "MiskaJuro/bruce-applications/Morse-Code",
-          "lastUpdated": 1773584432,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/MiskaJuro/bruce-applications/Morse-Code/metadata.json"
         },
         {
@@ -76,7 +76,7 @@
             "Nokia.js"
           ],
           "slug": "sloth632/Nokia-app/Nokia",
-          "lastUpdated": 1771032333,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/sloth632/Nokia-app/Nokia/metadata.json"
         },
         {
@@ -92,11 +92,11 @@
             "Tone Generator.js"
           ],
           "slug": "emericklaw/Bruce-Tone-Generator-App/Tone Generator",
-          "lastUpdated": 1769395239,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/emericklaw/Bruce-Tone-Generator-App/Tone Generator/metadata.json"
         }
       ],
-      "lastUpdated": 1773584432
+      "lastUpdated": 1780834983
     },
     {
       "name": "Games",
@@ -120,7 +120,7 @@
             }
           ],
           "slug": "BruceDevices/firmware/Arcade Games",
-          "lastUpdated": 1769975681,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/firmware/Arcade Games/metadata.json"
         },
         {
@@ -140,7 +140,7 @@
             }
           ],
           "slug": "BruceDevices/firmware/Dino",
-          "lastUpdated": 1769975681,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/firmware/Dino/metadata.json"
         },
         {
@@ -159,7 +159,7 @@
             }
           ],
           "slug": "BruceDevices/firmware/Highway Racer",
-          "lastUpdated": 1769975681,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/firmware/Highway Racer/metadata.json"
         },
         {
@@ -183,7 +183,7 @@
             "Smoochiee Board"
           ],
           "slug": "SasPes/magic-8-ball/Magic 8 Ball",
-          "lastUpdated": 1770152020,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/SasPes/magic-8-ball/Magic 8 Ball/metadata.json"
         },
         {
@@ -202,7 +202,7 @@
             }
           ],
           "slug": "BruceDevices/firmware/Ping Pong",
-          "lastUpdated": 1769975681,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/firmware/Ping Pong/metadata.json"
         },
         {
@@ -222,7 +222,7 @@
             }
           ],
           "slug": "BruceDevices/firmware/Snake Cardputer",
-          "lastUpdated": 1769975681,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/firmware/Snake Cardputer/metadata.json"
         },
         {
@@ -242,7 +242,7 @@
             }
           ],
           "slug": "BruceDevices/firmware/Snake M5 Stick",
-          "lastUpdated": 1769975681,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/firmware/Snake M5 Stick/metadata.json"
         },
         {
@@ -261,7 +261,7 @@
             }
           ],
           "slug": "BruceDevices/firmware/Space Shooter",
-          "lastUpdated": 1769975681,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/firmware/Space Shooter/metadata.json"
         },
         {
@@ -280,11 +280,11 @@
             }
           ],
           "slug": "BruceDevices/firmware/Tamagochi",
-          "lastUpdated": 1769975681,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/firmware/Tamagochi/metadata.json"
         }
       ],
-      "lastUpdated": 1770152020
+      "lastUpdated": 1780834983
     },
     {
       "name": "Infrared",
@@ -307,7 +307,7 @@
             }
           ],
           "slug": "BruceDevices/firmware/IR Brute Force",
-          "lastUpdated": 1769976423,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/firmware/IR Brute Force/metadata.json"
         },
         {
@@ -326,11 +326,11 @@
             }
           ],
           "slug": "BruceDevices/firmware/IR2Keyboard",
-          "lastUpdated": 1769975681,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/firmware/IR2Keyboard/metadata.json"
         }
       ],
-      "lastUpdated": 1769976423
+      "lastUpdated": 1780834983
     },
     {
       "name": "RF",
@@ -351,7 +351,7 @@
             "ProtoPirate.js"
           ],
           "slug": "jsauce454/ProtoPirate-Bruce/ProtoPirate Bruce",
-          "lastUpdated": 1772244087,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/jsauce454/ProtoPirate-Bruce/ProtoPirate Bruce/metadata.json"
         },
         {
@@ -370,11 +370,11 @@
             }
           ],
           "slug": "BruceDevices/firmware/RF Brute Force",
-          "lastUpdated": 1770902042,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/firmware/RF Brute Force/metadata.json"
         }
       ],
-      "lastUpdated": 1772244087
+      "lastUpdated": 1780834983
     },
     {
       "name": "Themes",
@@ -413,7 +413,7 @@
             "WIFI.png"
           ],
           "slug": "BruceDevices/App-Store-Apps/Bebra First Creation 320x170",
-          "lastUpdated": 1772243047,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/App-Store-Apps/Bebra First Creation 320x170/metadata.json"
         },
         {
@@ -447,7 +447,7 @@
             "blws_t-embed_connect.gif"
           ],
           "slug": "Fantailed/BLWS/BLWS",
-          "lastUpdated": 1771630606,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/Fantailed/BLWS/BLWS/metadata.json"
         },
         {
@@ -481,7 +481,7 @@
             "WiFi.gif"
           ],
           "slug": "emericklaw/Bruce-Theme/Bruce Theme GIF-240x135px",
-          "lastUpdated": 1769978902,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/emericklaw/Bruce-Theme/Bruce Theme GIF-240x135px/metadata.json"
         },
         {
@@ -515,7 +515,7 @@
             "WiFi.gif"
           ],
           "slug": "emericklaw/Bruce-Theme/Bruce Theme GIF-320x170px",
-          "lastUpdated": 1769978902,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/emericklaw/Bruce-Theme/Bruce Theme GIF-320x170px/metadata.json"
         },
         {
@@ -549,7 +549,7 @@
             "WiFi.gif"
           ],
           "slug": "emericklaw/Bruce-Theme/Bruce Theme GIF-320x240px",
-          "lastUpdated": 1769978902,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/emericklaw/Bruce-Theme/Bruce Theme GIF-320x240px/metadata.json"
         },
         {
@@ -583,7 +583,7 @@
             "WiFi.gif"
           ],
           "slug": "emericklaw/Bruce-Theme/Bruce Theme GIF-480x222px",
-          "lastUpdated": 1769978902,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/emericklaw/Bruce-Theme/Bruce Theme GIF-480x222px/metadata.json"
         },
         {
@@ -617,7 +617,7 @@
             "WiFi.png"
           ],
           "slug": "emericklaw/Bruce-Theme/Bruce Theme PNG-240x135px",
-          "lastUpdated": 1769978902,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/emericklaw/Bruce-Theme/Bruce Theme PNG-240x135px/metadata.json"
         },
         {
@@ -651,7 +651,7 @@
             "WiFi.png"
           ],
           "slug": "emericklaw/Bruce-Theme/Bruce Theme PNG-320x170px",
-          "lastUpdated": 1769978902,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/emericklaw/Bruce-Theme/Bruce Theme PNG-320x170px/metadata.json"
         },
         {
@@ -685,7 +685,7 @@
             "WiFi.png"
           ],
           "slug": "emericklaw/Bruce-Theme/Bruce Theme PNG-320x240px",
-          "lastUpdated": 1769978902,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/emericklaw/Bruce-Theme/Bruce Theme PNG-320x240px/metadata.json"
         },
         {
@@ -719,7 +719,7 @@
             "WiFi.png"
           ],
           "slug": "emericklaw/Bruce-Theme/Bruce Theme PNG-480x222px",
-          "lastUpdated": 1769978902,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/emericklaw/Bruce-Theme/Bruce Theme PNG-480x222px/metadata.json"
         },
         {
@@ -755,7 +755,7 @@
             "WiFi.gif"
           ],
           "slug": "CreeperRick/BruceStore/Cyber Hacker 240x135",
-          "lastUpdated": 1772536015,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/CreeperRick/BruceStore/Cyber Hacker 240x135/metadata.json"
         },
         {
@@ -791,7 +791,7 @@
             "WiFi.gif"
           ],
           "slug": "CreeperRick/BruceStore/Cyber Hacker 320x170",
-          "lastUpdated": 1772536015,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/CreeperRick/BruceStore/Cyber Hacker 320x170/metadata.json"
         },
         {
@@ -827,7 +827,7 @@
             "WiFi.gif"
           ],
           "slug": "CreeperRick/BruceStore/Cyber Hacker v2 240x135",
-          "lastUpdated": 1772536015,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/CreeperRick/BruceStore/Cyber Hacker v2 240x135/metadata.json"
         },
         {
@@ -863,7 +863,7 @@
             "WiFi.gif"
           ],
           "slug": "CreeperRick/BruceStore/Cyber Hacker v2 320x170",
-          "lastUpdated": 1772536015,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/CreeperRick/BruceStore/Cyber Hacker v2 320x170/metadata.json"
         },
         {
@@ -897,7 +897,7 @@
             "9.png"
           ],
           "slug": "BruceDevices/App-Store-Apps/Cyberpunk 2077 320x170",
-          "lastUpdated": 1770861240,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/App-Store-Apps/Cyberpunk 2077 320x170/metadata.json"
         },
         {
@@ -931,7 +931,7 @@
             "wifi.png"
           ],
           "slug": "BruceDevices/App-Store-Apps/Dark Mode 240x135",
-          "lastUpdated": 1770861456,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/App-Store-Apps/Dark Mode 240x135/metadata.json"
         },
         {
@@ -965,7 +965,7 @@
             "wifi.png"
           ],
           "slug": "BruceDevices/App-Store-Apps/Dark Mode 320x170",
-          "lastUpdated": 1770861240,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/App-Store-Apps/Dark Mode 320x170/metadata.json"
         },
         {
@@ -999,7 +999,7 @@
             "wifi.png"
           ],
           "slug": "BruceDevices/App-Store-Apps/Flipper 240x135",
-          "lastUpdated": 1770861240,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/App-Store-Apps/Flipper 240x135/metadata.json"
         },
         {
@@ -1033,7 +1033,7 @@
             "wifi.png"
           ],
           "slug": "BruceDevices/App-Store-Apps/Flipper 320x170",
-          "lastUpdated": 1770861240,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/App-Store-Apps/Flipper 320x170/metadata.json"
         },
         {
@@ -1067,7 +1067,7 @@
             "wifi.png"
           ],
           "slug": "BruceDevices/App-Store-Apps/Flipper Color 320x170",
-          "lastUpdated": 1770861240,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/App-Store-Apps/Flipper Color 320x170/metadata.json"
         },
         {
@@ -1103,7 +1103,7 @@
             "ycpshnq_cm_fu_zpzreirq.png"
           ],
           "slug": "BruceDevices/App-Store-Apps/GhostStrats 320x170",
-          "lastUpdated": 1770861240,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/App-Store-Apps/GhostStrats 320x170/metadata.json"
         },
         {
@@ -1137,7 +1137,7 @@
             "rfid.png"
           ],
           "slug": "BruceDevices/App-Store-Apps/Mad Shark 320x170",
-          "lastUpdated": 1770861240,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/App-Store-Apps/Mad Shark 320x170/metadata.json"
         },
         {
@@ -1171,7 +1171,7 @@
             "wifi.png"
           ],
           "slug": "BruceDevices/App-Store-Apps/Modern UI 240x135",
-          "lastUpdated": 1770861456,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/App-Store-Apps/Modern UI 240x135/metadata.json"
         },
         {
@@ -1205,7 +1205,7 @@
             "Wi-Fi.png"
           ],
           "slug": "BruceDevices/App-Store-Apps/Modern UI 2 240x135",
-          "lastUpdated": 1770861240,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/App-Store-Apps/Modern UI 2 240x135/metadata.json"
         },
         {
@@ -1239,7 +1239,7 @@
             "Wi-Fi.png"
           ],
           "slug": "BruceDevices/App-Store-Apps/Modern UI 2 320x240",
-          "lastUpdated": 1770861240,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/App-Store-Apps/Modern UI 2 320x240/metadata.json"
         },
         {
@@ -1275,7 +1275,7 @@
             "wifi.png"
           ],
           "slug": "BruceDevices/App-Store-Apps/Modern UI 2.1 240x135",
-          "lastUpdated": 1771781293,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/App-Store-Apps/Modern UI 2.1 240x135/metadata.json"
         },
         {
@@ -1310,7 +1310,7 @@
             "15ethernet-min.png"
           ],
           "slug": "BruceDevices/App-Store-Apps/Peve 320x170",
-          "lastUpdated": 1770861240,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/App-Store-Apps/Peve 320x170/metadata.json"
         },
         {
@@ -1344,7 +1344,7 @@
             "wifi.png"
           ],
           "slug": "BruceDevices/App-Store-Apps/SciFi 2 320x170",
-          "lastUpdated": 1770861240,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/App-Store-Apps/SciFi 2 320x170/metadata.json"
         },
         {
@@ -1378,7 +1378,7 @@
             "wifi.png"
           ],
           "slug": "BruceDevices/App-Store-Apps/Shark Blue 320x170",
-          "lastUpdated": 1770861240,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/App-Store-Apps/Shark Blue 320x170/metadata.json"
         },
         {
@@ -1413,11 +1413,11 @@
             "WIFI.png"
           ],
           "slug": "BruceDevices/App-Store-Apps/Watch Dogs 320x170",
-          "lastUpdated": 1770861456,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/App-Store-Apps/Watch Dogs 320x170/metadata.json"
         }
       ],
-      "lastUpdated": 1772536015
+      "lastUpdated": 1780834983
     },
     {
       "name": "Tools",
@@ -1440,7 +1440,7 @@
             }
           ],
           "slug": "BruceDevices/App-Store/App Store",
-          "lastUpdated": 1771039124,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/App-Store/App Store/metadata.json"
         },
         {
@@ -1456,7 +1456,7 @@
             "Device Info.js"
           ],
           "slug": "emericklaw/Bruce-Device-Info-App/Device Info",
-          "lastUpdated": 1769482052,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/emericklaw/Bruce-Device-Info-App/Device Info/metadata.json"
         },
         {
@@ -1480,7 +1480,7 @@
             "Smoochiee Board"
           ],
           "slug": "SasPes/key-decoding/Key Decoding",
-          "lastUpdated": 1771877424,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/SasPes/key-decoding/Key Decoding/metadata.json"
         },
         {
@@ -1496,11 +1496,11 @@
             "Lock Device.js"
           ],
           "slug": "emericklaw/Bruce-Lock-Device-App/Lock Device",
-          "lastUpdated": 1769482177,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/emericklaw/Bruce-Lock-Device-App/Lock Device/metadata.json"
         }
       ],
-      "lastUpdated": 1771877424
+      "lastUpdated": 1780834983
     },
     {
       "name": "Utilities",
@@ -1524,7 +1524,7 @@
             }
           ],
           "slug": "BruceDevices/firmware/Calculator M5 Stick",
-          "lastUpdated": 1769975681,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/firmware/Calculator M5 Stick/metadata.json"
         },
         {
@@ -1544,7 +1544,7 @@
             }
           ],
           "slug": "BruceDevices/firmware/Calculator T-Embed",
-          "lastUpdated": 1769975681,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/firmware/Calculator T-Embed/metadata.json"
         },
         {
@@ -1563,7 +1563,7 @@
             }
           ],
           "slug": "BruceDevices/firmware/Crypto Prices",
-          "lastUpdated": 1769975681,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/firmware/Crypto Prices/metadata.json"
         },
         {
@@ -1579,7 +1579,7 @@
             "Flashlight.js"
           ],
           "slug": "emericklaw/Bruce-Flashlight-App/Flashlight",
-          "lastUpdated": 1769482052,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/emericklaw/Bruce-Flashlight-App/Flashlight/metadata.json"
         },
         {
@@ -1598,7 +1598,7 @@
             }
           ],
           "slug": "emericklaw/Bruce-Hello-World-Example-App/Hello World",
-          "lastUpdated": 1769424846,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/emericklaw/Bruce-Hello-World-Example-App/Hello World/metadata.json"
         },
         {
@@ -1617,11 +1617,11 @@
             }
           ],
           "slug": "BruceDevices/firmware/Web Browser",
-          "lastUpdated": 1769975681,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/firmware/Web Browser/metadata.json"
         }
       ],
-      "lastUpdated": 1769975681
+      "lastUpdated": 1780834983
     },
     {
       "name": "WiFi",
@@ -1644,11 +1644,11 @@
             }
           ],
           "slug": "BruceDevices/firmware/WiFi Brute Force",
-          "lastUpdated": 1772244078,
+          "lastUpdated": 1780834983,
           "metadataPath": "repositories/BruceDevices/firmware/WiFi Brute Force/metadata.json"
         }
       ],
-      "lastUpdated": 1772244078
+      "lastUpdated": 1780834983
     }
   ]
 }
